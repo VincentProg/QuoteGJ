@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
-public class VisitorNavMesh : MonoBehaviour
+public class Hunter : MonoBehaviour
 {
     [SerializeField] private Transform movePositionTransform;
 
@@ -13,10 +14,20 @@ public class VisitorNavMesh : MonoBehaviour
 
     public Vector2 lastAlertPos;
 
+    public int fearMax = 100;
+    public int currentFear = 0;
+    private Image FearImage;
+
     // Start is called before the first frame update
     void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
+    }
+
+    private void Start()
+    {
+        FearImage = transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>();
+        FearImage.fillAmount = 0;
     }
 
     // Update is called once per frame
@@ -29,6 +40,10 @@ public class VisitorNavMesh : MonoBehaviour
         {
             lastAlertPos = movePositionTransform.position;
             RealizeAction(ACTION.ALERT);
+        }
+        if (Input.GetKeyDown("f"))
+        {
+            AddFear(20);
         }
     }
 
@@ -60,11 +75,28 @@ public class VisitorNavMesh : MonoBehaviour
 
     }
 
+    public void AddFear(int fear)
+    {
+        currentFear += fear;
+        FearImage.fillAmount = (float)currentFear / fearMax;
+        print (currentFear);
+        if (currentFear >= fearMax)
+        {
+            Death();
+        }
+    }
+
+    private void Death()
+    {
+        print("Dead");
+        Destroy(gameObject);
+        
+    }
+
     IEnumerator ResumeNavMesh( int s)
     {
         yield return new WaitForSeconds(s);
         navMeshAgent.isStopped = false;
-
     }
 
 }
