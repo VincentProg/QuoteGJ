@@ -978,7 +978,7 @@ GameObject:
   - component: {fileID: 791107667}
   - component: {fileID: 791107668}
   m_Layer: 0
-  m_Name: Smash QTE 5 w/ CROSS
+  m_Name: Stay QTE 3 sec w/ CROSS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1007,12 +1007,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 791107666}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf2e0b085d593a240bee3723ce78e323, type: 3}
+  m_Script: {fileID: 11500000, guid: 4eb2fdf5231c5554f8f5d968149f16b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Button: 0
-  smashCount: 5
-  smashQTEDisplay: {fileID: 7935535876698855842, guid: e6b53f1bc1d428e429ddedf8b3c3adf6, type: 3}
+  stayTime: 3
+  stayQTEDisplay: {fileID: 7935535876698855842, guid: e6b53f1bc1d428e429ddedf8b3c3adf6, type: 3}
 --- !u!1 &799213248
 GameObject:
   m_ObjectHideFlags: 0

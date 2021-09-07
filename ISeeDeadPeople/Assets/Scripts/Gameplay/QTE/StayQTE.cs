@@ -4,24 +4,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SmashQTE : QTE
+public class StayQTE : QTE
 {
-    public int smashCount;
-    public GameObject smashQTEDisplay;
+    public float stayTime;
+    public GameObject stayQTEDisplay;
 
     private Player rewiredPlayer = null;
     private bool _isCompleted;
 
-    private int internSmashCount = 0;
+    private float internStayTimer = 0;
     private GameObject currentDisplayQTE = null;
     private Image fillIMG = null;
+
+    bool needReload;
 
     protected override void OnExecute()
     {
         _isCompleted = false;
         rewiredPlayer = ReInput.players.GetPlayer("Player");
 
-        currentDisplayQTE = Instantiate(smashQTEDisplay, null);
+        currentDisplayQTE = Instantiate(stayQTEDisplay, null);
         currentDisplayQTE.transform.position = transform.position;
 
         fillIMG = currentDisplayQTE.GetComponentInChildren<Image>();
@@ -33,25 +35,40 @@ public class SmashQTE : QTE
 
     public override void QTEUpdate()
     {
-        if(internSmashCount < smashCount && GoodButtonSmashed())
+        if (!_isCompleted)
         {
-            rewiredPlayer.SetVibration(1, .9f, .05f);
-            rewiredPlayer.SetVibration(2, .9f, .05f);
-
-            internSmashCount++;
+            fillIMG.fillAmount = internStayTimer / stayTime;
         }
-        else if (internSmashCount >= smashCount)
+
+        if(internStayTimer <= stayTime && GoodButtonStay())
+        {
+            internStayTimer += Time.deltaTime;
+            rewiredPlayer.SetVibration(1, .6f, .1f);
+            rewiredPlayer.SetVibration(2, .6f, .1f);
+        }
+
+        else if(rewiredPlayer.GetButtonUp(ButtonName) && !_isCompleted)
+        {
+            needReload = true;
+        }
+
+        if(internStayTimer > 0 && needReload)
+        {
+            internStayTimer -= Time.deltaTime * 1.5f;
+        }
+        
+        if(internStayTimer <= 0) { internStayTimer = 0; needReload = false; }
+
+        else if(!_isCompleted && internStayTimer >= stayTime)
         {
             Destroy(currentDisplayQTE);
             _isCompleted = true;
         }
-
-        fillIMG.fillAmount = (float)internSmashCount / smashCount;
     }
 
-    public bool GoodButtonSmashed()
+    public bool GoodButtonStay()
     {
-        return (rewiredPlayer.GetButtonDown(ButtonName));
+        return (rewiredPlayer.GetButton(ButtonName));
     }
 
     public override bool IsFinished()
@@ -62,7 +79,7 @@ public class SmashQTE : QTE
     protected override string BuildGameObjectName()
     {
         string name = "";
-        name = $"Smash QTE {smashCount} w/ {Button}"; 
+        name = $"Stay QTE {stayTime} sec w/ {Button}"; 
         return name;
     }
 }
