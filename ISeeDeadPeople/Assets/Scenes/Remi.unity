@@ -515,7 +515,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Mouvement: {fileID: 140317198}
-  Overlap: {fileID: 2100749783}
+  OtherOverlap: {fileID: 2100749783}
   Axes: {x: 0, y: 0, z: 0}
   Activate: 1
   Lock: 0
@@ -1667,7 +1667,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Mouvement: {fileID: 140317198}
-  Overlap: {fileID: 521996901}
+  OtherOverlap: {fileID: 521996901}
   Axes: {x: 0, y: 0, z: 0}
   Activate: 1
   Lock: 0

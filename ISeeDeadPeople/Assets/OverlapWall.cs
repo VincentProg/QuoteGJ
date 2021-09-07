@@ -6,7 +6,7 @@ public class OverlapWall : MonoBehaviour
 {
     // Start is called before the first frame update
     public CharacterMouvement Mouvement;
-    public OverlapWall Overlap;
+    public OverlapWall OtherOverlap;
     public Vector3 Axes;
     public bool Activate;
     public int Lock;
@@ -20,8 +20,15 @@ public class OverlapWall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Mouvement.InWall)
+        if(Mouvement.InWall && Activate)
         {
+            if(Head && Axes.y==0)
+            {
+                Axes.y = 1;
+            }else if(!Head && Axes.x==0)
+            {
+                Axes.x = 1;
+            }
             Mouvement.Controller.Move(Axes*Mouvement.SpeedInWall*Time.deltaTime);
         }
     }
@@ -32,7 +39,7 @@ public class OverlapWall : MonoBehaviour
         {
             if(Lock==0 && Activate)
             {
-                Overlap.Activate = false;
+                OtherOverlap.Activate = false;
                 Mouvement.InWall = true;
                 if(Head)
                 {
@@ -53,7 +60,7 @@ public class OverlapWall : MonoBehaviour
             Lock -= 1;
             if(Lock==0 && Activate)
             {
-                Overlap.Activate = true;
+                OtherOverlap.Activate = true;
                 Mouvement.InWall = false;
                 Axes = Vector3.zero;
             }
