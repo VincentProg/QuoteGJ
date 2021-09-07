@@ -14,12 +14,18 @@ public class RoomStats
 
 public class RoomManager : MonoBehaviour
 {
+    [HideInInspector]
     public List<Room> rooms = new List<Room>();
     public List<RoomStats> roomsStats = new List<RoomStats>();
 
     // Start is called before the first frame update
     void Start()
     {
+        foreach(Transform child in transform)
+        {
+            Room roomChild =  transform.GetComponent<Room>();
+            rooms.Add(roomChild);
+        }
         InitialiseStats();
     }
 
