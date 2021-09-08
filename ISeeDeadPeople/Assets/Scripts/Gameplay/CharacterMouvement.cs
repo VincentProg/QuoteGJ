@@ -42,6 +42,12 @@ public class CharacterMouvement : MonoBehaviour
 
         if (rewiredPlayer.GetButtonDown("CircleBT"))
         {
+            bool isCandleOn = false;
+            foreach(Candle candle in myRoom.myCandles)
+            {
+                if (candle.isOn) isCandleOn = true;
+            }
+            if(isCandleOn)
             sequenceSouffle.Play();
         }
 
@@ -88,6 +94,18 @@ public class CharacterMouvement : MonoBehaviour
         {
             candle.turnOff(candle.transform.position.x - transform.position.x <= 0);
         }
+
+        foreach(Hunter hunter in GameManager.Instance.hunters)
+        {
+
+            if(hunter.currentRoom == myRoom)
+            {
+                hunter.ResetState();
+                hunter.ActivateAction(Hunter.ACTION.WATCH_AROUND);
+            }
+
+        }
+
 
         canMove = true;
     }
