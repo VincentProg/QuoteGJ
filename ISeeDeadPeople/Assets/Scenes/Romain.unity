@@ -234,7 +234,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &81859364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,9 +259,10 @@ Transform:
   m_LocalPosition: {x: 2.9561257, y: 4.042725, z: -0.9181199}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1836763986}
   - {fileID: 791107667}
+  - {fileID: 1836763986}
   - {fileID: 1032276493}
+  - {fileID: 1139556946}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -996,7 +997,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 81859365}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &791107668
 MonoBehaviour:
@@ -1012,7 +1013,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Button: 0
   stayTime: 3
-  stayQTEDisplay: {fileID: 7935535876698855842, guid: e6b53f1bc1d428e429ddedf8b3c3adf6, type: 3}
+  stayQTEDisplay: {fileID: 7935535876698855842, guid: 8ef7d4389ac50524fa47e082d50cd86e, type: 3}
 --- !u!1 &799213248
 GameObject:
   m_ObjectHideFlags: 0
@@ -1108,6 +1109,107 @@ Transform:
   m_Father: {fileID: 150988544}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &820207116
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 820207117}
+  - component: {fileID: 820207118}
+  m_Layer: 0
+  m_Name: EmotesManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &820207117
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 820207116}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.8959992, y: 5.71994, z: -10.818119}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &820207118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 820207116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20bd8b8f61d57cd4e8511de52a2522d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugEmoteToPlay: Scary_Emote
+  emotes:
+  - emoteName: Scary_Emote
+    emoteSprites:
+    - {fileID: 3102918160473159142, guid: a30debaaed805c64cb2da685330c6201, type: 3}
+    - {fileID: -185236968397301926, guid: a30debaaed805c64cb2da685330c6201, type: 3}
+    - {fileID: 3608734928784655377, guid: a30debaaed805c64cb2da685330c6201, type: 3}
+  - emoteName: Question_Emote
+    emoteSprites:
+    - {fileID: -6628281775695540409, guid: 7a31ed24d727b1a448f8f517ec8893e1, type: 3}
+    - {fileID: -6560025859776051539, guid: 7a31ed24d727b1a448f8f517ec8893e1, type: 3}
+    - {fileID: -3413268294644092679, guid: 7a31ed24d727b1a448f8f517ec8893e1, type: 3}
+  - emoteName: Doubt_Emote
+    emoteSprites:
+    - {fileID: -4531893788166138701, guid: 8fbda863d6176354183b4b51a689a170, type: 3}
+    - {fileID: 2599955307463768939, guid: 8fbda863d6176354183b4b51a689a170, type: 3}
+    - {fileID: -955210671950835155, guid: 8fbda863d6176354183b4b51a689a170, type: 3}
+  - emoteName: Exclamation_Emote
+    emoteSprites:
+    - {fileID: 2300010647596739004, guid: 2bc859d3bb025a848ab6042471a5423b, type: 3}
+    - {fileID: -5135105106473151898, guid: 2bc859d3bb025a848ab6042471a5423b, type: 3}
+    - {fileID: 6141943398892093139, guid: 2bc859d3bb025a848ab6042471a5423b, type: 3}
+  - emoteName: Surprise_Emote
+    emoteSprites:
+    - {fileID: -87249387004939065, guid: 6d2f3e76609486440bc1c1c2a792b911, type: 3}
+    - {fileID: 7310163849520555367, guid: 6d2f3e76609486440bc1c1c2a792b911, type: 3}
+    - {fileID: 2653552758403837936, guid: 6d2f3e76609486440bc1c1c2a792b911, type: 3}
+  - emoteName: Confused_Emote
+    emoteSprites:
+    - {fileID: 2615180236232264796, guid: fa19a1bfbecbce445b5e483f61bcf588, type: 3}
+    - {fileID: -2520603511754882521, guid: fa19a1bfbecbce445b5e483f61bcf588, type: 3}
+    - {fileID: 6457852531020050864, guid: fa19a1bfbecbce445b5e483f61bcf588, type: 3}
+  - emoteName: Interact_Emote
+    emoteSprites:
+    - {fileID: 1728135899986521836, guid: fad84a0850ab49e4da2e8ba9bd21b102, type: 3}
+    - {fileID: -6042907829938001227, guid: fad84a0850ab49e4da2e8ba9bd21b102, type: 3}
+    - {fileID: -5000772771131413728, guid: fad84a0850ab49e4da2e8ba9bd21b102, type: 3}
+  - emoteName: Light_Emote
+    emoteSprites:
+    - {fileID: 9182984333797038205, guid: 4d5ff70eb5aaf20489413bbac593535d, type: 3}
+    - {fileID: 3149308335131475564, guid: 4d5ff70eb5aaf20489413bbac593535d, type: 3}
+    - {fileID: -4920419431149975245, guid: 4d5ff70eb5aaf20489413bbac593535d, type: 3}
+  - emoteName: HappyGhost_Emote
+    emoteSprites:
+    - {fileID: 3464314752240797191, guid: d44ac59daf22594499868f5d8cbe6bc6, type: 3}
+    - {fileID: -5586126543152141005, guid: d44ac59daf22594499868f5d8cbe6bc6, type: 3}
+    - {fileID: 2586205285529976139, guid: d44ac59daf22594499868f5d8cbe6bc6, type: 3}
+  - emoteName: IdleGhost_Emote
+    emoteSprites:
+    - {fileID: 5629738024534303544, guid: c1561d85ba9c3dc41a88ebf282c448bd, type: 3}
+    - {fileID: -8694926027083951316, guid: c1561d85ba9c3dc41a88ebf282c448bd, type: 3}
+    - {fileID: -6640307958884919609, guid: c1561d85ba9c3dc41a88ebf282c448bd, type: 3}
+  - emoteName: ScaredGhost_Emote
+    emoteSprites:
+    - {fileID: -4488405268742963131, guid: 97c0767ee1bc1fe428a9b5a5cfb6f473, type: 3}
+    - {fileID: 7381518003340519688, guid: 97c0767ee1bc1fe428a9b5a5cfb6f473, type: 3}
+    - {fileID: 2467824506458951807, guid: 97c0767ee1bc1fe428a9b5a5cfb6f473, type: 3}
+  emoteSource: {fileID: 6448773182773034494, guid: d37e6065127dffa4c9eb285d40fb7d4e, type: 3}
 --- !u!1 &982579710
 GameObject:
   m_ObjectHideFlags: 0
@@ -1989,6 +2091,53 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1139556945
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1139556946}
+  - component: {fileID: 1139556947}
+  m_Layer: 0
+  m_Name: Timed QTE 2 w/ TRIANGLE
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1139556946
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1139556945}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.82, y: -2.75, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 81859365}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1139556947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1139556945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77d5e0dc961676644a702ee9b120aa3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Button: 2
+  timedTime: 2
+  errorOffset: 0.3
+  timedQTEDisplay: {fileID: 7935535876698855842, guid: 38db6b95379063b41a6a47081381d03a, type: 3}
 --- !u!1 &1168410115
 GameObject:
   m_ObjectHideFlags: 0
@@ -2332,16 +2481,20 @@ MonoBehaviour:
   touch_Displays:
   - displayName: TriangleBT
     displayButton: 2
-    displaySprite: {fileID: 21300000, guid: d31ee7f0a33a46a4d93e6f7b462ef17c, type: 3}
+    displaySprite: {fileID: -2268730382184368236, guid: d3a2b06bb8831254ca7494d8a58037f3, type: 3}
+    pressedSprite: {fileID: 1900514697465637113, guid: d3a2b06bb8831254ca7494d8a58037f3, type: 3}
   - displayName: SquareBT
     displayButton: 1
-    displaySprite: {fileID: 21300000, guid: 2157aa41a58522e478ee5b2331c81092, type: 3}
+    displaySprite: {fileID: 8769396089252263448, guid: d3a2b06bb8831254ca7494d8a58037f3, type: 3}
+    pressedSprite: {fileID: -3364003477368753290, guid: d3a2b06bb8831254ca7494d8a58037f3, type: 3}
   - displayName: CrossBT
     displayButton: 0
-    displaySprite: {fileID: 21300000, guid: c4521798d97d0854a99ff833fce86574, type: 3}
+    displaySprite: {fileID: 5466747750160801597, guid: d3a2b06bb8831254ca7494d8a58037f3, type: 3}
+    pressedSprite: {fileID: 3078331282797217306, guid: d3a2b06bb8831254ca7494d8a58037f3, type: 3}
   - displayName: CircleBT
     displayButton: 3
-    displaySprite: {fileID: 21300000, guid: 0b640aab092caab4b93b28a9810dbb2d, type: 3}
+    displaySprite: {fileID: 4113569605441211893, guid: d3a2b06bb8831254ca7494d8a58037f3, type: 3}
+    pressedSprite: {fileID: 3073469953200056292, guid: d3a2b06bb8831254ca7494d8a58037f3, type: 3}
 --- !u!1 &1836763985
 GameObject:
   m_ObjectHideFlags: 0
@@ -2371,7 +2524,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 81859365}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1836763987
 MonoBehaviour:

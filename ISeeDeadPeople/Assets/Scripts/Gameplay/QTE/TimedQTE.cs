@@ -4,30 +4,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SmashQTE : QTE
+public class TimedQTE : QTE
 {
-    public int smashCount;
-    public GameObject smashQTEDisplay;
+    public float timedTime = 0;
+    public float errorOffset = 0.3f;
+    public GameObject timedQTEDisplay;
 
     private Player rewiredPlayer = null;
     private bool _isCompleted;
 
-    private int internSmashCount = 0;
     private GameObject currentDisplayQTE = null;
-    private Image fillIMG = null;
+    private Image timedIMG = null;
 
     private QTEDisplay displaySetup;
+
+    private float internTimer = 0;
+    bool isMissed = false;
+    RectTransform timedRect = null;
+    Image[] images = null;
 
     protected override void OnExecute()
     {
         _isCompleted = false;
         rewiredPlayer = ReInput.players.GetPlayer("Player");
 
-        currentDisplayQTE = Instantiate(smashQTEDisplay, null);
+        currentDisplayQTE = Instantiate(timedQTEDisplay, null);
         currentDisplayQTE.transform.position = transform.position;
 
-        fillIMG = currentDisplayQTE.GetComponentInChildren<Image>();
-        fillIMG.fillAmount = 0;
+        images = currentDisplayQTE.GetComponentsInChildren<Image>();
+        images[0].fillAmount = errorOffset / timedTime;
+        images[1].fillAmount = 0;
 
         displaySetup = currentDisplayQTE.GetComponent<QTEDisplay>();
         QTEManager.instance.AssignSprite(Button, displaySetup);
@@ -35,22 +41,23 @@ public class SmashQTE : QTE
 
     public override void QTEUpdate()
     {
-        if(internSmashCount < smashCount && GoodButtonSmashed())
+        if (!isMissed)
         {
-            rewiredPlayer.SetVibration(1, .9f, .05f);
-            rewiredPlayer.SetVibration(2, .9f, .05f);
-
-            displaySetup.FeedbackPress();
-
-            internSmashCount++;
+            images[1].fillAmount = internTimer / timedTime;
+            internTimer += Time.deltaTime;
         }
-        else if (internSmashCount >= smashCount)
+
+        if(timedTime - errorOffset <= internTimer && timedTime + errorOffset >= internTimer && GoodButtonSmashed())
         {
-            Destroy(currentDisplayQTE);
             _isCompleted = true;
+            Destroy(currentDisplayQTE);
         }
 
-        fillIMG.fillAmount = (float)internSmashCount / smashCount;
+        if(internTimer > timedTime + errorOffset)
+        {
+            isMissed = true;
+            Debug.LogWarning("QTE missed/out of time");
+        }
     }
 
     public bool GoodButtonSmashed()
@@ -66,7 +73,7 @@ public class SmashQTE : QTE
     protected override string BuildGameObjectName()
     {
         string name = "";
-        name = $"Smash QTE {smashCount} w/ {Button}"; 
+        name = $"Timed QTE {timedTime} w/ {Button}"; 
         return name;
     }
 }

@@ -17,6 +17,7 @@ public class StayQTE : QTE
     private Image fillIMG = null;
 
     bool needReload;
+    private QTEDisplay displaySetup;
 
     protected override void OnExecute()
     {
@@ -29,8 +30,8 @@ public class StayQTE : QTE
         fillIMG = currentDisplayQTE.GetComponentInChildren<Image>();
         fillIMG.fillAmount = 0;
 
-        Image[] images = currentDisplayQTE.GetComponentsInChildren<Image>();
-        images[1].sprite = QTEManager.instance.AssignSprite(Button);
+        displaySetup = currentDisplayQTE.GetComponent<QTEDisplay>();
+        QTEManager.instance.AssignSprite(Button, displaySetup);
     }
 
     public override void QTEUpdate()
@@ -43,8 +44,10 @@ public class StayQTE : QTE
         if(internStayTimer <= stayTime && GoodButtonStay())
         {
             internStayTimer += Time.deltaTime;
+            displaySetup.FeedbackPress();
             rewiredPlayer.SetVibration(1, .6f, .1f);
             rewiredPlayer.SetVibration(2, .6f, .1f);
+            needReload = false;
         }
 
         else if(rewiredPlayer.GetButtonUp(ButtonName) && !_isCompleted)
