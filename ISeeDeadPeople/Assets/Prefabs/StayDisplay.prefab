@@ -262,7 +262,7 @@ GameObject:
   - component: {fileID: 7935535876698855773}
   - component: {fileID: 7562022239039964854}
   m_Layer: 0
-  m_Name: SmashDisplay
+  m_Name: StayDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -296,7 +296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   assignedBT: 0
-  animSpeed: 1.8
+  animSpeed: 0.8
   displayIMG: {fileID: 7935535876034830205}
   idleTouchSprite: {fileID: 0}
   pressedTouchSprite: {fileID: 0}

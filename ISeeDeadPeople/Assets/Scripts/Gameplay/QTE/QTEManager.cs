@@ -8,6 +8,7 @@ public class Touch_Display
     public string displayName;
     public QTE_BT displayButton;
     public Sprite displaySprite;
+    public Sprite pressedSprite;
 }
 
 public class QTEManager : MonoBehaviour
@@ -29,18 +30,15 @@ public class QTEManager : MonoBehaviour
         }
     }
 
-    public Sprite AssignSprite(QTE_BT qteButton)
+    public void AssignSprite(QTE_BT qteButton, QTEDisplay display)
     {
-        Sprite spriteToAssign = null;
-
-        foreach (Touch_Display display in touch_Displays)
+        foreach (Touch_Display touch in touch_Displays)
         {
-            if(display.displayButton == qteButton)
+            if(touch.displayButton == qteButton)
             {
-                spriteToAssign = display.displaySprite;
+                display.idleTouchSprite = touch.displaySprite;
+                display.pressedTouchSprite = touch.pressedSprite;
             }
         }
-
-        return spriteToAssign;
     }
 }
