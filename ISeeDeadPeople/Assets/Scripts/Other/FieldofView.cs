@@ -62,9 +62,6 @@ public class FieldofView : MonoBehaviour
     public MeshFilter viewMeshFilter;
     Mesh viewMesh;
 
-    private GameObject warningDisplay = null;
-    private bool warningDisplayed = false;
-
 
     private void Start()
     {
@@ -120,45 +117,27 @@ public class FieldofView : MonoBehaviour
         if (visibleTargets.Count > 0)
         {
             Debug.Log($"Hunter : {transform.name} is seeing the ghost");
-            
-            if (!warningDisplayed)
-            {
-                //EmoteManager.instance.PlayEmoteWithTransform("ScaredGhost_Emote", visibleTargets[0]);
-                warningDisplay = EmoteManager.instance.PlayEmoteGameObject("ScaredGhost_Emote");
-                warningDisplay.transform.parent = visibleTargets[0];
-                warningDisplay.transform.position = new Vector3(visibleTargets[0].position.x, visibleTargets[0].position.y + .5f, -2);
-                
-                warningDisplayed = true;
-            }
-
             isSeeing = true;
         }
         else
         {
             isSeeing = false;
 
-            if (warningDisplay != null)
-            {
-                Destroy(warningDisplay);
-            }
-
-            warningDisplayed = false;
-
             timerLose = timeBeforeLose;
         }
 
-        //if (isSeeing)
-        //{
-        //    if (timerLose > 0)
-        //    {
-        //        timerLose -= Time.deltaTime;
-        //    }
+        if (isSeeing)
+        {
+            if (timerLose > 0)
+            {
+                timerLose -= Time.deltaTime;
+            }
 
-        //    else
-        //    {
-        //        viewVisualisation.SetActive(false);
-        //    }
-        //}
+            else
+            {
+                viewVisualisation.SetActive(false);
+            }
+        }
     }
     void UnSee()
     {

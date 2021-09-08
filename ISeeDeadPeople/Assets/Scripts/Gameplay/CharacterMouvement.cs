@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using Rewired;
 
 public class CharacterMouvement : MonoBehaviour
 {
     // Start is called before the first frame update
+    private bool canMove = true;
     public float Speed;
     public float SpeedInWall;
     public bool InWall;
@@ -13,30 +15,39 @@ public class CharacterMouvement : MonoBehaviour
     public CinemachineVirtualCamera Camera;
     public FovEffects fovEffects;
     public GameObject Volume;
+    private Player rewiredPlayer = null;
+    public QTESequence sequenceSouffle;
+
+    Room myRoom;
     void Start()
     {
-        
+        rewiredPlayer = ReInput.players.GetPlayer("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!InWall)
+        if (canMove && !InWall)
         {
             float Axex = Input.GetAxis("Horizontal");
             float Axey = Input.GetAxis("Vertical");
-            
+
             Vector3 Axes = transform.right * Axex + transform.up * Axey;
             Axes = Axes * Speed * Time.deltaTime;
             Controller.Move(Axes);
         }
 
-        FovApply(fovEffects,InWall);
+        FovApply(fovEffects, InWall);
+
+        if (rewiredPlayer.GetButtonDown("CircleBT"))
+        {
+            sequenceSouffle.Play();
+        }
     }
 
-    public void FovApply(FovEffects Stats,bool Condition)
+    public void FovApply(FovEffects Stats, bool Condition)
     {
-        if(Condition)
+        if (Condition)
         {
             Camera.m_Lens.FieldOfView = Mathf.Lerp(Camera.m_Lens.FieldOfView, Stats.MaxFov, Stats.FovSpeedUp * Time.deltaTime);
         }
@@ -54,4 +65,22 @@ public class CharacterMouvement : MonoBehaviour
         public float FovSpeedUp;
         public float FovSpeedDown;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Room"))
+        {
+            myRoom = other.GetComponent<Room>();
+        }
+    }
+
+    void Blast()
+    {
+        foreach(Candle candle in myRoom.myCandles)
+        {
+            candle.turnOff();
+        }
+        canMove = true;
+    }
+
 }
