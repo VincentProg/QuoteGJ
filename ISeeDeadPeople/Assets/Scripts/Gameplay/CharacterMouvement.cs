@@ -51,10 +51,10 @@ public class CharacterMouvement : MonoBehaviour
             sequenceSouffle.Play();
         }
 
-        //if (Input.GetKeyDown("space"))
-        //{
-        //    Blast();
-        //}
+        if (Input.GetKeyDown("space"))
+        {
+            Blast();
+        }
     }
 
     public void FovApply(FovEffects Stats, bool Condition)
@@ -83,7 +83,6 @@ public class CharacterMouvement : MonoBehaviour
         if (other.CompareTag("Room"))
         {
             myRoom = other.GetComponent<Room>();
-            print("triggerrr");
         }
     }
 
@@ -100,8 +99,10 @@ public class CharacterMouvement : MonoBehaviour
 
             if(hunter.currentRoom == myRoom)
             {
+                hunter.AddFear(hunter.blast);
                 hunter.ResetState();
                 hunter.ActivateAction(Hunter.ACTION.WATCH_AROUND);
+               
             }
 
         }
