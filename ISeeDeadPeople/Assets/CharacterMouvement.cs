@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class CharacterMouvement : MonoBehaviour
 {
@@ -9,7 +10,9 @@ public class CharacterMouvement : MonoBehaviour
     public float SpeedInWall;
     public bool InWall;
     public CharacterController Controller;
-
+    public CinemachineVirtualCamera Camera;
+    public FovEffects fovEffects;
+    public GameObject Volume;
     void Start()
     {
         
@@ -20,12 +23,35 @@ public class CharacterMouvement : MonoBehaviour
     {
         if(!InWall)
         {
-        float Axex = Input.GetAxis("Horizontal");
-        float Axey = Input.GetAxis("Vertical");
-
-        Vector3 Axes = transform.right * Axex + transform.up * Axey;
-        Axes = Axes * Speed * Time.deltaTime;
-        Controller.Move(Axes);
+            float Axex = Input.GetAxis("Horizontal");
+            float Axey = Input.GetAxis("Vertical");
+            
+            Vector3 Axes = transform.right * Axex + transform.up * Axey;
+            Axes = Axes * Speed * Time.deltaTime;
+            Controller.Move(Axes);
         }
+
+        FovApply(fovEffects,InWall);
+    }
+
+    public void FovApply(FovEffects Stats,bool Condition)
+    {
+        if(Condition)
+        {
+            Camera.m_Lens.FieldOfView = Mathf.Lerp(Camera.m_Lens.FieldOfView, Stats.MaxFov, Stats.FovSpeedUp * Time.deltaTime);
+        }
+        else
+        {
+            Camera.m_Lens.FieldOfView = Mathf.Lerp(Camera.m_Lens.FieldOfView, Stats.MinFov, Stats.FovSpeedDown * Time.deltaTime);
+        }
+    }
+
+    [System.Serializable]
+    public struct FovEffects
+    {
+        public float MaxFov;
+        public float MinFov;
+        public float FovSpeedUp;
+        public float FovSpeedDown;
     }
 }
