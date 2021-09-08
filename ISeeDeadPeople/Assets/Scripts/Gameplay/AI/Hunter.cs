@@ -25,9 +25,12 @@ public class Hunter : MonoBehaviour
 
     private bool isDoingAction = false;
 
-    [Header("ACTION'S DURATION")] [SerializeField]
+    bool isPatroling;
+    List<Vector2> points = new List<Vector2>();
+
+    [Header("ACTIONS DURATION")] [SerializeField]
     private float turningOnCandle;
-    [SerializeField] private float afterTurningOnCandle;
+    [SerializeField] private float afterTurningOnCandle, surprisedBeforePatrol, afterPatrol; 
 
     // Start is called before the first frame update
     void Awake()
@@ -117,6 +120,18 @@ public class Hunter : MonoBehaviour
             }
         }
 
+        if (!IsMoving() && isPatroling )
+        {
+            if (points.Count>0)
+            {
+                MoveTo(points[0]);
+            } else
+            {
+                isPatroling = false;
+                StartCoroutine(WaitTimeAfterPatrol());
+            }
+        }
+
     }
 
     public void MoveTo(Vector3 position)
@@ -168,7 +183,25 @@ public class Hunter : MonoBehaviour
                 break;
             case ACTION.WATCH_AROUND:
                 currentAction = ACTION.WATCH_AROUND;
-                StartCoroutine(ResumeNavMesh(4));
+                isDoingAction = true;
+                SpriteRenderer candleZone = currentRoom.transform.GetChild(0).GetComponent<SpriteRenderer>();
+                float minX = candleZone.bounds.min.x;
+                float maxX = candleZone.bounds.max.x;
+                float minY = candleZone.bounds.min.y;
+                float maxY = candleZone.bounds.max.y;
+
+                Vector3 point0 = new Vector3(minX, (minY + maxY) / 2, candleZone.transform.position.z);
+                Vector3 point1 = new Vector3(maxX, (minY + maxY) / 2, candleZone.transform.position.z);
+
+                int rand2 = Random.Range(0, 2);
+                if(rand2 == 0)
+                {
+                    points.Add(point0); points.Add(point1); points.Add(point0);
+                }
+                else points.Add(point1); points.Add(point0); points.Add(point1);
+
+                StartCoroutine(SurprisedBeforePatrol());
+                
                 break;
             case ACTION.ALERT:
                 currentAction = ACTION.ALERT;
@@ -181,6 +214,14 @@ public class Hunter : MonoBehaviour
                 break;
         }
 
+    }
+
+    public void ResetState()
+    {
+        StopAllCoroutines();
+        targetCandle = null;
+        isDoingAction = false;
+        isPatroling = false;
     }
 
     public void AddFear(int fear)
@@ -251,5 +292,17 @@ public class Hunter : MonoBehaviour
         int rand = Random.Range(0, tempRooms.Count);
       
         MoveTo(tempRooms[rand].transform.position);
+    }
+
+    IEnumerator SurprisedBeforePatrol()
+    {
+        yield return new WaitForSeconds(surprisedBeforePatrol);
+        isPatroling = true;
+    }
+
+    IEnumerator WaitTimeAfterPatrol()
+    {
+        yield return new WaitForSeconds(afterPatrol);
+        isDoingAction = false;
     }
 }
