@@ -9,6 +9,7 @@ public class QTESequence : MonoBehaviour
     private QTE[] _qtes;
     private int _currentQTEIndex = 0;
 
+
     private bool _isRunning = false;
     public bool IsRunning { get { return _isRunning; } }
 

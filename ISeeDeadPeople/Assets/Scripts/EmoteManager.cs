@@ -54,11 +54,33 @@ public class EmoteManager : MonoBehaviour
         Destroy(emote, destroyTime);
     }
 
+    public GameObject PlayEmoteGameObject(string name)
+    {
+        Emote_Data e = Array.Find(emotes, emote => emote.emoteName == name);
+
+        GameObject emote = Instantiate(emoteSource);
+
+        emote.GetComponent<EmoteDisplay>().emoteSprites = e.emoteSprites;
+
+        return emote;
+    }
+
     public void PlayEmoteWithPos(string name, Vector3 pos)
     {
         Emote_Data e = Array.Find(emotes, emote => emote.emoteName == name);
 
         GameObject emote = Instantiate(emoteSource, pos, Quaternion.identity);
+
+        emote.GetComponent<EmoteDisplay>().emoteSprites = e.emoteSprites;
+
+        Destroy(emote, destroyTime);
+    }
+
+    public void PlayEmoteWithTransform(string name, Transform trans)
+    {
+        Emote_Data e = Array.Find(emotes, emote => emote.emoteName == name);
+
+        GameObject emote = Instantiate(emoteSource, new Vector3(trans.position.x, trans.position.y + 0.5f, -3), Quaternion.identity, trans);
 
         emote.GetComponent<EmoteDisplay>().emoteSprites = e.emoteSprites;
 
