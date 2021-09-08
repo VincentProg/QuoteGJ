@@ -6,11 +6,16 @@ using UnityEngine.UI;
 
 public class Hunter : MonoBehaviour
 {
+    public int id;
+
     [SerializeField] private Transform movePositionTransform;
 
     private NavMeshAgent navMeshAgent;
 
-    public enum ACTION { OPEN_DOOR, WATCH_AROUND, ALERT, FLEE}
+    public Room currentRoom;
+    public enum ACTION {GO_TO_CANDLE,TURN_ON_CANDLE,WATCH_AROUND, ALERT, FLEE}
+    private ACTION currentAction;
+    Candle targetCandle = null;
 
     public Vector2 lastAlertPos;
 
@@ -18,57 +23,156 @@ public class Hunter : MonoBehaviour
     public int currentFear = 0;
     private Image FearImage;
 
+    private bool isDoingAction = false;
+
     // Start is called before the first frame update
     void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
+        id = GameManager.Instance.hunters.Count;
+        GameManager.Instance.hunters.Add(this);
     }
 
     private void Start()
     {
+        currentAction = ACTION.GO_TO_CANDLE;
+        ActivateAction(currentAction);
         FearImage = transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>();
         FearImage.fillAmount = 0;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("space"))
-            MoveTo(movePositionTransform.position);
+        //if (Input.GetKeyDown("space"))
+        //    MoveTo(movePositionTransform.position);
 
-        if (Input.GetKeyDown("a"))
+        //if (Input.GetKeyDown("a"))
+        //{
+        //    lastAlertPos = movePositionTransform.position;
+        //    RealizeAction(ACTION.ALERT);
+        //}
+        //if (Input.GetKeyDown("f"))
+        //{
+        //    AddFear(20);
+        //}
+
+        if (!IsMoving() && !isDoingAction)
         {
-            lastAlertPos = movePositionTransform.position;
-            RealizeAction(ACTION.ALERT);
+            switch (currentAction )
+            {
+                case ACTION.GO_TO_CANDLE:
+                    if (targetCandle != null)
+                    {
+                        if (!targetCandle.isOn)
+                        {
+                            ActivateAction(ACTION.TURN_ON_CANDLE);
+                        }
+                        else
+                        {
+                            Candle newTarget = null;
+                            for (int i = 0; i < currentRoom.myCandles.Count; i++)
+                            {
+                                if (!currentRoom.myCandles[i].isOn)
+                                {
+                                    newTarget = currentRoom.myCandles[i];
+                                    break;
+                                }
+                            }
+                            if (newTarget != null)
+                            {
+                                targetCandle = newTarget;
+                                MoveTo(targetCandle.transform.position);
+                            }
+                            else
+                            {
+                                targetCandle = null;
+                                ActivateAction(ACTION.GO_TO_CANDLE);
+                            }
+                        }
+                    }
+                       
+                    else
+                    {
+                        ActivateAction(ACTION.GO_TO_CANDLE);
+                    }
+                    break;
+                case ACTION.TURN_ON_CANDLE:                  
+                        ActivateAction(ACTION.GO_TO_CANDLE);                 
+                    break;
+                case ACTION.WATCH_AROUND:
+
+                    break;
+                case ACTION.ALERT:
+
+                    break;
+                case ACTION.FLEE:
+;
+                    break;
+            }
         }
-        if (Input.GetKeyDown("f"))
-        {
-            AddFear(20);
-        }
+
     }
 
     public void MoveTo(Vector3 position)
     {
+        navMeshAgent.isStopped = false;
         navMeshAgent.destination = position;
     }
 
-    public void RealizeAction(ACTION action)
+    public void ActivateAction(ACTION action)
     { 
         navMeshAgent.isStopped = true;
 
         switch (action)
         {
-            case ACTION.OPEN_DOOR:
-                StartCoroutine(ResumeNavMesh(2));
+            case ACTION.GO_TO_CANDLE:
+                currentAction = ACTION.GO_TO_CANDLE;
+                List<Candle> tempCandles = new List<Candle>(GameManager.Instance.allCandles);       
+
+                while (targetCandle == null && tempCandles.Count>0)
+                {
+                    int rand = Random.Range(0, tempCandles.Count);
+                    Candle candle = tempCandles[rand];
+                    if(!candle.isOn && candle.room != currentRoom)
+                    {
+                        targetCandle = candle;
+                    }
+                    else
+                    {
+                        tempCandles.Remove(candle);;
+                    }
+
+                }
+
+                if (targetCandle != null)
+                {
+                    MoveTo(targetCandle.transform.position);
+                } else
+                {
+                    MoveToRandomRoom();
+                }
+
+
+                
+                break;
+            case ACTION.TURN_ON_CANDLE:
+                currentAction = ACTION.TURN_ON_CANDLE;
+                isDoingAction = true;
+                StartCoroutine(TurnOn_Candle());
                 break;
             case ACTION.WATCH_AROUND:
+                currentAction = ACTION.WATCH_AROUND;
                 StartCoroutine(ResumeNavMesh(4));
                 break;
             case ACTION.ALERT:
+                currentAction = ACTION.ALERT;
                 navMeshAgent.destination = lastAlertPos;
                 StartCoroutine(ResumeNavMesh(2));
                 break;
             case ACTION.FLEE:
+                currentAction = ACTION.FLEE;
                 StartCoroutine(ResumeNavMesh(2));
                 break;
         }
@@ -99,4 +203,47 @@ public class Hunter : MonoBehaviour
         navMeshAgent.isStopped = false;
     }
 
+    private bool IsMoving()
+    {
+        if (!navMeshAgent.pathPending)
+        {
+            if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
+            {
+                if (!navMeshAgent.hasPath || navMeshAgent.velocity.sqrMagnitude == 0f)
+                {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Room"))
+        {
+           Room room = other.GetComponent<Room>();
+            currentRoom = room;
+        }
+    }
+
+    IEnumerator TurnOn_Candle()
+    {
+        
+        yield return new WaitForSeconds(1);
+        targetCandle.turnOn();
+        targetCandle = null;
+        isDoingAction = false;
+    }
+
+    private void MoveToRandomRoom()
+    {
+        List<Room> tempRooms = new List<Room>(GameManager.Instance.rooms);
+        tempRooms.Remove(currentRoom);
+        int rand = Random.Range(0, tempRooms.Count);
+      
+        MoveTo(tempRooms[rand].transform.position);
+    }
 }
