@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using Rewired;
 
 public class CharacterMouvement : MonoBehaviour
 {
@@ -13,9 +14,11 @@ public class CharacterMouvement : MonoBehaviour
     public CinemachineVirtualCamera Camera;
     public FovEffects fovEffects;
     public GameObject Volume;
+    private Player rewiredPlayer = null;
+    public QTESequence sequenceSouffle;
     void Start()
     {
-
+        rewiredPlayer = ReInput.players.GetPlayer("Player");
     }
 
     // Update is called once per frame
@@ -32,6 +35,11 @@ public class CharacterMouvement : MonoBehaviour
         }
 
         FovApply(fovEffects, InWall);
+
+        if (rewiredPlayer.GetButtonDown("CircleBT"))
+        {
+            sequenceSouffle.Play();
+        }
     }
 
     public void FovApply(FovEffects Stats, bool Condition)
