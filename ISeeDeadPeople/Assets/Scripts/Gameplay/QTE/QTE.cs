@@ -7,7 +7,11 @@ public enum QTE_BT
     CROSS,
     SQUARE,
     TRIANGLE,
-    CIRCLE
+    CIRCLE,
+    L1,
+    R1,
+    L2,
+    R2
 }
 
 public abstract class QTE : MonoBehaviour
@@ -67,6 +71,18 @@ public abstract class QTE : MonoBehaviour
                 break;
             case QTE_BT.CIRCLE:
                 buttonName = "CircleBT";
+                break;
+            case QTE_BT.L1:
+                buttonName = "L1BT";
+                break;
+            case QTE_BT.R1:
+                buttonName = "R1BT";
+                break;
+            case QTE_BT.L2:
+                buttonName = "L2BT";
+                break;
+            case QTE_BT.R2:
+                buttonName = "R2BT";
                 break;
             default:
                 break;
