@@ -41,6 +41,7 @@ public class OverlapWall : MonoBehaviour
             if(Lock==0 && Activate)
             {
                 Effect.SetBool("InWall", true);
+                Mouvement.Volume.SetActive(true);
                 OtherOverlap.Activate = false;
                 Mouvement.InWall = true;
                 if(Head)
@@ -62,6 +63,7 @@ public class OverlapWall : MonoBehaviour
             Lock -= 1;
             if(Lock==0 && Activate)
             {
+                Mouvement.Volume.SetActive(false);
                 Effect.SetBool("InWall", false);
                 OtherOverlap.Activate = true;
                 Mouvement.InWall = false;

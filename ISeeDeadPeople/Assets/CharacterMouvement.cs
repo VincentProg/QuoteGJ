@@ -12,7 +12,7 @@ public class CharacterMouvement : MonoBehaviour
     public CharacterController Controller;
     public CinemachineVirtualCamera Camera;
     public FovEffects fovEffects;
-
+    public GameObject Volume;
     void Start()
     {
         
