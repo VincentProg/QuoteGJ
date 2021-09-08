@@ -1,3 +1,4 @@
+using Rewired;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,8 @@ public class CharacterMouvement : MonoBehaviour
     public float SpeedInWall;
     public bool InWall;
     public CharacterController Controller;
+    private Room room;
+    private Player rewiredPlayer = null;
 
     void Start()
     {
@@ -28,4 +31,7 @@ public class CharacterMouvement : MonoBehaviour
         Controller.Move(Axes);
         }
     }
+
+
+
 }
