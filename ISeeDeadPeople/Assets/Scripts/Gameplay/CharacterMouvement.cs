@@ -7,7 +7,8 @@ using Rewired;
 public class CharacterMouvement : MonoBehaviour
 {
     // Start is called before the first frame update
-    private bool canMove = true;
+    //[HideInInspector]
+    public bool canMove = true;
     public float Speed;
     public float SpeedInWall;
     public bool InWall;
@@ -43,6 +44,11 @@ public class CharacterMouvement : MonoBehaviour
         {
             sequenceSouffle.Play();
         }
+
+        //if (Input.GetKeyDown("space"))
+        //{
+        //    Blast();
+        //}
     }
 
     public void FovApply(FovEffects Stats, bool Condition)
@@ -71,15 +77,18 @@ public class CharacterMouvement : MonoBehaviour
         if (other.CompareTag("Room"))
         {
             myRoom = other.GetComponent<Room>();
+            print("triggerrr");
         }
     }
 
-    void Blast()
+    public void Blast()
     {
+       
         foreach(Candle candle in myRoom.myCandles)
         {
-            candle.turnOff();
+            candle.turnOff(candle.transform.position.x - transform.position.x <= 0);
         }
+
         canMove = true;
     }
 

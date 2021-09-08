@@ -14,6 +14,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public CharacterMouvement player = null;
     static public GameManager Instance; 
     [HideInInspector]
     public List<Room> rooms = new List<Room>();
@@ -42,6 +43,7 @@ public class GameManager : MonoBehaviour
         }
         InstantiateCandles();
 
+        player = FindObjectOfType<CharacterMouvement>();
 
         //InitialiseStats();
     }
