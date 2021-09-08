@@ -10,6 +10,8 @@ public class Room : MonoBehaviour
     public List<GameObject> interactionCollider = new List<GameObject>();
     public List<Candle> myCandles = new List<Candle>();
 
+    public bool playerIsInRoom = false;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Enemy"))
@@ -20,6 +22,11 @@ public class Room : MonoBehaviour
         if (other.gameObject.CompareTag("Interaction"))
         {
             interactionCollider.Add(other.gameObject);
+        }
+
+        if (other.gameObject.CompareTag("Player"))
+        {
+            playerIsInRoom = true;
         }
     }
 
@@ -33,6 +40,11 @@ public class Room : MonoBehaviour
         if (other.gameObject.CompareTag("Interaction"))
         {
             interactionCollider.Remove(other.gameObject);
+        }
+
+        if (other.gameObject.CompareTag("Player"))
+        {
+            playerIsInRoom = false;
         }
     }
 }

@@ -51,7 +51,6 @@ public class FieldofView : MonoBehaviour
     public List<Transform> visibleTargets = new List<Transform>();
     public bool isSeeing = false;
 
-    //Uniquement pour Supermarket :
     public GameObject viewVisualisation;
 
     [Header("Vision Mesh Setup")]
@@ -61,6 +60,9 @@ public class FieldofView : MonoBehaviour
 
     public MeshFilter viewMeshFilter;
     Mesh viewMesh;
+
+    GameObject displayDebug = null;
+    bool hasBeenDisplayed = false;
 
 
     private void Start()
@@ -117,11 +119,26 @@ public class FieldofView : MonoBehaviour
         if (visibleTargets.Count > 0)
         {
             Debug.Log($"Hunter : {transform.name} is seeing the ghost");
+
+            if (!hasBeenDisplayed)
+            {
+                displayDebug = EmoteManager.instance.PlayEmoteGameObject("ScaredGhost_Emote");
+                displayDebug.transform.parent = visibleTargets[0].transform;
+                displayDebug.transform.position = new Vector3(visibleTargets[0].position.x, visibleTargets[0].position.y + .7f, -2);
+                hasBeenDisplayed = true;
+            }
+
             isSeeing = true;
         }
         else
         {
             isSeeing = false;
+
+            if(displayDebug != null)
+            {
+                Destroy(displayDebug);
+                hasBeenDisplayed = false;
+            }
 
             timerLose = timeBeforeLose;
         }
