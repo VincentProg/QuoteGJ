@@ -8,6 +8,7 @@ public class Room : MonoBehaviour
     public string roomName;
     public List<GameObject> enemiesCollider = new List<GameObject>();
     public List<GameObject> interactionCollider = new List<GameObject>();
+    public List<Candle> myCandles = new List<Candle>();
 
     private void OnTriggerEnter(Collider other)
     {
