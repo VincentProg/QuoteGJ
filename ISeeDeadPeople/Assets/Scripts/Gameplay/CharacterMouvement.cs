@@ -7,6 +7,7 @@ using Rewired;
 public class CharacterMouvement : MonoBehaviour
 {
     // Start is called before the first frame update
+    private bool canMove = true;
     public float Speed;
     public float SpeedInWall;
     public bool InWall;
@@ -16,6 +17,8 @@ public class CharacterMouvement : MonoBehaviour
     public GameObject Volume;
     private Player rewiredPlayer = null;
     public QTESequence sequenceSouffle;
+
+    Room myRoom;
     void Start()
     {
         rewiredPlayer = ReInput.players.GetPlayer("Player");
@@ -24,7 +27,7 @@ public class CharacterMouvement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!InWall)
+        if (canMove && !InWall)
         {
             float Axex = Input.GetAxis("Horizontal");
             float Axey = Input.GetAxis("Vertical");
@@ -62,4 +65,22 @@ public class CharacterMouvement : MonoBehaviour
         public float FovSpeedUp;
         public float FovSpeedDown;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Room"))
+        {
+            myRoom = other.GetComponent<Room>();
+        }
+    }
+
+    void Blast()
+    {
+        foreach(Candle candle in myRoom.myCandles)
+        {
+            candle.turnOff();
+        }
+        canMove = true;
+    }
+
 }
