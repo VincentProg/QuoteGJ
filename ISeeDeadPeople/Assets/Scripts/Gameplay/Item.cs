@@ -9,7 +9,7 @@ public class Item : MonoBehaviour
     Room myRoom;
 
     [HideInInspector]
-    public Vector2 posEmote;
+    public Vector3 posEmote;
 
     bool isInteracting;
     Animator anim;
@@ -18,7 +18,7 @@ public class Item : MonoBehaviour
     private void Start()
     {
         anim = GetComponent<Animator>();
-        posEmote = transform.GetChild(0).position;
+        posEmote = transform.GetChild(0).position + new Vector3(0,1,-1);
     }
 
     private void Update()
