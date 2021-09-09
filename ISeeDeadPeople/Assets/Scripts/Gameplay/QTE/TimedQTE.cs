@@ -9,6 +9,7 @@ public class TimedQTE : QTE
     public float timedTime = 0;
     public float errorOffset = 0.3f;
     public GameObject timedQTEDisplay;
+    public string soundToPlay = null;
 
     private Player rewiredPlayer = null;
     private bool _isCompleted;
@@ -49,6 +50,11 @@ public class TimedQTE : QTE
 
         if(timedTime - errorOffset <= internTimer && timedTime + errorOffset >= internTimer && GoodButtonSmashed())
         {
+            if (AudioManager.instance != null)
+            {
+                AudioManager.instance.Play(soundToPlay);
+            }
+
             _isCompleted = true;
             Destroy(currentDisplayQTE);
         }

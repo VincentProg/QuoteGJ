@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Item : MonoBehaviour
 {
-    public enum TYPE { FAUTEUIL, CHAISE, TABLE}
+    public enum TYPE { FAUTEUIL, CHAISE, TABLE, PENDULE}
     public TYPE type = TYPE.FAUTEUIL;
     Room myRoom = null;
 
@@ -116,7 +116,11 @@ public class Item : MonoBehaviour
 
     public void Interact() {
         isInteracting = true;
-        anim.SetTrigger("Interact");
+        
+        if(anim != null)
+        {
+            anim.SetTrigger("Interact");
+        }
         
         qteGO = Instantiate(itemQTESequence);
         qteGO.transform.position = transform.GetChild(0).position;
@@ -164,6 +168,10 @@ public class Item : MonoBehaviour
 
                 
                 break;
+
+            case TYPE.PENDULE:
+                    posEmote = transform.GetChild(0).position;
+                    break;
         }
 
 

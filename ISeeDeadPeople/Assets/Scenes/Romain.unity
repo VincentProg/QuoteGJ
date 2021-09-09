@@ -447,6 +447,7 @@ Transform:
   m_Children:
   - {fileID: 81859365}
   - {fileID: 2104126577}
+  - {fileID: 1241603344}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6810,6 +6811,7 @@ MonoBehaviour:
   enemiesCollider: []
   interactionCollider: []
   myCandles: []
+  isOn: 0
   playerIsInRoom: 0
 --- !u!1 &559580417
 GameObject:
@@ -7122,7 +7124,8 @@ MonoBehaviour:
   rooms: []
   hunters: []
   allCandles: []
-  candle: {fileID: 6557285811912037655, guid: 63f1f1c7d8210d048ac83d2bf0f45def, type: 3}
+  candlesPrefabs: []
+  autoGenerateCandles: 1
 --- !u!4 &635654024
 Transform:
   m_ObjectHideFlags: 0
@@ -10144,6 +10147,55 @@ MonoBehaviour:
   timedTime: 2
   errorOffset: 0.3
   timedQTEDisplay: {fileID: 7935535876698855842, guid: 38db6b95379063b41a6a47081381d03a, type: 3}
+  soundToPlay: 
+--- !u!1 &1150695157
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1150695158}
+  - component: {fileID: 1150695159}
+  m_Layer: 0
+  m_Name: Timed QTE 2,5 w/ L2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1150695158
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1150695157}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1241603344}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1150695159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1150695157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77d5e0dc961676644a702ee9b120aa3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Button: 6
+  timedTime: 2.5
+  errorOffset: 0.7
+  timedQTEDisplay: {fileID: 7935535876698855842, guid: 38db6b95379063b41a6a47081381d03a, type: 3}
+  soundToPlay: Dong
 --- !u!1 &1168410115
 GameObject:
   m_ObjectHideFlags: 0
@@ -10559,6 +10611,54 @@ Transform:
   m_Father: {fileID: 1591581663}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1241603343
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1241603344}
+  - component: {fileID: 1241603345}
+  m_Layer: 0
+  m_Name: QTE Pendule
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1241603344
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1241603343}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.0601265, y: -1.6772151, z: 9.9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1150695158}
+  - {fileID: 1329273257}
+  - {fileID: 2117031586}
+  m_Father: {fileID: 81973096}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1241603345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1241603343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 242303687fc6ea247815dd96292ef4f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playOnStart: 1
+  sequenceFinished: 0
 --- !u!1 &1275967785
 GameObject:
   m_ObjectHideFlags: 0
@@ -10620,6 +10720,7 @@ MonoBehaviour:
   enemiesCollider: []
   interactionCollider: []
   myCandles: []
+  isOn: 0
   playerIsInRoom: 0
 --- !u!1 &1276365753
 GameObject:
@@ -10683,6 +10784,7 @@ MonoBehaviour:
   enemiesCollider: []
   interactionCollider: []
   myCandles: []
+  isOn: 0
   playerIsInRoom: 0
 --- !u!1 &1290913368
 GameObject:
@@ -10801,7 +10903,8 @@ MonoBehaviour:
   - {fileID: 1275967788}
   hunters: []
   allCandles: []
-  candle: {fileID: 0}
+  candlesPrefabs: []
+  autoGenerateCandles: 1
 --- !u!4 &1317997853
 Transform:
   m_ObjectHideFlags: 0
@@ -10816,6 +10919,54 @@ Transform:
   m_Father: {fileID: 1663927306}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1329273256
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1329273257}
+  - component: {fileID: 1329273258}
+  m_Layer: 0
+  m_Name: Timed QTE 2 w/ R2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1329273257
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1329273256}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1241603344}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1329273258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1329273256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77d5e0dc961676644a702ee9b120aa3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Button: 7
+  timedTime: 2
+  errorOffset: 0.4
+  timedQTEDisplay: {fileID: 7935535876698855842, guid: 38db6b95379063b41a6a47081381d03a, type: 3}
+  soundToPlay: Dong
 --- !u!1 &1339964289
 GameObject:
   m_ObjectHideFlags: 0
@@ -11126,7 +11277,8 @@ MonoBehaviour:
   rooms: []
   hunters: []
   allCandles: []
-  candle: {fileID: 0}
+  candlesPrefabs: []
+  autoGenerateCandles: 1
 --- !u!1 &1372085019
 GameObject:
   m_ObjectHideFlags: 0
@@ -11179,6 +11331,7 @@ MonoBehaviour:
   - {fileID: 1956452770}
   - {fileID: 1276365756}
   interactionColliders: []
+  sceneChanger: {fileID: 0}
 --- !u!4 &1372085021
 Transform:
   m_ObjectHideFlags: 0
@@ -12030,6 +12183,7 @@ MonoBehaviour:
     FovSpeedUp: 5
     FovSpeedDown: 1.5
   Volume: {fileID: 1723713369}
+  Flip: {fileID: 0}
   itemsNear: []
   blastSequence: {fileID: 6265330987481910818, guid: f83006181b84e8249960aa9ffbdab6ee, type: 3}
 --- !u!143 &1591581658
@@ -12314,6 +12468,104 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1624490541
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1624490542}
+  - component: {fileID: 1624490544}
+  - component: {fileID: 1624490543}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1624490542
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1624490541}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 5.4062696, y: 2.3931727, z: -4.1707726}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2027197837}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1624490543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1624490541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97f1453b45915934a921ef117953b142, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SongName: MainMusic
+--- !u!114 &1624490544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1624490541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d05755485f553a41a5b33e75fed4ded, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Breath
+    clip: {fileID: 8300000, guid: de7e1f872753727499208d950c7c5a10, type: 3}
+    volume: 0.1
+    loop: 0
+    source: {fileID: 0}
+  - name: MainMusic
+    clip: {fileID: 8300000, guid: 4fe5d1101f33d4344b8fd8ca23b71f96, type: 3}
+    volume: 0.2
+    loop: 1
+    source: {fileID: 0}
+  - name: Bougies
+    clip: {fileID: 8300000, guid: 265bd5ef924d0ea408c0d9f057df38c7, type: 3}
+    volume: 0.1
+    loop: 0
+    source: {fileID: 0}
+  - name: WallHack
+    clip: {fileID: 8300000, guid: 209ea76875d2a06449c5a94ad7415f6a, type: 3}
+    volume: 0.1
+    loop: 0
+    source: {fileID: 0}
+  - name: Bougies
+    clip: {fileID: 8300000, guid: 265bd5ef924d0ea408c0d9f057df38c7, type: 3}
+    volume: 0.1
+    loop: 0
+    source: {fileID: 0}
+  - name: Fear
+    clip: {fileID: 8300000, guid: de7e1f872753727499208d950c7c5a10, type: 3}
+    volume: 0.1
+    loop: 0
+    source: {fileID: 0}
+  - name: FearMax
+    clip: {fileID: 8300000, guid: 40b6394255c8f584590a051e61af1340, type: 3}
+    volume: 0.1
+    loop: 0
+    source: {fileID: 0}
+  - name: Dong
+    clip: {fileID: 8300000, guid: 6292c3d258ac4ea4bb5d40178dafef31, type: 3}
+    volume: 0.1
+    loop: 0
+    source: {fileID: 0}
 --- !u!1 &1663927305
 GameObject:
   m_ObjectHideFlags: 0
@@ -13108,6 +13360,7 @@ MonoBehaviour:
   enemiesCollider: []
   interactionCollider: []
   myCandles: []
+  isOn: 0
   playerIsInRoom: 0
 --- !u!1 &2027197836
 GameObject:
@@ -13141,6 +13394,7 @@ Transform:
   - {fileID: 1763896529}
   - {fileID: 820207117}
   - {fileID: 1362088624}
+  - {fileID: 1624490542}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -13290,6 +13544,54 @@ Transform:
   m_Father: {fileID: 2027197837}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2117031585
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2117031586}
+  - component: {fileID: 2117031587}
+  m_Layer: 0
+  m_Name: Timed QTE 1,5 w/ L2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2117031586
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2117031585}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1241603344}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2117031587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2117031585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77d5e0dc961676644a702ee9b120aa3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Button: 6
+  timedTime: 1.5
+  errorOffset: 0.3
+  timedQTEDisplay: {fileID: 7935535876698855842, guid: 38db6b95379063b41a6a47081381d03a, type: 3}
+  soundToPlay: Dong
 --- !u!1 &2120325960
 GameObject:
   m_ObjectHideFlags: 0
