@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     public List<Room> rooms = new List<Room>();
     public List<Hunter> hunters = new List<Hunter>();
     public List<Candle> allCandles = new List<Candle>();
-    public GameObject candle;
+    public List<GameObject> candlesPrefabs;
     
     //public List<RoomStats> roomsStats = new List<RoomStats>();
 
@@ -85,20 +85,21 @@ public class GameManager : MonoBehaviour
     {
         foreach (Room room in rooms)
         {
-            int rand = Random.Range(5, 10);
+            int rand = Random.Range(10, 20);
             for (int i = 0; i < rand; i++)
             {
-                GameObject newCandle = Instantiate(candle, room.transform);
+                int rand2 = Random.Range(0, 4);
+                GameObject newCandle = Instantiate(candlesPrefabs[rand2], room.transform);
                 newCandle.transform.localScale = new Vector3(
                     newCandle.transform.localScale.x / newCandle.transform.lossyScale.x,
                     newCandle.transform.localScale.y / newCandle.transform.lossyScale.y,
-                    newCandle.transform.localScale.z / newCandle.transform.lossyScale.z) / 3f;
+                    newCandle.transform.localScale.z / newCandle.transform.lossyScale.z) * 2;
                 SpriteRenderer candleZone = room.transform.GetChild(0).GetComponent<SpriteRenderer>();
                 float minX = candleZone.bounds.min.x;
                 float maxX = candleZone.bounds.max.x;
-                float minY = candleZone.bounds.min.y;
-                float maxY = candleZone.bounds.max.y;
-                newCandle.transform.position = new Vector3(Random.Range(minX, maxX), Random.Range(minY, maxY), candleZone.transform.position.z);
+                float minZ = candleZone.bounds.min.z;
+                float maxZ = candleZone.bounds.max.z;
+                newCandle.transform.position = new Vector3(Random.Range(minX, maxX), candleZone.transform.position.y, Random.Range(minZ, maxZ));
 
                 Candle candleScript = newCandle.GetComponent<Candle>();
                 room.myCandles.Add(candleScript);

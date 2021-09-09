@@ -89,18 +89,22 @@ public class CharacterMouvement : MonoBehaviour
         {
             itemClose = GetCloserItem();
 
-            if (!hasBeenDisplayed) {
-                hasBeenDisplayed = true;
-                displayEmote = EmoteManager.instance.PlayEmoteGameObject("Interact_Emote");
-                displayEmote.transform.position = itemClose.posEmote;
-            }
-
-           
-
-            if (rewiredPlayer.GetButtonDown("SquareBT"))
+            if (itemClose.isInteracting)
             {
-                itemClose.Interact();
-                itemsNear.Remove(itemClose);
+                if (!hasBeenDisplayed)
+                {
+                    hasBeenDisplayed = true;
+                    displayEmote = EmoteManager.instance.PlayEmoteGameObject("Interact_Emote");
+                    displayEmote.transform.position = itemClose.posEmote;
+                }
+
+
+
+                if (rewiredPlayer.GetButtonDown("SquareBT"))
+                {
+                    itemClose.Interact();
+                    itemsNear.Remove(itemClose);
+                }
             }
         } else if (hasBeenDisplayed)
         {
