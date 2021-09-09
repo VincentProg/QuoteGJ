@@ -81,6 +81,7 @@ public class BreathQTE : QTE
             {
                 Destroy(currentDisplayQTE);
                 _isCompleted = true;
+                GameManager.Instance.player.canMove = true;
             }
         }
     }
