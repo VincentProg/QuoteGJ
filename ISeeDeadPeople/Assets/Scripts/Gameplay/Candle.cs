@@ -7,13 +7,15 @@ public class Candle : MonoBehaviour
     public bool isOn;
     public Room room;
 
-    public Material On;
-    public Material Off;
 
+    private void Start()
+    {
+        transform.GetChild(1).gameObject.SetActive(false);
+    }
     public void turnOn()
     {
         isOn = true;
-        GetComponent<MeshRenderer>().material = On;
+        transform.GetChild(1).gameObject.SetActive(true);
     }
 
     public void turnOff(bool isPlayerOnTheRight)
@@ -22,12 +24,18 @@ public class Candle : MonoBehaviour
         {
             Transform child = transform.GetChild(0);        
             isOn = false;
-            GetComponent<MeshRenderer>().material = Off;
+            transform.GetChild(1).gameObject.SetActive(false);
             if (!isPlayerOnTheRight)
             {
                 child.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
             } else child.rotation = Quaternion.Euler(Vector3.zero);
-            child.GetComponent<ParticleSystem>().Play();
+            if(child.childCount > 0)
+            {
+                foreach (Transform c in child)
+                {
+                    c.GetComponent<ParticleSystem>().Play();
+                }
+            } else child.GetComponent<ParticleSystem>().Play();
         }
     }
 }

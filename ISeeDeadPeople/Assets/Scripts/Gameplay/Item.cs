@@ -11,12 +11,13 @@ public class Item : MonoBehaviour
     [HideInInspector]
     public Vector3 posEmote;
 
-    bool isInteracting;
+    public bool isInteracting;
     Animator anim;
 
     public GameObject itemQTESequence = null;
     private GameObject qteGO = null;
     private QTESequence qteSequence = null;
+
     
 
     private void Start()
