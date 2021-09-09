@@ -3,7 +3,17 @@ guid: a06e0e823e92d9f4c91359d71c465d4e
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: fantome RIGG_lambert3_AlbedoTransparency
+    second: {fileID: 2800000, guid: a6d606164169d444d90755698b34b8b0, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: fantome RIGG_lambert3_Normal
+    second: {fileID: 2800000, guid: 04952cda4e436b648aaa4bfb4cd9fb6c, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
