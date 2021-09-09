@@ -470,7 +470,6 @@ MonoBehaviour:
     FovSpeedUp: 5
     FovSpeedDown: 1.5
   Volume: {fileID: 0}
-  Anim: {fileID: 1762048191738793673}
   Flip: {fileID: 2079090637}
   itemsNear: []
   blastSequence: {fileID: 6265330987481910818, guid: f83006181b84e8249960aa9ffbdab6ee, type: 3}
@@ -700,6 +699,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: a06e0e823e92d9f4c91359d71c465d4e, type: 3}
       propertyPath: m_Name
       value: fantome RIGG
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162743097729400807, guid: a06e0e823e92d9f4c91359d71c465d4e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.112
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162743097729400807, guid: a06e0e823e92d9f4c91359d71c465d4e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.202
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a06e0e823e92d9f4c91359d71c465d4e, type: 3}

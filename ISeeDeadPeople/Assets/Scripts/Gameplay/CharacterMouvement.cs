@@ -16,6 +16,7 @@ public class CharacterMouvement : MonoBehaviour
     public CinemachineVirtualCamera Camera;
     public FovEffects fovEffects;
     public GameObject Volume;
+    public CharacterFlip Flip;
     private Player rewiredPlayer = null;
 
     Room myRoom;
@@ -46,6 +47,7 @@ public class CharacterMouvement : MonoBehaviour
             Vector3 Axes = transform.right * Axex + transform.up * Axey;
             Axes = Axes * Speed * Time.deltaTime;
             Controller.Move(Axes);
+            Flip.Flip(Axes);
         }
 
         FovApply(fovEffects, InWall);
