@@ -8,7 +8,7 @@ ModelImporter:
     second: Take 001
   - first:
       74: -203655887218126122
-    second: mixamo.com
+    second: Terrified
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -67,11 +67,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 1.8
     - serializedVersion: 16
-      name: mixamo.com
+      name: Terrified
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
-      lastFrame: 1200
+      lastFrame: 300
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
