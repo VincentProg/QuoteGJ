@@ -4,14 +4,10 @@ using UnityEngine;
 
 public class AnimationEvent : MonoBehaviour
 {
-    //public ParticleSystem 
 
-    //private void Start()
-    //{
-        
-    //}
-    //public void ParticlesBoom()
-    //{
-
-    //}
+    public void ParticlesBoom()
+    {
+        foreach(Transform child in transform.GetChild(0))
+        child.GetComponent<ParticleSystem>().Play();
+    }
 }
