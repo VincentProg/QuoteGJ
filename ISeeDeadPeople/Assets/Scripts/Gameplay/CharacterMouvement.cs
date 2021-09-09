@@ -103,7 +103,7 @@ public class CharacterMouvement : MonoBehaviour
             {
                 itemClose = GetCloserItem();
 
-                if (!itemClose.isInteracting)
+                if (!itemClose.isInteracting && !itemClose.isCooldown)
                 {
                     if (!hasBeenDisplayedInteract)
                     {
