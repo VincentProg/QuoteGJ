@@ -89,7 +89,7 @@ public class CharacterMouvement : MonoBehaviour
         {
             itemClose = GetCloserItem();
 
-            if (itemClose.isInteracting)
+            if (!itemClose.isInteracting)
             {
                 if (!hasBeenDisplayed)
                 {
@@ -103,7 +103,6 @@ public class CharacterMouvement : MonoBehaviour
                 if (rewiredPlayer.GetButtonDown("SquareBT"))
                 {
                     itemClose.Interact();
-                    itemsNear.Remove(itemClose);
                 }
             }
         } else if (hasBeenDisplayed)

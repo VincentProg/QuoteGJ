@@ -10,7 +10,10 @@ public class Candle : MonoBehaviour
 
     private void Start()
     {
-        transform.GetChild(1).gameObject.SetActive(false);
+        if (!isOn)
+        {
+            transform.GetChild(1).gameObject.SetActive(false);
+        }
     }
     public void turnOn()
     {

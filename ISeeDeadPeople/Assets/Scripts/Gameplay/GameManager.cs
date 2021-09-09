@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     public List<Hunter> hunters = new List<Hunter>();
     public List<Candle> allCandles = new List<Candle>();
     public List<GameObject> candlesPrefabs;
+
+    public bool autoGenerateCandles = true;
     
     //public List<RoomStats> roomsStats = new List<RoomStats>();
 
@@ -83,30 +85,33 @@ public class GameManager : MonoBehaviour
 
     private void InstantiateCandles()
     {
-        foreach (Room room in rooms)
+        if (autoGenerateCandles)
         {
-            int rand = Random.Range(10, 20);
-            for (int i = 0; i < rand; i++)
+            foreach (Room room in rooms)
             {
-                int rand2 = Random.Range(0, 4);
-                GameObject newCandle = Instantiate(candlesPrefabs[rand2], room.transform);
-                newCandle.transform.localScale = new Vector3(
-                    newCandle.transform.localScale.x / newCandle.transform.lossyScale.x,
-                    newCandle.transform.localScale.y / newCandle.transform.lossyScale.y,
-                    newCandle.transform.localScale.z / newCandle.transform.lossyScale.z) * 2;
-                SpriteRenderer candleZone = room.transform.GetChild(0).GetComponent<SpriteRenderer>();
-                float minX = candleZone.bounds.min.x;
-                float maxX = candleZone.bounds.max.x;
-                float minZ = candleZone.bounds.min.z;
-                float maxZ = candleZone.bounds.max.z;
-                newCandle.transform.position = new Vector3(Random.Range(minX, maxX), candleZone.transform.position.y, Random.Range(minZ, maxZ));
+                int rand = Random.Range(10, 20);
+                for (int i = 0; i < rand; i++)
+                {
+                    int rand2 = Random.Range(0, 4);
+                    GameObject newCandle = Instantiate(candlesPrefabs[rand2], room.transform);
+                    newCandle.transform.localScale = new Vector3(
+                        newCandle.transform.localScale.x / newCandle.transform.lossyScale.x,
+                        newCandle.transform.localScale.y / newCandle.transform.lossyScale.y,
+                        newCandle.transform.localScale.z / newCandle.transform.lossyScale.z) * 2;
+                    SpriteRenderer candleZone = room.transform.GetChild(0).GetComponent<SpriteRenderer>();
+                    float minX = candleZone.bounds.min.x;
+                    float maxX = candleZone.bounds.max.x;
+                    float minZ = candleZone.bounds.min.z;
+                    float maxZ = candleZone.bounds.max.z;
+                    newCandle.transform.position = new Vector3(Random.Range(minX, maxX), candleZone.transform.position.y, Random.Range(minZ, maxZ));
 
-                Candle candleScript = newCandle.GetComponent<Candle>();
-                room.myCandles.Add(candleScript);
-                candleScript.room = room;
-                allCandles.Add(candleScript);
+                    Candle candleScript = newCandle.GetComponent<Candle>();
+                    room.myCandles.Add(candleScript);
+                    candleScript.room = room;
+                    allCandles.Add(candleScript);
+                }
+
             }
-            
         }
     }
 }
