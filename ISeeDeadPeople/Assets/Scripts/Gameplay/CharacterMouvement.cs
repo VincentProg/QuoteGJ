@@ -52,14 +52,8 @@ public class CharacterMouvement : MonoBehaviour
 
         if (rewiredPlayer.GetButtonDown("CircleBT"))
         {
-
-            
-            bool isCandleOn = false;
-            foreach(Candle candle in myRoom.myCandles)
-            {
-                if (candle.isOn) isCandleOn = true;
-            }
-            if (isCandleOn)
+           
+            if (myRoom.isOn)
             {
                 CreateBlastQTE();
                 blastQTE.Play();

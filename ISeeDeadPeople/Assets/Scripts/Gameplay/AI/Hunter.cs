@@ -109,7 +109,7 @@ public class Hunter : MonoBehaviour
                         break;
                     case ACTION.ALERT:
                         ActivateAction(ACTION.GO_TO_CANDLE);
-                        print("over");
+
 
                         break;
                     case ACTION.FLEE:
@@ -121,7 +121,6 @@ public class Hunter : MonoBehaviour
 
             if (!IsMoving() && isPatroling)
             {
-                print(points.Count);
                 if (points.Count > 0)
                 {
                     MoveTo(points[0]);
@@ -140,7 +139,7 @@ public class Hunter : MonoBehaviour
             }
             if (!IsMoving() && isScared)
             {
-                print("why");
+
                 isScared = false;
                 StartCoroutine(Scared(false));
             }
