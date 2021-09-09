@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3399495612270697198
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3399495612270697196}
+  - component: {fileID: 3399495612270697197}
+  - component: {fileID: 3399495612270697203}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3399495612270697196
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3399495612270697198}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.4062696, y: 2.3931727, z: -4.1707726}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3399495612270697197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3399495612270697198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d05755485f553a41a5b33e75fed4ded, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Breath
+    clip: {fileID: 8300000, guid: e13081555a6140a469893d9751d3bfcb, type: 3}
+    volume: 0.1
+    loop: 0
+    source: {fileID: 0}
+  - name: MainMusic
+    clip: {fileID: 8300000, guid: 4fe5d1101f33d4344b8fd8ca23b71f96, type: 3}
+    volume: 0.2
+    loop: 1
+    source: {fileID: 0}
+  - name: Bougies
+    clip: {fileID: 8300000, guid: 265bd5ef924d0ea408c0d9f057df38c7, type: 3}
+    volume: 0.1
+    loop: 0
+    source: {fileID: 0}
+  - name: WallHack
+    clip: {fileID: 8300000, guid: 209ea76875d2a06449c5a94ad7415f6a, type: 3}
+    volume: 0.1
+    loop: 0
+    source: {fileID: 0}
+  - name: Bougies
+    clip: {fileID: 8300000, guid: 265bd5ef924d0ea408c0d9f057df38c7, type: 3}
+    volume: 0.1
+    loop: 0
+    source: {fileID: 0}
+  - name: Fear
+    clip: {fileID: 8300000, guid: de7e1f872753727499208d950c7c5a10, type: 3}
+    volume: 0.1
+    loop: 0
+    source: {fileID: 0}
+  - name: FearMax
+    clip: {fileID: 8300000, guid: 40b6394255c8f584590a051e61af1340, type: 3}
+    volume: 0.1
+    loop: 0
+    source: {fileID: 0}
+--- !u!114 &3399495612270697203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3399495612270697198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97f1453b45915934a921ef117953b142, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SongName: MainMusic

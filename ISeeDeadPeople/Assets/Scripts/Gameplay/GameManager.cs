@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
-        else Destroy(gameObject);
+        //else Destroy(gameObject);
     }
 
     // Start is called before the first frame update
