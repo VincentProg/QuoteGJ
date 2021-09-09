@@ -242,7 +242,11 @@ public class Hunter : MonoBehaviour
         FearImage.fillAmount = (float)currentFear / fearMax;
         if (currentFear <= 0)
         {
+            AudioManager.instance.Play("FearMax");
             Death();
+        }else
+        {
+            AudioManager.instance.Play("Fear");
         }
     }
 

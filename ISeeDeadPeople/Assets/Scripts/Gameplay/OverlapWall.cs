@@ -40,6 +40,7 @@ public class OverlapWall : MonoBehaviour
         {
             if(Lock==0 && Activate)
             {
+                AudioManager.instance.Play("WallHack");
                 Effect.SetBool("InWall", true);
                 Mouvement.Volume.SetActive(true);
                 OtherOverlap.Activate = false;
