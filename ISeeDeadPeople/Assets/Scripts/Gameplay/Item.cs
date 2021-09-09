@@ -14,6 +14,10 @@ public class Item : MonoBehaviour
     bool isInteracting;
     Animator anim;
 
+    public GameObject itemQTESequence = null;
+    private GameObject qteGO = null;
+    private QTESequence qteSequence = null;
+    
 
     private void Start()
     {
@@ -26,6 +30,30 @@ public class Item : MonoBehaviour
         if (Input.GetKeyDown("s")){
             SucceedInteraction();
         }
+
+        if (isInteracting)
+        {
+            if(qteGO != null)
+            {
+                if (qteSequence != null)
+                {
+                    if (qteSequence.sequenceFinished)
+                    {
+                        SucceedInteraction();
+                        Destroy(qteGO);
+                        Destroy(qteSequence);
+                    }
+                }
+                else
+                {
+                    FailInteraction();
+                    Destroy(qteGO);
+                    Destroy(qteSequence);
+                }
+            }
+            
+        }
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -36,6 +64,7 @@ public class Item : MonoBehaviour
         }
         else if (other.CompareTag("Player"))
         {
+            posEmote = transform.GetChild(0).position + new Vector3(0, 1, -1);
             other.GetComponent<CharacterMouvement>().itemsNear.Add(this);
   
         }
@@ -53,9 +82,10 @@ public class Item : MonoBehaviour
         isInteracting = true;
         anim.SetTrigger("Interact");
         
-
+        qteGO = Instantiate(itemQTESequence);
+        qteGO.transform.position = transform.GetChild(0).position;
+        qteSequence = qteGO.GetComponent<QTESequence>();
     }
-
 
     public void FailInteraction()
     {
