@@ -450,52 +450,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &94616920
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 94616921}
-  - component: {fileID: 94616922}
-  m_Layer: 0
-  m_Name: Smash QTE 1 w/ R2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &94616921
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 94616920}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.36, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2104126577}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &94616922
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 94616920}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf2e0b085d593a240bee3723ce78e323, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Button: 7
-  smashCount: 1
-  smashQTEDisplay: {fileID: 7935535876698855842, guid: e6b53f1bc1d428e429ddedf8b3c3adf6, type: 3}
 --- !u!1 &102589008
 GameObject:
   m_ObjectHideFlags: 0
@@ -6714,52 +6668,6 @@ Transform:
   m_Father: {fileID: 559580418}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!1 &464477287
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 464477288}
-  - component: {fileID: 464477289}
-  m_Layer: 0
-  m_Name: Smash QTE 1 w/ R2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &464477288
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 464477287}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.36, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2104126577}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &464477289
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 464477287}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf2e0b085d593a240bee3723ce78e323, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Button: 7
-  smashCount: 1
-  smashQTEDisplay: {fileID: 7935535876698855842, guid: e6b53f1bc1d428e429ddedf8b3c3adf6, type: 3}
 --- !u!1 &487906625
 GameObject:
   m_ObjectHideFlags: 0
@@ -7484,6 +7392,7 @@ MonoBehaviour:
   Button: 0
   stayTime: 3
   stayQTEDisplay: {fileID: 7935535876698855842, guid: 8ef7d4389ac50524fa47e082d50cd86e, type: 3}
+  timeBeforeLose: 6
 --- !u!1 &799213248
 GameObject:
   m_ObjectHideFlags: 0
@@ -7800,52 +7709,6 @@ Transform:
   m_Father: {fileID: 2120325961}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &829646986
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 829646987}
-  - component: {fileID: 829646988}
-  m_Layer: 0
-  m_Name: Smash QTE 1 w/ L2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &829646987
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 829646986}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.56, y: -3.36, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2104126577}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &829646988
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 829646986}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf2e0b085d593a240bee3723ce78e323, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Button: 6
-  smashCount: 1
-  smashQTEDisplay: {fileID: 7935535876698855842, guid: e6b53f1bc1d428e429ddedf8b3c3adf6, type: 3}
 --- !u!1 &849383339
 GameObject:
   m_ObjectHideFlags: 0
@@ -8749,6 +8612,7 @@ MonoBehaviour:
   Button: 3
   smashCount: 6
   smashQTEDisplay: {fileID: 7935535876698855842, guid: e6b53f1bc1d428e429ddedf8b3c3adf6, type: 3}
+  timeBeforeLose: 5
 --- !u!1 &1084006603
 GameObject:
   m_ObjectHideFlags: 0
@@ -10700,52 +10564,6 @@ MonoBehaviour:
   interactionCollider: []
   myCandles: []
   playerIsInRoom: 0
---- !u!1 &1277270137
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1277270138}
-  - component: {fileID: 1277270139}
-  m_Layer: 0
-  m_Name: Smash QTE 1 w/ R2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1277270138
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1277270137}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.36, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2104126577}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1277270139
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1277270137}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf2e0b085d593a240bee3723ce78e323, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Button: 7
-  smashCount: 1
-  smashQTEDisplay: {fileID: 7935535876698855842, guid: e6b53f1bc1d428e429ddedf8b3c3adf6, type: 3}
 --- !u!1 &1290913368
 GameObject:
   m_ObjectHideFlags: 0
@@ -11048,52 +10866,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1355297951
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1355297952}
-  - component: {fileID: 1355297953}
-  m_Layer: 0
-  m_Name: Smash QTE 1 w/ L2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1355297952
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1355297951}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.56, y: -3.36, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2104126577}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1355297953
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1355297951}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf2e0b085d593a240bee3723ce78e323, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Button: 6
-  smashCount: 1
-  smashQTEDisplay: {fileID: 7935535876698855842, guid: e6b53f1bc1d428e429ddedf8b3c3adf6, type: 3}
 --- !u!1 &1355530082
 GameObject:
   m_ObjectHideFlags: 0
@@ -12138,6 +11910,7 @@ MonoBehaviour:
     FovSpeedUp: 5
     FovSpeedDown: 1.5
   Volume: {fileID: 1723713369}
+  itemsNear: []
   blastSequence: {fileID: 6265330987481910818, guid: f83006181b84e8249960aa9ffbdab6ee, type: 3}
 --- !u!143 &1591581658
 CharacterController:
@@ -12421,52 +12194,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1636535841
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1636535842}
-  - component: {fileID: 1636535843}
-  m_Layer: 0
-  m_Name: Smash QTE 1 w/ L2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1636535842
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1636535841}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.56, y: -3.36, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2104126577}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1636535843
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1636535841}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf2e0b085d593a240bee3723ce78e323, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Button: 6
-  smashCount: 1
-  smashQTEDisplay: {fileID: 7935535876698855842, guid: e6b53f1bc1d428e429ddedf8b3c3adf6, type: 3}
 --- !u!1 &1663927305
 GameObject:
   m_ObjectHideFlags: 0
@@ -12502,52 +12229,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1686990535
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1686990536}
-  - component: {fileID: 1686990537}
-  m_Layer: 0
-  m_Name: Smash QTE 1 w/ L2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1686990536
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1686990535}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.56, y: -3.36, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2104126577}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1686990537
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1686990535}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf2e0b085d593a240bee3723ce78e323, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Button: 6
-  smashCount: 1
-  smashQTEDisplay: {fileID: 7935535876698855842, guid: e6b53f1bc1d428e429ddedf8b3c3adf6, type: 3}
 --- !u!1 &1723713369
 GameObject:
   m_ObjectHideFlags: 0
@@ -12596,52 +12277,6 @@ Transform:
   m_Father: {fileID: 2120325961}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1736016647
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1736016648}
-  - component: {fileID: 1736016649}
-  m_Layer: 0
-  m_Name: Smash QTE 1 w/ R2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1736016648
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1736016647}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.36, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2104126577}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1736016649
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1736016647}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf2e0b085d593a240bee3723ce78e323, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Button: 7
-  smashCount: 1
-  smashQTEDisplay: {fileID: 7935535876698855842, guid: e6b53f1bc1d428e429ddedf8b3c3adf6, type: 3}
 --- !u!1 &1763896528
 GameObject:
   m_ObjectHideFlags: 0
@@ -12875,6 +12510,7 @@ MonoBehaviour:
   Button: 1
   smashCount: 10
   smashQTEDisplay: {fileID: 7935535876698855842, guid: e6b53f1bc1d428e429ddedf8b3c3adf6, type: 3}
+  timeBeforeLose: 5
 --- !u!1 &1841785853
 GameObject:
   m_ObjectHideFlags: 0
@@ -13463,59 +13099,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2067521941}
   m_CullTransparentMesh: 1
---- !u!1 &2104126575
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2104126577}
-  - component: {fileID: 2104126576}
-  m_Layer: 0
-  m_Name: QTESequence Gamepad Trigger
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &2104126576
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2104126575}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 242303687fc6ea247815dd96292ef4f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playOnStart: 1
-  sequenceFinished: 0
---- !u!4 &2104126577
+--- !u!4 &2104126577 stripped
 Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 2762982845023637840, guid: b66d06a5359f8054c8e451fc1b9fa8a3, type: 3}
+  m_PrefabInstance: {fileID: 2762982845378706721}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2104126575}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.0601265, y: -1.6772151, z: 9.9}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 829646987}
-  - {fileID: 1277270138}
-  - {fileID: 1636535842}
-  - {fileID: 464477288}
-  - {fileID: 1686990536}
-  - {fileID: 1736016648}
-  - {fileID: 1355297952}
-  - {fileID: 94616921}
-  m_Father: {fileID: 81973096}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2115082463
 GameObject:
   m_ObjectHideFlags: 0
@@ -13840,3 +13428,64 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1001 &2762982845378706721
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 81973096}
+    m_Modifications:
+    - target: {fileID: 2762982845023637838, guid: b66d06a5359f8054c8e451fc1b9fa8a3, type: 3}
+      propertyPath: m_Name
+      value: QTESequence Gamepad Trigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 2762982845023637838, guid: b66d06a5359f8054c8e451fc1b9fa8a3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2762982845023637840, guid: b66d06a5359f8054c8e451fc1b9fa8a3, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2762982845023637840, guid: b66d06a5359f8054c8e451fc1b9fa8a3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.0601265
+      objectReference: {fileID: 0}
+    - target: {fileID: 2762982845023637840, guid: b66d06a5359f8054c8e451fc1b9fa8a3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.6772151
+      objectReference: {fileID: 0}
+    - target: {fileID: 2762982845023637840, guid: b66d06a5359f8054c8e451fc1b9fa8a3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 9.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2762982845023637840, guid: b66d06a5359f8054c8e451fc1b9fa8a3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2762982845023637840, guid: b66d06a5359f8054c8e451fc1b9fa8a3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2762982845023637840, guid: b66d06a5359f8054c8e451fc1b9fa8a3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2762982845023637840, guid: b66d06a5359f8054c8e451fc1b9fa8a3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2762982845023637840, guid: b66d06a5359f8054c8e451fc1b9fa8a3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2762982845023637840, guid: b66d06a5359f8054c8e451fc1b9fa8a3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2762982845023637840, guid: b66d06a5359f8054c8e451fc1b9fa8a3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b66d06a5359f8054c8e451fc1b9fa8a3, type: 3}

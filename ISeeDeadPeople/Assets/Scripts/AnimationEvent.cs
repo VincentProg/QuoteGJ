@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class AnimationEvent : MonoBehaviour
 {
-    public ParticleSystem 
+    //public ParticleSystem 
 
-    private void Start()
-    {
+    //private void Start()
+    //{
         
-    }
-    public void ParticlesBoom()
-    {
+    //}
+    //public void ParticlesBoom()
+    //{
 
-    }
+    //}
 }
