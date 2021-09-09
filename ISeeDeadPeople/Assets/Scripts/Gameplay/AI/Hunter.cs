@@ -36,6 +36,9 @@ public class Hunter : MonoBehaviour
     [Header("Fear points")]
     public int blast;
 
+    [Header("Animation")]
+    public Animator Anim;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -283,10 +286,11 @@ public class Hunter : MonoBehaviour
 
     IEnumerator TurnOn_Candle()
     {
-        
+        Anim.SetBool("Interact", true);
         yield return new WaitForSeconds(turningOnCandle);
         targetCandle.turnOn();
         targetCandle = null;
+        Anim.SetBool("Interact", false);
         yield return new WaitForSeconds(afterTurningOnCandle);
         isDoingAction = false;
     }
