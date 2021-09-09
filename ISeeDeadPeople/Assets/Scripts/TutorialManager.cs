@@ -18,6 +18,8 @@ public class TutorialManager : MonoBehaviour
     bool tutoFinished = false;
     GameObject interactDisplay = null;
 
+    public SceneChanger sceneChanger;
+
     private Player rewiredPlayer = null;
 
     private void Start()
@@ -66,6 +68,7 @@ public class TutorialManager : MonoBehaviour
                     {
                         tutoTexts[cpt].SetActive(false);
 
+                        EmoteManager.instance.PlayEmoteWithPos("Surprise_Emote", hunters[0].transform.position + new Vector3(0, 1.7f, 0));
                         hunters[0].SetActive(false);
 
                         cpt++;
@@ -122,6 +125,7 @@ public class TutorialManager : MonoBehaviour
                     {
                         tutoTexts[cpt].SetActive(false);
 
+                        EmoteManager.instance.PlayEmoteWithPos("Surprise_Emote", hunters[1].transform.position + new Vector3(0,1.7f,0));
                         hunters[1].SetActive(false);
 
                         cpt++;
@@ -134,9 +138,15 @@ public class TutorialManager : MonoBehaviour
 
     void UpdateCheckboxes()
     {
-        if(cpt > 4) { tutorialCanva.SetActive(false); tutoFinished = true; Debug.Log("Tutorial is finished"); return; }
+        if(cpt > 4) { tutorialCanva.SetActive(false); tutoFinished = true; Debug.Log("Tutorial is finished"); StartCoroutine(LoadLevel()) ; return; }
         checkboxes[cpt - 1].SetActive(true);
         tutoTexts[cpt].SetActive(true);
+    }
+
+    IEnumerator LoadLevel()
+    {
+        yield return new WaitForSeconds(5);
+        sceneChanger.ChangeScene("Prototype");
     }
 
     //private void OnTriggerEnter(Collider other)
