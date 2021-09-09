@@ -17,7 +17,6 @@ public class CharacterMouvement : MonoBehaviour
     public FovEffects fovEffects;
     public GameObject Volume;
     private Player rewiredPlayer = null;
-    public QTESequence sequenceSouffle;
 
     Room myRoom;
     public List<Item> itemsNear = new List<Item>();
@@ -27,6 +26,10 @@ public class CharacterMouvement : MonoBehaviour
 
     private GameObject displayEmote;
     bool hasBeenDisplayed = false;
+
+    public GameObject blastSequence = null;
+    private GameObject blastQTESequence = null;
+    private QTESequence blastQTE = null;
     void Start()
     {
         rewiredPlayer = ReInput.players.GetPlayer("Player");
@@ -49,13 +52,22 @@ public class CharacterMouvement : MonoBehaviour
 
         if (rewiredPlayer.GetButtonDown("CircleBT"))
         {
+
+            
             bool isCandleOn = false;
             foreach(Candle candle in myRoom.myCandles)
             {
                 if (candle.isOn) isCandleOn = true;
             }
-            if(isCandleOn)
-            sequenceSouffle.Play();
+            if (isCandleOn)
+            {
+                CreateBlastQTE();
+                blastQTE.Play();
+            }
+        }
+        if (blastQTE != null && blastQTE.sequenceFinished)
+        {
+            Destroy(blastQTESequence);
         }
 
         if (Input.GetKeyDown("space"))
@@ -173,6 +185,16 @@ public class CharacterMouvement : MonoBehaviour
         }
 
         return item;
+    }
+
+    private void CreateBlastQTE()
+    {
+        if (blastQTESequence == null)
+        {
+            blastQTESequence = Instantiate(blastSequence);
+            blastQTE = blastQTESequence.GetComponent<QTESequence>();
+            blastQTESequence.transform.parent = transform;
+        }
     }
 
 }

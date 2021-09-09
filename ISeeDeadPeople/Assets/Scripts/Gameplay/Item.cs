@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-
+    public enum TYPE { FAUTEUIL, CHAISE, TABLE}
+    public TYPE type = TYPE.FAUTEUIL;
     Room myRoom;
+
+    bool isInteracting;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -28,7 +31,39 @@ public class Item : MonoBehaviour
         }
     }
 
-    public void Interact() { 
+    //private void Update()
+    //{
+    //    if(isInteracting)
+    //    switch (type)
+    //    {
+    //        case TYPE.FAUTEUIL:
+
+
+    //            break;
+    //        case TYPE.CHAISE:
+
+    //            break;
+    //        case TYPE.TABLE:
+
+    //            break;
+    //    }
+    //}
+
+    public void Interact() {
+        isInteracting = true;
+        switch (type)
+        {
+            case TYPE.FAUTEUIL:
+
+
+                break;
+            case TYPE.CHAISE:
+
+                break;
+            case TYPE.TABLE:
+
+                break;
+        }
 
     }
 }
