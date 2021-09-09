@@ -8,7 +8,25 @@ public class Item : MonoBehaviour
     public TYPE type = TYPE.FAUTEUIL;
     Room myRoom;
 
+    [HideInInspector]
+    public Vector2 posEmote;
+
     bool isInteracting;
+    Animator anim;
+
+
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
+        posEmote = transform.GetChild(0).position;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown("s")){
+            SucceedInteraction();
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -19,7 +37,7 @@ public class Item : MonoBehaviour
         else if (other.CompareTag("Player"))
         {
             other.GetComponent<CharacterMouvement>().itemsNear.Add(this);
-            print("1");
+  
         }
     }
 
@@ -33,6 +51,22 @@ public class Item : MonoBehaviour
 
     public void Interact() {
         isInteracting = true;
+        anim.SetTrigger("Interact");
+        
+
+    }
+
+
+    public void FailInteraction()
+    {
+        anim.SetTrigger("Fail");
+        isInteracting = false;
+        // anim
+    }
+
+    public void SucceedInteraction()
+    {
+        anim.SetTrigger("Succeed");
         switch (type)
         {
             case TYPE.FAUTEUIL:
@@ -43,21 +77,12 @@ public class Item : MonoBehaviour
 
                 break;
             case TYPE.TABLE:
-
+                anim.SetBool("isRight", !anim.GetBool("isRight"));
+                posEmote = transform.GetChild(0).position;
                 break;
         }
 
-    }
 
-
-    public void FailInteraction()
-    {
-        isInteracting = false;
-        // anim
-    }
-
-    public void SucceedInteraction()
-    {
         isInteracting = false;
         // anim
         // HUNTERS

@@ -77,7 +77,6 @@ public class CharacterMouvement : MonoBehaviour
 
         if(itemsNear.Count != lastItemsNearCount)
         {
-            print("interatc");
             switch (itemsNear.Count)
             {
                 case 0:
@@ -102,9 +101,10 @@ public class CharacterMouvement : MonoBehaviour
             if (!hasBeenDisplayed) {
                 hasBeenDisplayed = true;
                 displayEmote = EmoteManager.instance.PlayEmoteGameObject("Interact_Emote");
+                displayEmote.transform.position = itemClose.posEmote;
             }
 
-            displayEmote.transform.position = itemClose.transform.position + new Vector3(0, 1, 0);
+           
 
             if (rewiredPlayer.GetButtonDown("SquareBT"))
             {
