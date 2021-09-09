@@ -1,0 +1,7 @@
+INFOS POUR L'IMPORT SUR UNREAL:
+
+- Importer le modèle dans unreal
+- Dans l'inspector du modèle, aller dans Materials
+- Textures : extract textures
+- Choisir le dossier où seront rangées les textures
+- Cliquer sur "Fix now" pour les normales
