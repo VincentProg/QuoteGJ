@@ -76,6 +76,11 @@ public class Hunter : MonoBehaviour
         //}
         if (!isDead)
         {
+            if (!IsMoving())
+            {
+                Anim.SetBool("Idle", true);
+            } else Anim.SetBool("Idle", false);
+
             if (!IsMoving() && !isDoingAction)
             {
                 switch (currentAction)
@@ -85,10 +90,12 @@ public class Hunter : MonoBehaviour
                         {
                             if (!targetRoom.isOn)
                             {
+                                print("turn on");
                                 ActivateAction(ACTION.TURN_ON_CANDLE);
                             }
                             else
                             {
+                                print("go away");
                                 ActivateAction(ACTION.GO_TO_CANDLE);
        
                             }
@@ -166,6 +173,7 @@ public class Hunter : MonoBehaviour
         {
             case ACTION.GO_TO_CANDLE:
                 currentAction = ACTION.GO_TO_CANDLE;
+                targetRoom = null;
                 List<Room> tempRooms = new List<Room>(GameManager.Instance.rooms);       
 
                 while (targetRoom == null && tempRooms.Count>0)
@@ -234,6 +242,7 @@ public class Hunter : MonoBehaviour
     public void ResetState()
     {
         StopAllCoroutines();
+        Anim.Play("Terrified");
         targetRoom = null;
         isDoingAction = false;
         isPatroling = false;

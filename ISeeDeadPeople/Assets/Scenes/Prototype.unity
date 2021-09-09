@@ -227,9 +227,9 @@ Transform:
   - {fileID: 1079937029}
   - {fileID: 2020513825}
   - {fileID: 401482588}
-  - {fileID: 1986207852}
   - {fileID: 390769330}
   - {fileID: 1983993772}
+  - {fileID: 1883731627}
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -13775,7 +13775,7 @@ Transform:
   m_Children:
   - {fileID: 1689121359}
   m_Father: {fileID: 25444075}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &400990931
 GameObject:
@@ -15710,7 +15710,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7152722326102539075, guid: 6998cd6a23f0cae49b05c9806653b5f4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -12.716429
+      value: -17.803
       objectReference: {fileID: 0}
     - target: {fileID: 7152722326102539087, guid: 6998cd6a23f0cae49b05c9806653b5f4, type: 3}
       propertyPath: m_ClearFlags
@@ -15739,6 +15739,18 @@ PrefabInstance:
     - target: {fileID: 7152722327098633298, guid: 6998cd6a23f0cae49b05c9806653b5f4, type: 3}
       propertyPath: m_RootOrder
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7152722327098633298, guid: 6998cd6a23f0cae49b05c9806653b5f4, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7152722327098633298, guid: 6998cd6a23f0cae49b05c9806653b5f4, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7152722327098633298, guid: 6998cd6a23f0cae49b05c9806653b5f4, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7152722327098633298, guid: 6998cd6a23f0cae49b05c9806653b5f4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -59154,6 +59166,118 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5e8f9ba3b05b733468777967b39b1b92, type: 3}
   m_PrefabInstance: {fileID: 1866527003}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1883731626
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1883731627}
+  - component: {fileID: 1883731628}
+  m_Layer: 0
+  m_Name: EmotesManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1883731627
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1883731626}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -5.804001, y: 4.81994, z: -13.678119}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 25444075}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1883731628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1883731626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20bd8b8f61d57cd4e8511de52a2522d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugEmoteToPlay: Scary_Emote
+  destroyTime: 5
+  emotes:
+  - emoteName: Scary_Emote
+    emoteSprites:
+    - {fileID: 3102918160473159142, guid: a30debaaed805c64cb2da685330c6201, type: 3}
+    - {fileID: -185236968397301926, guid: a30debaaed805c64cb2da685330c6201, type: 3}
+    - {fileID: 3608734928784655377, guid: a30debaaed805c64cb2da685330c6201, type: 3}
+  - emoteName: Question_Emote
+    emoteSprites:
+    - {fileID: -6628281775695540409, guid: 7a31ed24d727b1a448f8f517ec8893e1, type: 3}
+    - {fileID: -6560025859776051539, guid: 7a31ed24d727b1a448f8f517ec8893e1, type: 3}
+    - {fileID: -3413268294644092679, guid: 7a31ed24d727b1a448f8f517ec8893e1, type: 3}
+  - emoteName: Doubt_Emote
+    emoteSprites:
+    - {fileID: -4531893788166138701, guid: 8fbda863d6176354183b4b51a689a170, type: 3}
+    - {fileID: 2599955307463768939, guid: 8fbda863d6176354183b4b51a689a170, type: 3}
+    - {fileID: -955210671950835155, guid: 8fbda863d6176354183b4b51a689a170, type: 3}
+  - emoteName: Exclamation_Emote
+    emoteSprites:
+    - {fileID: 2300010647596739004, guid: 2bc859d3bb025a848ab6042471a5423b, type: 3}
+    - {fileID: -5135105106473151898, guid: 2bc859d3bb025a848ab6042471a5423b, type: 3}
+    - {fileID: 6141943398892093139, guid: 2bc859d3bb025a848ab6042471a5423b, type: 3}
+  - emoteName: Surprise_Emote
+    emoteSprites:
+    - {fileID: -87249387004939065, guid: 6d2f3e76609486440bc1c1c2a792b911, type: 3}
+    - {fileID: 7310163849520555367, guid: 6d2f3e76609486440bc1c1c2a792b911, type: 3}
+    - {fileID: 2653552758403837936, guid: 6d2f3e76609486440bc1c1c2a792b911, type: 3}
+  - emoteName: Confused_Emote
+    emoteSprites:
+    - {fileID: 2615180236232264796, guid: fa19a1bfbecbce445b5e483f61bcf588, type: 3}
+    - {fileID: -2520603511754882521, guid: fa19a1bfbecbce445b5e483f61bcf588, type: 3}
+    - {fileID: 6457852531020050864, guid: fa19a1bfbecbce445b5e483f61bcf588, type: 3}
+  - emoteName: Interact_Emote
+    emoteSprites:
+    - {fileID: 1728135899986521836, guid: fad84a0850ab49e4da2e8ba9bd21b102, type: 3}
+    - {fileID: -6042907829938001227, guid: fad84a0850ab49e4da2e8ba9bd21b102, type: 3}
+    - {fileID: -5000772771131413728, guid: fad84a0850ab49e4da2e8ba9bd21b102, type: 3}
+  - emoteName: Light_Emote
+    emoteSprites:
+    - {fileID: 9182984333797038205, guid: 4d5ff70eb5aaf20489413bbac593535d, type: 3}
+    - {fileID: 3149308335131475564, guid: 4d5ff70eb5aaf20489413bbac593535d, type: 3}
+    - {fileID: -4920419431149975245, guid: 4d5ff70eb5aaf20489413bbac593535d, type: 3}
+  - emoteName: HappyGhost_Emote
+    emoteSprites:
+    - {fileID: 3464314752240797191, guid: d44ac59daf22594499868f5d8cbe6bc6, type: 3}
+    - {fileID: -5586126543152141005, guid: d44ac59daf22594499868f5d8cbe6bc6, type: 3}
+    - {fileID: 2586205285529976139, guid: d44ac59daf22594499868f5d8cbe6bc6, type: 3}
+  - emoteName: IdleGhost_Emote
+    emoteSprites:
+    - {fileID: 5629738024534303544, guid: c1561d85ba9c3dc41a88ebf282c448bd, type: 3}
+    - {fileID: -8694926027083951316, guid: c1561d85ba9c3dc41a88ebf282c448bd, type: 3}
+    - {fileID: -6640307958884919609, guid: c1561d85ba9c3dc41a88ebf282c448bd, type: 3}
+  - emoteName: ScaredGhost_Emote
+    emoteSprites:
+    - {fileID: -4488405268742963131, guid: 97c0767ee1bc1fe428a9b5a5cfb6f473, type: 3}
+    - {fileID: 7381518003340519688, guid: 97c0767ee1bc1fe428a9b5a5cfb6f473, type: 3}
+    - {fileID: 2467824506458951807, guid: 97c0767ee1bc1fe428a9b5a5cfb6f473, type: 3}
+  - emoteName: EvilGhost_Emote
+    emoteSprites:
+    - {fileID: -8907915466436029847, guid: 561ace1028d330d45b08753b406b259b, type: 3}
+    - {fileID: -7607631517791091139, guid: 561ace1028d330d45b08753b406b259b, type: 3}
+    - {fileID: 962538209499728165, guid: 561ace1028d330d45b08753b406b259b, type: 3}
+  - emoteName: LightOn_Emote
+    emoteSprites:
+    - {fileID: 3104884160625390424, guid: dacdd3a3d8beca544855f8706193d023, type: 3}
+    - {fileID: -3847149584101708745, guid: dacdd3a3d8beca544855f8706193d023, type: 3}
+    - {fileID: 5272931923230274329, guid: dacdd3a3d8beca544855f8706193d023, type: 3}
+  emoteSource: {fileID: 6448773182773034494, guid: d37e6065127dffa4c9eb285d40fb7d4e, type: 3}
 --- !u!1001 &1921694936
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -59804,6 +59928,7 @@ MonoBehaviour:
   - {fileID: 3892951207432444003, guid: 0003b8e23976c8346b8a24bcc725499b, type: 3}
   - {fileID: 3167882914919484178, guid: f1716fcb9eb992145901fa58b0b1c7b0, type: 3}
   - {fileID: 1298405382175534660, guid: fedaecbbde301cc458406bfa6055643c, type: 3}
+  autoGenerateCandles: 1
 --- !u!4 &1983993772
 Transform:
   m_ObjectHideFlags: 0
@@ -59820,115 +59945,8 @@ Transform:
   - {fileID: 370212634}
   - {fileID: 1042325206}
   m_Father: {fileID: 25444075}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1986207851
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1986207852}
-  - component: {fileID: 1986207853}
-  m_Layer: 0
-  m_Name: EmotesManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1986207852
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1986207851}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.8959992, y: 5.71994, z: -10.818119}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 25444075}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1986207853
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1986207851}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20bd8b8f61d57cd4e8511de52a2522d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  debugEmoteToPlay: Scary_Emote
-  destroyTime: 5
-  emotes:
-  - emoteName: Scary_Emote
-    emoteSprites:
-    - {fileID: 3102918160473159142, guid: a30debaaed805c64cb2da685330c6201, type: 3}
-    - {fileID: -185236968397301926, guid: a30debaaed805c64cb2da685330c6201, type: 3}
-    - {fileID: 3608734928784655377, guid: a30debaaed805c64cb2da685330c6201, type: 3}
-  - emoteName: Question_Emote
-    emoteSprites:
-    - {fileID: -6628281775695540409, guid: 7a31ed24d727b1a448f8f517ec8893e1, type: 3}
-    - {fileID: -6560025859776051539, guid: 7a31ed24d727b1a448f8f517ec8893e1, type: 3}
-    - {fileID: -3413268294644092679, guid: 7a31ed24d727b1a448f8f517ec8893e1, type: 3}
-  - emoteName: Doubt_Emote
-    emoteSprites:
-    - {fileID: -4531893788166138701, guid: 8fbda863d6176354183b4b51a689a170, type: 3}
-    - {fileID: 2599955307463768939, guid: 8fbda863d6176354183b4b51a689a170, type: 3}
-    - {fileID: -955210671950835155, guid: 8fbda863d6176354183b4b51a689a170, type: 3}
-  - emoteName: Exclamation_Emote
-    emoteSprites:
-    - {fileID: 2300010647596739004, guid: 2bc859d3bb025a848ab6042471a5423b, type: 3}
-    - {fileID: -5135105106473151898, guid: 2bc859d3bb025a848ab6042471a5423b, type: 3}
-    - {fileID: 6141943398892093139, guid: 2bc859d3bb025a848ab6042471a5423b, type: 3}
-  - emoteName: Surprise_Emote
-    emoteSprites:
-    - {fileID: -87249387004939065, guid: 6d2f3e76609486440bc1c1c2a792b911, type: 3}
-    - {fileID: 7310163849520555367, guid: 6d2f3e76609486440bc1c1c2a792b911, type: 3}
-    - {fileID: 2653552758403837936, guid: 6d2f3e76609486440bc1c1c2a792b911, type: 3}
-  - emoteName: Confused_Emote
-    emoteSprites:
-    - {fileID: 2615180236232264796, guid: fa19a1bfbecbce445b5e483f61bcf588, type: 3}
-    - {fileID: -2520603511754882521, guid: fa19a1bfbecbce445b5e483f61bcf588, type: 3}
-    - {fileID: 6457852531020050864, guid: fa19a1bfbecbce445b5e483f61bcf588, type: 3}
-  - emoteName: Interact_Emote
-    emoteSprites:
-    - {fileID: 1728135899986521836, guid: fad84a0850ab49e4da2e8ba9bd21b102, type: 3}
-    - {fileID: -6042907829938001227, guid: fad84a0850ab49e4da2e8ba9bd21b102, type: 3}
-    - {fileID: -5000772771131413728, guid: fad84a0850ab49e4da2e8ba9bd21b102, type: 3}
-  - emoteName: Light_Emote
-    emoteSprites:
-    - {fileID: 9182984333797038205, guid: 4d5ff70eb5aaf20489413bbac593535d, type: 3}
-    - {fileID: 3149308335131475564, guid: 4d5ff70eb5aaf20489413bbac593535d, type: 3}
-    - {fileID: -4920419431149975245, guid: 4d5ff70eb5aaf20489413bbac593535d, type: 3}
-  - emoteName: HappyGhost_Emote
-    emoteSprites:
-    - {fileID: 3464314752240797191, guid: d44ac59daf22594499868f5d8cbe6bc6, type: 3}
-    - {fileID: -5586126543152141005, guid: d44ac59daf22594499868f5d8cbe6bc6, type: 3}
-    - {fileID: 2586205285529976139, guid: d44ac59daf22594499868f5d8cbe6bc6, type: 3}
-  - emoteName: IdleGhost_Emote
-    emoteSprites:
-    - {fileID: 5629738024534303544, guid: c1561d85ba9c3dc41a88ebf282c448bd, type: 3}
-    - {fileID: -8694926027083951316, guid: c1561d85ba9c3dc41a88ebf282c448bd, type: 3}
-    - {fileID: -6640307958884919609, guid: c1561d85ba9c3dc41a88ebf282c448bd, type: 3}
-  - emoteName: ScaredGhost_Emote
-    emoteSprites:
-    - {fileID: -4488405268742963131, guid: 97c0767ee1bc1fe428a9b5a5cfb6f473, type: 3}
-    - {fileID: 7381518003340519688, guid: 97c0767ee1bc1fe428a9b5a5cfb6f473, type: 3}
-    - {fileID: 2467824506458951807, guid: 97c0767ee1bc1fe428a9b5a5cfb6f473, type: 3}
-  - emoteName: EvilGhost_Emote
-    emoteSprites:
-    - {fileID: -8907915466436029847, guid: 561ace1028d330d45b08753b406b259b, type: 3}
-    - {fileID: -7607631517791091139, guid: 561ace1028d330d45b08753b406b259b, type: 3}
-    - {fileID: 962538209499728165, guid: 561ace1028d330d45b08753b406b259b, type: 3}
-  emoteSource: {fileID: 6448773182773034494, guid: d37e6065127dffa4c9eb285d40fb7d4e, type: 3}
 --- !u!1 &1986637299
 GameObject:
   m_ObjectHideFlags: 0

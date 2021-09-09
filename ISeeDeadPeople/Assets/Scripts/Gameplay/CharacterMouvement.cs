@@ -85,26 +85,29 @@ public class CharacterMouvement : MonoBehaviour
         }
         lastItemsNearCount = itemsNear.Count;
 
-        if (canInteract && !myRoom.isOn)
+        if (canInteract)
         {
-            itemClose = GetCloserItem();
-
-            if (!itemClose.isInteracting)
+            if (!myRoom.isOn)
             {
-                if (!hasBeenDisplayed)
+                itemClose = GetCloserItem();
+
+                if (!itemClose.isInteracting)
                 {
-                    hasBeenDisplayed = true;
-                    displayEmote = EmoteManager.instance.PlayEmoteGameObject("Interact_Emote");
-                    displayEmote.transform.position = itemClose.posEmote;
-                }
+                    if (!hasBeenDisplayed)
+                    {
+                        hasBeenDisplayed = true;
+                        displayEmote = EmoteManager.instance.PlayEmoteGameObject("Interact_Emote");
+                        displayEmote.transform.position = itemClose.posEmote;
+                    }
 
 
 
-                if (rewiredPlayer.GetButtonDown("SquareBT"))
-                {
-                    itemClose.Interact();
-                    Destroy(displayEmote);
-                    hasBeenDisplayed = false;
+                    if (rewiredPlayer.GetButtonDown("SquareBT"))
+                    {
+                        itemClose.Interact();
+                        Destroy(displayEmote);
+                        hasBeenDisplayed = false;
+                    }
                 }
             }
         } else if (hasBeenDisplayed)
