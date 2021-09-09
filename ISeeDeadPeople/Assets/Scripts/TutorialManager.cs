@@ -24,6 +24,7 @@ public class TutorialManager : MonoBehaviour
     {
         rewiredPlayer = ReInput.players.GetPlayer("Player");
         tutoTexts[0].SetActive(true);
+
     }
 
     public void Update()
@@ -57,9 +58,11 @@ public class TutorialManager : MonoBehaviour
                 //    interactDisplay.transform.parent = GameManager.Instance.player.transform;
                 //}
 
+                Debug.Log($"Item near : {GameManager.Instance.player.itemsNear.Count}");
+
                 if(GameManager.Instance.player.itemsNear.Count > 0)
                 {
-                    if (rewiredPlayer.GetButton("SquareBT"))
+                    if (rewiredPlayer.GetButtonDown("SquareBT"))
                     {
                         tutoTexts[cpt].SetActive(false);
 
