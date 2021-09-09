@@ -16,9 +16,9 @@ public class Hunter : MonoBehaviour
     public Room currentRoom;
     public enum ACTION {GO_TO_CANDLE,TURN_ON_CANDLE,WATCH_AROUND, ALERT, FLEE}
     private ACTION currentAction;
-    Candle targetCandle = null;
+    Room targetRoom = null;
 
-    public Vector2 lastAlertPos;
+    public Item lastItemAlert;
 
     public int fearMax = 3;
     public int currentFear = 0;
@@ -51,6 +51,7 @@ public class Hunter : MonoBehaviour
 
     private void Start()
     {
+        currentFear = fearMax;
         currentAction = ACTION.GO_TO_CANDLE;
         ActivateAction(currentAction);
         FearImage = transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>();
@@ -80,33 +81,18 @@ public class Hunter : MonoBehaviour
                 switch (currentAction)
                 {
                     case ACTION.GO_TO_CANDLE:
-                        if (targetCandle != null)
+                        if (targetRoom != null)
                         {
-                            if (!targetCandle.isOn)
+                            if (!targetRoom.isOn)
                             {
                                 ActivateAction(ACTION.TURN_ON_CANDLE);
                             }
                             else
                             {
-                                Candle newTarget = null;
-                                for (int i = 0; i < currentRoom.myCandles.Count; i++)
-                                {
-                                    if (!currentRoom.myCandles[i].isOn)
-                                    {
-                                        newTarget = currentRoom.myCandles[i];
-                                        break;
-                                    }
-                                }
-                                if (newTarget != null)
-                                {
-                                    targetCandle = newTarget;
-                                    MoveTo(targetCandle.transform.position);
-                                }
-                                else
-                                {
-                                    targetCandle = null;
-                                    ActivateAction(ACTION.GO_TO_CANDLE);
-                                }
+                              
+                                targetRoom = null;
+                                ActivateAction(ACTION.GO_TO_CANDLE);
+                                
                             }
                         }
 
@@ -122,32 +108,42 @@ public class Hunter : MonoBehaviour
                         ActivateAction(ACTION.GO_TO_CANDLE);
                         break;
                     case ACTION.ALERT:
-                        
+                        ActivateAction(ACTION.GO_TO_CANDLE);
+                        print("over");
+
                         break;
                     case ACTION.FLEE:
                         ;
                         break;
                 }
             }
-        }
 
-        if (!IsMoving() && isPatroling )
-        {
-            print(points.Count);
-            if (points.Count>0)
+
+            if (!IsMoving() && isPatroling)
             {
-                MoveTo(points[0]);
-                points.RemoveAt(0);
-            } else
-            {
-                isPatroling = false;
-                StartCoroutine(WaitTimeAfterPatrol());
+                print(points.Count);
+                if (points.Count > 0)
+                {
+                    MoveTo(points[0]);
+                    points.RemoveAt(0);
+                }
+                else
+                {
+                    isPatroling = false;
+                    StartCoroutine(WaitTimeAfterPatrol());
+                }
             }
-        }
 
-        if(!IsMoving() && isScared)
-        {
-
+            if (isScared)
+            {
+                print(IsMoving());
+            }
+            if (!IsMoving() && isScared)
+            {
+                print("why");
+                isScared = false;
+                StartCoroutine(Scared(false));
+            }
         }
 
     }
@@ -167,26 +163,26 @@ public class Hunter : MonoBehaviour
         {
             case ACTION.GO_TO_CANDLE:
                 currentAction = ACTION.GO_TO_CANDLE;
-                List<Candle> tempCandles = new List<Candle>(GameManager.Instance.allCandles);       
+                List<Room> tempRooms = new List<Room>(GameManager.Instance.rooms);       
 
-                while (targetCandle == null && tempCandles.Count>0)
+                while (targetRoom == null && tempRooms.Count>0)
                 {
-                    int rand = Random.Range(0, tempCandles.Count);
-                    Candle candle = tempCandles[rand];
-                    if(!candle.isOn && candle.room != currentRoom)
+                    int rand = Random.Range(0, tempRooms.Count);
+                    Room room = tempRooms[rand];
+                    if(!room.isOn && room != currentRoom)
                     {
-                        targetCandle = candle;
+                        targetRoom = room;
                     }
                     else
                     {
-                        tempCandles.Remove(candle);;
+                        tempRooms.Remove(room);;
                     }
 
                 }
 
-                if (targetCandle != null)
+                if (targetRoom != null)
                 {
-                    MoveTo(targetCandle.transform.position);
+                    MoveTo(targetRoom.transform.position);
                 } else
                 {
                     MoveToRandomRoom();
@@ -222,9 +218,7 @@ public class Hunter : MonoBehaviour
             case ACTION.ALERT:
                 currentAction = ACTION.ALERT;
                 isDoingAction = true;
-                isScared = true;
-                navMeshAgent.destination = lastAlertPos;
-                StartCoroutine(ResumeNavMesh(2));
+                StartCoroutine(Scared(true));
                 break;
             case ACTION.FLEE:
                 currentAction = ACTION.FLEE;
@@ -237,17 +231,17 @@ public class Hunter : MonoBehaviour
     public void ResetState()
     {
         StopAllCoroutines();
-        targetCandle = null;
+        targetRoom = null;
         isDoingAction = false;
         isPatroling = false;
+        isScared = false;
     }
 
-    public void AddFear(int fear)
+    public void GetFear()
     {
-        currentFear += fear;
+        currentFear--;
         FearImage.fillAmount = (float)currentFear / fearMax;
-        print (currentFear);
-        if (currentFear >= fearMax)
+        if (currentFear <= 0)
         {
             Death();
         }
@@ -297,8 +291,8 @@ public class Hunter : MonoBehaviour
     {
         Anim.SetBool("Interact", true);
         yield return new WaitForSeconds(turningOnCandle);
-        targetCandle.turnOn();
-        targetCandle = null;
+        targetRoom.TurnOn();
+        targetRoom = null;
         Anim.SetBool("Interact", false);
         yield return new WaitForSeconds(afterTurningOnCandle);
         isDoingAction = false;
@@ -327,7 +321,7 @@ public class Hunter : MonoBehaviour
    
     }
 
-    IEnumerator Scared_01(bool isFirstTime)
+    IEnumerator Scared(bool isFirstTime)
     {
         float time = 0;
         if (isFirstTime)
@@ -345,9 +339,11 @@ public class Hunter : MonoBehaviour
                     time = scaredFrousse0_1;
 
                     break;
-            }
+            } // get time
+            EmoteManager.instance.PlayEmoteWithTransform("Confused_Emote", transform);
             yield return new WaitForSeconds(time);
-            MoveTo(lastAlertPos);
+            MoveTo(lastItemAlert.transform.GetChild(0).position);
+            isScared = true;
         } else
         {
             switch (currentFear)
@@ -363,10 +359,10 @@ public class Hunter : MonoBehaviour
 
                     break;
                     
-            }
+            } // get time
             yield return new WaitForSeconds(time);
-            isScared = false;
             isDoingAction = false;
+            print("end");
         }
       
        

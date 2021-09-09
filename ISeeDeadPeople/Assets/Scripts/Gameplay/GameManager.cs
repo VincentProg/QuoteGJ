@@ -85,7 +85,8 @@ public class GameManager : MonoBehaviour
     {
         foreach (Room room in rooms)
         {
-            for (int i = 0; i < hunters.Count; i++)
+            int rand = Random.Range(5, 10);
+            for (int i = 0; i < rand; i++)
             {
                 GameObject newCandle = Instantiate(candle, room.transform);
                 newCandle.transform.localScale = new Vector3(
@@ -104,6 +105,7 @@ public class GameManager : MonoBehaviour
                 candleScript.room = room;
                 allCandles.Add(candleScript);
             }
+            
         }
     }
 }
