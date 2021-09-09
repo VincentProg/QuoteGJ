@@ -25,8 +25,14 @@ public class CharacterMouvement : MonoBehaviour
     bool canInteract;
     Item itemClose;
 
-    private GameObject displayEmote;
-    bool hasBeenDisplayed = false;
+
+    public GameObject DisplayEmoteInteract { get { return displayEmoteInteract; } set{ displayEmoteInteract = value; } }
+    private GameObject displayEmoteInteract;
+    private GameObject displayEmoteNoLight;
+
+    public bool HasBeenDisplayedInteract { get { return hasBeenDisplayedInteract; } set { hasBeenDisplayedInteract = value; } }
+    bool hasBeenDisplayedInteract = false;
+    bool hasBeenDisplayedNoLight = false;
 
     public GameObject blastSequence = null;
     private GameObject blastQTESequence = null;
@@ -72,10 +78,16 @@ public class CharacterMouvement : MonoBehaviour
             {
                 case 0:
                     canInteract = false;
-                    if (displayEmote != null)
+                    if (displayEmoteInteract != null)
                     {
-                        Destroy(displayEmote);
-                        hasBeenDisplayed = false;
+                        Destroy(displayEmoteInteract);
+                        hasBeenDisplayedInteract = false;
+                    }
+
+                    if(displayEmoteNoLight != null)
+                    {
+                        Destroy(displayEmoteNoLight);
+                        hasBeenDisplayedNoLight = false;
                     }
                     break;
                 default:
@@ -93,11 +105,17 @@ public class CharacterMouvement : MonoBehaviour
 
                 if (!itemClose.isInteracting)
                 {
-                    if (!hasBeenDisplayed)
+                    if (!hasBeenDisplayedInteract)
                     {
-                        hasBeenDisplayed = true;
-                        displayEmote = EmoteManager.instance.PlayEmoteGameObject("Interact_Emote");
-                        displayEmote.transform.position = itemClose.posEmote;
+                        if (hasBeenDisplayedNoLight)
+                        {
+                            Destroy(displayEmoteNoLight);
+                            hasBeenDisplayedNoLight = false;
+                        }
+
+                        hasBeenDisplayedInteract = true;
+                        displayEmoteInteract = EmoteManager.instance.PlayEmoteGameObject("Interact_Emote");
+                        displayEmoteInteract.transform.position = itemClose.posEmote;
                     }
 
 
@@ -105,15 +123,32 @@ public class CharacterMouvement : MonoBehaviour
                     if (rewiredPlayer.GetButtonDown("SquareBT"))
                     {
                         itemClose.Interact();
-                        Destroy(displayEmote);
-                        hasBeenDisplayed = false;
+                        Destroy(displayEmoteInteract);
+                        hasBeenDisplayedInteract = false;
                     }
                 }
             }
-        } else if (hasBeenDisplayed)
+
+            else if (myRoom.isOn)
+            {
+                if (!hasBeenDisplayedNoLight)
+                {
+                    if (hasBeenDisplayedInteract)
+                    {
+                        Destroy(displayEmoteInteract);
+                        hasBeenDisplayedInteract = false;
+                    }
+
+                    hasBeenDisplayedNoLight = true;
+                    displayEmoteNoLight = EmoteManager.instance.PlayEmoteGameObject("LightOn_Emote");
+                    displayEmoteNoLight.transform.position = itemClose.posEmote;
+                }
+            }
+        } 
+        else if (hasBeenDisplayedInteract)
         {
-            Destroy(displayEmote);
-            hasBeenDisplayed = false;
+            Destroy(displayEmoteInteract);
+            hasBeenDisplayedInteract = false;
         }
     }
 

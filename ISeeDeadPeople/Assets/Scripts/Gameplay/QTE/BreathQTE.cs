@@ -34,7 +34,7 @@ public class BreathQTE : QTE
 
         displaySetup = currentDisplayQTE.GetComponent<QTEDisplay>();
         QTEManager.instance.AssignSprite(Button, displaySetup);
-        displaySetup.transform.position = GameManager.Instance.player.transform.position + new Vector3(0,0,-2);
+        displaySetup.transform.position = GameManager.Instance.player.transform.position + new Vector3(0,0,20);
 
         hasBeenLaunched = true;
     }

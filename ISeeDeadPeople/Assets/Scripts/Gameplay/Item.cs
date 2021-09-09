@@ -18,6 +18,9 @@ public class Item : MonoBehaviour
     private GameObject qteGO = null;
     private QTESequence qteSequence = null;
 
+    private float internDestroyFeedbackTimer = 0f;
+    private bool hasSpawnFeedback = false;
+
     
 
     private void Start()
@@ -55,6 +58,15 @@ public class Item : MonoBehaviour
             
         }
 
+        //if(internDestroyFeedbackTimer <= 5 && hasSpawnFeedback)
+        //{
+        //    internDestroyFeedbackTimer += Time.deltaTime;
+        //} 
+        //else if (internDestroyFeedbackTimer >= 5)
+        //{
+        //    DestroyInteractFeedback();
+        //    hasSpawnFeedback = false;
+        //}
     }
 
     private void OnTriggerEnter(Collider other)
@@ -88,6 +100,19 @@ public class Item : MonoBehaviour
         qteGO = Instantiate(itemQTESequence);
         qteGO.transform.position = transform.GetChild(0).position;
         qteSequence = qteGO.GetComponent<QTESequence>();
+
+        //internDestroyFeedbackTimer = 0;
+        //hasSpawnFeedback = true;
+        DestroyInteractFeedback();
+    }
+
+    public void DestroyInteractFeedback()
+    {
+        if (GameManager.Instance.player.DisplayEmoteInteract != null)
+        {
+            GameManager.Instance.player.HasBeenDisplayedInteract = false;
+            Destroy(GameManager.Instance.player.DisplayEmoteInteract);
+        }
     }
 
     public void FailInteraction()
@@ -103,15 +128,19 @@ public class Item : MonoBehaviour
         switch (type)
         {
             case TYPE.FAUTEUIL:
+                
 
 
                 break;
             case TYPE.CHAISE:
+               
 
                 break;
             case TYPE.TABLE:
                 anim.SetBool("isRight", !anim.GetBool("isRight"));
                 posEmote = transform.GetChild(0).position;
+
+                
                 break;
         }
 
