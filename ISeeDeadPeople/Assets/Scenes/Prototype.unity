@@ -3881,26 +3881,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1072826200340212004, guid: 6998cd6a23f0cae49b05c9806653b5f4, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.112
-      objectReference: {fileID: 0}
-    - target: {fileID: 1072826200340212004, guid: 6998cd6a23f0cae49b05c9806653b5f4, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.202
-      objectReference: {fileID: 0}
-    - target: {fileID: 7152722326102539075, guid: 6998cd6a23f0cae49b05c9806653b5f4, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7152722326102539075, guid: 6998cd6a23f0cae49b05c9806653b5f4, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7152722326102539075, guid: 6998cd6a23f0cae49b05c9806653b5f4, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -17.803
-      objectReference: {fileID: 0}
     - target: {fileID: 7152722326305168966, guid: 6998cd6a23f0cae49b05c9806653b5f4, type: 3}
       propertyPath: Effect
       value: 
@@ -6338,6 +6318,94 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d8b681286ce0e1942a9858028346cdd3, type: 3}
   m_PrefabInstance: {fileID: 1193504750}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1199090417
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1199090419}
+  - component: {fileID: 1199090418}
+  - component: {fileID: 1199090420}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1199090418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1199090417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d05755485f553a41a5b33e75fed4ded, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Breath
+    clip: {fileID: 8300000, guid: 2ed301f782c61d148897c3729c44c56c, type: 3}
+    volume: 0.1
+    loop: 0
+    source: {fileID: 0}
+  - name: MainMusic
+    clip: {fileID: 8300000, guid: 4fe5d1101f33d4344b8fd8ca23b71f96, type: 3}
+    volume: 0.2
+    loop: 1
+    source: {fileID: 0}
+  - name: Bougies
+    clip: {fileID: 8300000, guid: 265bd5ef924d0ea408c0d9f057df38c7, type: 3}
+    volume: 0.1
+    loop: 0
+    source: {fileID: 0}
+  - name: WallHack
+    clip: {fileID: 8300000, guid: 209ea76875d2a06449c5a94ad7415f6a, type: 3}
+    volume: 0.1
+    loop: 0
+    source: {fileID: 0}
+  - name: Fear
+    clip: {fileID: 8300000, guid: 2ed301f782c61d148897c3729c44c56c, type: 3}
+    volume: 0.1
+    loop: 0
+    source: {fileID: 0}
+  - name: FearMax
+    clip: {fileID: 8300000, guid: 40b6394255c8f584590a051e61af1340, type: 3}
+    volume: 0.1
+    loop: 0
+    source: {fileID: 0}
+--- !u!4 &1199090419
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1199090417}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.5517638, y: 15.562999, z: -14.108436}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1199090420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1199090417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97f1453b45915934a921ef117953b142, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SongName: MainMusic
 --- !u!1001 &1200382452
 PrefabInstance:
   m_ObjectHideFlags: 0

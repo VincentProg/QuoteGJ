@@ -140,7 +140,7 @@ public class CharacterMouvement : MonoBehaviour
 
     public void Blast()
     {
-       
+        AudioManager.instance.Play("Breath");
          myRoom.TurnOff(transform.position);
         
 
