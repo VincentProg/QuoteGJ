@@ -159,7 +159,7 @@ public class CharacterMouvement : MonoBehaviour
                 hunter.AddFear(hunter.blast);
                 hunter.ResetState();
                 hunter.ActivateAction(Hunter.ACTION.WATCH_AROUND);
-               
+
             }
 
         }

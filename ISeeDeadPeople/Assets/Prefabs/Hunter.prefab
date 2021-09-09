@@ -450,7 +450,7 @@ MonoBehaviour:
   movePositionTransform: {fileID: 0}
   currentRoom: {fileID: 0}
   lastAlertPos: {x: 0, y: 0}
-  fearMax: 100
+  fearMax: 3
   currentFear: 0
   turningOnCandle: 1
   afterTurningOnCandle: 2

@@ -20,7 +20,7 @@ public class Hunter : MonoBehaviour
 
     public Vector2 lastAlertPos;
 
-    public int fearMax = 100;
+    public int fearMax = 3;
     public int currentFear = 0;
     private Image FearImage;
 
@@ -31,13 +31,15 @@ public class Hunter : MonoBehaviour
 
     [Header("ACTIONS DURATION")] [SerializeField]
     private float turningOnCandle;
-    [SerializeField] private float afterTurningOnCandle, surprisedBeforePatrol, afterPatrol;
+    [SerializeField] private float afterTurningOnCandle, surprisedBeforePatrol, afterPatrol, scaredFrousse2_1, scaredFrousse2_2, scaredFrousse1_1, scaredFrousse1_2, scaredFrousse0_1, scaredFrousse0_2 ;
 
     [Header("Fear points")]
     public int blast;
 
     [Header("Animation")]
     public Animator Anim;
+
+    bool isScared;
 
     // Start is called before the first frame update
     void Awake()
@@ -120,7 +122,7 @@ public class Hunter : MonoBehaviour
                         ActivateAction(ACTION.GO_TO_CANDLE);
                         break;
                     case ACTION.ALERT:
-
+                        
                         break;
                     case ACTION.FLEE:
                         ;
@@ -141,6 +143,11 @@ public class Hunter : MonoBehaviour
                 isPatroling = false;
                 StartCoroutine(WaitTimeAfterPatrol());
             }
+        }
+
+        if(!IsMoving() && isScared)
+        {
+
         }
 
     }
@@ -214,6 +221,8 @@ public class Hunter : MonoBehaviour
                 break;
             case ACTION.ALERT:
                 currentAction = ACTION.ALERT;
+                isDoingAction = true;
+                isScared = true;
                 navMeshAgent.destination = lastAlertPos;
                 StartCoroutine(ResumeNavMesh(2));
                 break;
@@ -316,5 +325,51 @@ public class Hunter : MonoBehaviour
         yield return new WaitForSeconds(afterPatrol);
         isDoingAction = false;
    
+    }
+
+    IEnumerator Scared_01(bool isFirstTime)
+    {
+        float time = 0;
+        if (isFirstTime)
+        {
+
+            switch (currentFear)
+            {
+                case 2:
+                    time = scaredFrousse2_1;
+                    break;
+                case 1:
+                    time = scaredFrousse1_1;
+                    break;
+                case 0:
+                    time = scaredFrousse0_1;
+
+                    break;
+            }
+            yield return new WaitForSeconds(time);
+            MoveTo(lastAlertPos);
+        } else
+        {
+            switch (currentFear)
+            {
+                case 2:
+                    time = scaredFrousse2_2;
+                    break;
+                case 1:
+                    time = scaredFrousse1_2;
+                    break;
+                case 0:
+                    time = scaredFrousse0_2;
+
+                    break;
+                    
+            }
+            yield return new WaitForSeconds(time);
+            isScared = false;
+            isDoingAction = false;
+        }
+      
+       
+
     }
 }
