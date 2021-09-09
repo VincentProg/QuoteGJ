@@ -20,6 +20,13 @@ public class CharacterMouvement : MonoBehaviour
     public QTESequence sequenceSouffle;
 
     Room myRoom;
+    public List<Item> itemsNear = new List<Item>();
+    int lastItemsNearCount;
+    bool canInteract;
+    Item itemClose;
+
+    private GameObject displayEmote;
+    bool hasBeenDisplayed = false;
     void Start()
     {
         rewiredPlayer = ReInput.players.GetPlayer("Player");
@@ -51,10 +58,48 @@ public class CharacterMouvement : MonoBehaviour
             sequenceSouffle.Play();
         }
 
-        //if (Input.GetKeyDown("space"))
-        //{
-        //    Blast();
-        //}
+        if (Input.GetKeyDown("space"))
+        {
+            Blast();
+        }
+
+        if(itemsNear.Count != lastItemsNearCount)
+        {
+            print("interatc");
+            switch (itemsNear.Count)
+            {
+                case 0:
+                    canInteract = false;
+                    if (displayEmote != null)
+                    {
+                        Destroy(displayEmote);
+                        hasBeenDisplayed = false;
+                    }
+                    break;
+                default:
+                    canInteract = true;
+                    break;
+            }
+        }
+        lastItemsNearCount = itemsNear.Count;
+
+        if (canInteract)
+        {
+            itemClose = GetCloserItem();
+
+            if (!hasBeenDisplayed) {
+                hasBeenDisplayed = true;
+                displayEmote = EmoteManager.instance.PlayEmoteGameObject("Interact_Emote");
+            }
+
+            displayEmote.transform.position = itemClose.transform.position + new Vector3(0, 1, 0);
+
+            if (rewiredPlayer.GetButtonDown("SquareBT"))
+            {
+                itemClose.Interact();
+                itemsNear.Remove(itemClose);
+            }
+        }
     }
 
     public void FovApply(FovEffects Stats, bool Condition)
@@ -83,7 +128,6 @@ public class CharacterMouvement : MonoBehaviour
         if (other.CompareTag("Room"))
         {
             myRoom = other.GetComponent<Room>();
-            print("triggerrr");
         }
     }
 
@@ -100,14 +144,35 @@ public class CharacterMouvement : MonoBehaviour
 
             if(hunter.currentRoom == myRoom)
             {
+                hunter.AddFear(hunter.blast);
                 hunter.ResetState();
                 hunter.ActivateAction(Hunter.ACTION.WATCH_AROUND);
+               
             }
 
         }
 
 
         canMove = true;
+    }
+
+    private Item GetCloserItem()
+    {
+        Item item = itemsNear[0];
+        float distance1 = Mathf.Abs(item.transform.position.x - transform.position.x);
+        for (int i = 1; i < itemsNear.Count; i++)
+        {
+            float distance2 = Mathf.Abs(itemsNear[i].transform.position.x - transform.position.x);
+            if (distance2 < distance1)
+            {
+                item = itemsNear[i];
+                Item temp = itemsNear[0];
+                itemsNear[0] = item;
+                itemsNear[i] = temp;
+            }
+        }
+
+        return item;
     }
 
 }

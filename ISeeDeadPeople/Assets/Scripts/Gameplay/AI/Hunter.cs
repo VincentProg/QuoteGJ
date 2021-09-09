@@ -11,6 +11,7 @@ public class Hunter : MonoBehaviour
     [SerializeField] private Transform movePositionTransform;
 
     private NavMeshAgent navMeshAgent;
+    bool isDead;
 
     public Room currentRoom;
     public enum ACTION {GO_TO_CANDLE,TURN_ON_CANDLE,WATCH_AROUND, ALERT, FLEE}
@@ -30,7 +31,10 @@ public class Hunter : MonoBehaviour
 
     [Header("ACTIONS DURATION")] [SerializeField]
     private float turningOnCandle;
-    [SerializeField] private float afterTurningOnCandle, surprisedBeforePatrol, afterPatrol; 
+    [SerializeField] private float afterTurningOnCandle, surprisedBeforePatrol, afterPatrol;
+
+    [Header("Fear points")]
+    public int blast;
 
     // Start is called before the first frame update
     void Awake()
@@ -64,67 +68,71 @@ public class Hunter : MonoBehaviour
         //{
         //    AddFear(20);
         //}
-
-        if (!IsMoving() && !isDoingAction)
+        if (!isDead)
         {
-            switch (currentAction )
+            if (!IsMoving() && !isDoingAction)
             {
-                case ACTION.GO_TO_CANDLE:
-                    if (targetCandle != null)
-                    {
-                        if (!targetCandle.isOn)
+                switch (currentAction)
+                {
+                    case ACTION.GO_TO_CANDLE:
+                        if (targetCandle != null)
                         {
-                            ActivateAction(ACTION.TURN_ON_CANDLE);
-                        }
-                        else
-                        {
-                            Candle newTarget = null;
-                            for (int i = 0; i < currentRoom.myCandles.Count; i++)
+                            if (!targetCandle.isOn)
                             {
-                                if (!currentRoom.myCandles[i].isOn)
-                                {
-                                    newTarget = currentRoom.myCandles[i];
-                                    break;
-                                }
-                            }
-                            if (newTarget != null)
-                            {
-                                targetCandle = newTarget;
-                                MoveTo(targetCandle.transform.position);
+                                ActivateAction(ACTION.TURN_ON_CANDLE);
                             }
                             else
                             {
-                                targetCandle = null;
-                                ActivateAction(ACTION.GO_TO_CANDLE);
+                                Candle newTarget = null;
+                                for (int i = 0; i < currentRoom.myCandles.Count; i++)
+                                {
+                                    if (!currentRoom.myCandles[i].isOn)
+                                    {
+                                        newTarget = currentRoom.myCandles[i];
+                                        break;
+                                    }
+                                }
+                                if (newTarget != null)
+                                {
+                                    targetCandle = newTarget;
+                                    MoveTo(targetCandle.transform.position);
+                                }
+                                else
+                                {
+                                    targetCandle = null;
+                                    ActivateAction(ACTION.GO_TO_CANDLE);
+                                }
                             }
                         }
-                    }
-                       
-                    else
-                    {
+
+                        else
+                        {
+                            ActivateAction(ACTION.GO_TO_CANDLE);
+                        }
+                        break;
+                    case ACTION.TURN_ON_CANDLE:
                         ActivateAction(ACTION.GO_TO_CANDLE);
-                    }
-                    break;
-                case ACTION.TURN_ON_CANDLE:                  
-                        ActivateAction(ACTION.GO_TO_CANDLE);                 
-                    break;
-                case ACTION.WATCH_AROUND:
+                        break;
+                    case ACTION.WATCH_AROUND:
+                        ActivateAction(ACTION.GO_TO_CANDLE);
+                        break;
+                    case ACTION.ALERT:
 
-                    break;
-                case ACTION.ALERT:
-
-                    break;
-                case ACTION.FLEE:
-;
-                    break;
+                        break;
+                    case ACTION.FLEE:
+                        ;
+                        break;
+                }
             }
         }
 
         if (!IsMoving() && isPatroling )
         {
+            print(points.Count);
             if (points.Count>0)
             {
                 MoveTo(points[0]);
+                points.RemoveAt(0);
             } else
             {
                 isPatroling = false;
@@ -142,6 +150,7 @@ public class Hunter : MonoBehaviour
 
     public void ActivateAction(ACTION action)
     { 
+        if(!isDead)
         navMeshAgent.isStopped = true;
 
         switch (action)
@@ -194,11 +203,8 @@ public class Hunter : MonoBehaviour
                 Vector3 point1 = new Vector3(maxX, (minY + maxY) / 2, candleZone.transform.position.z);
 
                 int rand2 = Random.Range(0, 2);
-                if(rand2 == 0)
-                {
-                    points.Add(point0); points.Add(point1); points.Add(point0);
-                }
-                else points.Add(point1); points.Add(point0); points.Add(point1);
+                if (rand2 == 0){ points.Add(point0); points.Add(point1); }
+                else { points.Add(point1); points.Add(point0); }
 
                 StartCoroutine(SurprisedBeforePatrol());
                 
@@ -238,6 +244,7 @@ public class Hunter : MonoBehaviour
     private void Death()
     {
         print("Dead");
+        isDead = true;
         Destroy(gameObject);
         
     }
@@ -252,7 +259,7 @@ public class Hunter : MonoBehaviour
     {
         if (!navMeshAgent.pathPending)
         {
-            if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
+            if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance || navMeshAgent.isStopped)
             {
                 if (!navMeshAgent.hasPath || navMeshAgent.velocity.sqrMagnitude == 0f)
                 {
@@ -281,7 +288,6 @@ public class Hunter : MonoBehaviour
         targetCandle.turnOn();
         targetCandle = null;
         yield return new WaitForSeconds(afterTurningOnCandle);
-        print("rewalk");
         isDoingAction = false;
     }
 
@@ -302,7 +308,9 @@ public class Hunter : MonoBehaviour
 
     IEnumerator WaitTimeAfterPatrol()
     {
+      
         yield return new WaitForSeconds(afterPatrol);
         isDoingAction = false;
+   
     }
 }
