@@ -54,8 +54,8 @@ public class Hunter : MonoBehaviour
         currentFear = fearMax;
         currentAction = ACTION.GO_TO_CANDLE;
         ActivateAction(currentAction);
-        FearImage = transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>();
-        FearImage.fillAmount = 0;
+        FearImage = transform.GetChild(0).GetChild(0).GetComponent<Image>();
+        FearImage.color = new Color32(212, 212, 212, 255);
         
     }
 
@@ -89,10 +89,8 @@ public class Hunter : MonoBehaviour
                             }
                             else
                             {
-                              
-                                targetRoom = null;
                                 ActivateAction(ACTION.GO_TO_CANDLE);
-                                
+       
                             }
                         }
 
@@ -151,6 +149,12 @@ public class Hunter : MonoBehaviour
     {
         navMeshAgent.isStopped = false;
         navMeshAgent.destination = position;
+    }
+
+    private void OnDrawGizmos()
+    {
+        if(targetRoom != null)
+        Gizmos.DrawLine(targetRoom.transform.position,transform.position);
     }
 
     public void ActivateAction(ACTION action)
@@ -239,7 +243,9 @@ public class Hunter : MonoBehaviour
     public void GetFear()
     {
         currentFear--;
-        FearImage.fillAmount = (float)currentFear / fearMax;
+        byte col = (byte)(((float)currentFear - 1) * 120);
+        FearImage.color = FearImage.color = new Color32(164, col, 0, 255);
+        FearImage.GetComponent<Animator>().SetTrigger("Trigger");
         if (currentFear <= 0)
         {
             AudioManager.instance.Play("FearMax");

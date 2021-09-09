@@ -103,6 +103,8 @@ public class CharacterMouvement : MonoBehaviour
                 if (rewiredPlayer.GetButtonDown("SquareBT"))
                 {
                     itemClose.Interact();
+                    Destroy(displayEmote);
+                    hasBeenDisplayed = false;
                 }
             }
         } else if (hasBeenDisplayed)
