@@ -53,10 +53,25 @@ public class TimedQTE : QTE
             Destroy(currentDisplayQTE);
         }
 
+        else if (internTimer < timedTime - errorOffset && GoodButtonSmashed())
+        {
+            isMissed = true;
+        }
+        
+        
+        
+        
+
         if(internTimer > timedTime + errorOffset)
         {
             isMissed = true;
             Debug.LogWarning("QTE missed/out of time");
+        }
+
+        if (isMissed)
+        {
+            Destroy(currentDisplayQTE);
+            Destroy(GetComponentInParent<QTESequence>().gameObject);
         }
     }
 

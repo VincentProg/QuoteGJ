@@ -9,6 +9,10 @@ public class StayQTE : QTE
     public float stayTime;
     public GameObject stayQTEDisplay;
 
+    public float timeBeforeLose = 6f;
+    private float timeLose = 0f;
+    private bool isLost = false;
+
     private Player rewiredPlayer = null;
     private bool _isCompleted;
 
@@ -66,6 +70,17 @@ public class StayQTE : QTE
         {
             Destroy(currentDisplayQTE);
             _isCompleted = true;
+        }
+
+        else if (timeLose > timeBeforeLose && !_isCompleted)
+        {
+            isLost = true;
+        }
+
+        if (isLost)
+        {
+            Destroy(currentDisplayQTE);
+            Destroy(GetComponentInParent<QTESequence>().gameObject);
         }
     }
 

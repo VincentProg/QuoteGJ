@@ -9,6 +9,10 @@ public class SmashQTE : QTE
     public int smashCount;
     public GameObject smashQTEDisplay;
 
+    public float timeBeforeLose = 3.5f;
+    private float timeLose = 0f;
+    private bool isLost = false;
+
     private Player rewiredPlayer = null;
     private bool _isCompleted;
 
@@ -51,6 +55,23 @@ public class SmashQTE : QTE
         }
 
         fillIMG.fillAmount = (float)internSmashCount / smashCount;
+
+
+        if(timeLose <= timeBeforeLose)
+        {
+            timeLose += Time.deltaTime;
+
+        }
+        else if(timeLose > timeBeforeLose && !_isCompleted)
+        {
+            isLost = true;
+        }
+
+        if (isLost)
+        {
+            Destroy(currentDisplayQTE);
+            Destroy(GetComponentInParent<QTESequence>().gameObject);
+        }
     }
 
     public bool GoodButtonSmashed()
