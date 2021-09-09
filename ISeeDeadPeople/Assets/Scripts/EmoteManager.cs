@@ -33,6 +33,8 @@ public class EmoteManager : MonoBehaviour
 
     private void Update()
     {
+#if UNITY_EDITOR	
+
         if (Input.GetKeyDown(KeyCode.P))
         {
             PlayEmoteRandomPlaceDebug(debugEmoteToPlay);
@@ -41,6 +43,7 @@ public class EmoteManager : MonoBehaviour
         {
             PlayEmoteRandomNameDebug();
         }
+#endif
     }
 
     public void PlayEmote(string name)
