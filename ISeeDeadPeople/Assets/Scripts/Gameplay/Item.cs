@@ -75,8 +75,9 @@ public class Item : MonoBehaviour
             if(t >= cooldown)
             {
                 isCooldown = false;
-            }
                 StartCoroutine(EndPause());
+            }
+                
         }
 
         //if(internDestroyFeedbackTimer <= 5 && hasSpawnFeedback)
@@ -202,13 +203,18 @@ public class Item : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         isCooldown = true;
         pause.SetActive(true);
+        print("wtf");
        
     }
     IEnumerator EndPause()
     {
-        pause.GetComponent<Animator>().SetTrigger("Disappear");
+        pause.GetComponent<Animator>().SetBool("Disappear", true);
+
         //pause.GetComponent<Animator>().ResetTrigger("Disappear");
         yield return new WaitForSeconds(0.6f);
+        pause.GetComponent<Animator>().SetBool("Disappear", false);
+
         pause.SetActive(false);
+        print("wtf2");
     }
 }
