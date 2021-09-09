@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Item : MonoBehaviour
 {
@@ -20,11 +21,19 @@ public class Item : MonoBehaviour
 
     private float internDestroyFeedbackTimer = 0f;
     private bool hasSpawnFeedback = false;
+    public bool isCooldown;
+    public float cooldown;
+    float t = 0;
+    [SerializeField]
+    Image circle1, circl2;
+    [SerializeField] GameObject pause;
+    
 
     
 
     private void Start()
     {
+        pause.SetActive(false);
         anim = GetComponent<Animator>();
         posEmote = transform.GetChild(0).position + new Vector3(0,1,-1);
     }
@@ -56,6 +65,18 @@ public class Item : MonoBehaviour
                 }
             }
             
+        }
+
+        if (isCooldown)
+        {
+            t += Time.deltaTime;
+            circle1.fillAmount = t / cooldown;
+            circl2.fillAmount = t / cooldown;
+            if(t >= cooldown)
+            {
+                isCooldown = false;
+            }
+                StartCoroutine(EndPause());
         }
 
         //if(internDestroyFeedbackTimer <= 5 && hasSpawnFeedback)
@@ -120,6 +141,7 @@ public class Item : MonoBehaviour
         anim.SetTrigger("Fail");
         isInteracting = false;
         // anim
+        StartCooldown();
     }
 
     public void SucceedInteraction()
@@ -158,5 +180,27 @@ public class Item : MonoBehaviour
 
             }
         }
+        StartCooldown();
+    }
+
+    void StartCooldown()
+    {
+        StartCoroutine(StartPause());
+        t = 0;
+        
+    }
+    IEnumerator StartPause()
+    {
+        yield return new WaitForSeconds(1.5f);
+        isCooldown = true;
+        pause.SetActive(true);
+       
+    }
+    IEnumerator EndPause()
+    {
+        pause.GetComponent<Animator>().SetTrigger("Disappear");
+        //pause.GetComponent<Animator>().ResetTrigger("Disappear");
+        yield return new WaitForSeconds(0.6f);
+        pause.SetActive(false);
     }
 }
