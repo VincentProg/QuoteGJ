@@ -150,6 +150,7 @@ public class Hunter : MonoBehaviour
 
     public void ActivateAction(ACTION action)
     { 
+        if(!isDead)
         navMeshAgent.isStopped = true;
 
         switch (action)
