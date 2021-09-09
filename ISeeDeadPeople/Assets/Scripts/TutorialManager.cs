@@ -15,6 +15,7 @@ public class TutorialManager : MonoBehaviour
     public BoxCollider[] interactionColliders = null;
 
     bool canInteract = false;
+    bool tutoFinished = false;
     GameObject interactDisplay = null;
 
     private Player rewiredPlayer = null;
@@ -130,7 +131,7 @@ public class TutorialManager : MonoBehaviour
 
     void UpdateCheckboxes()
     {
-        if(cpt > 4) { tutorialCanva.SetActive(false); return; }
+        if(cpt > 4) { tutorialCanva.SetActive(false); tutoFinished = true; Debug.Log("Tutorial is finished"); return; }
         checkboxes[cpt - 1].SetActive(true);
         tutoTexts[cpt].SetActive(true);
     }
