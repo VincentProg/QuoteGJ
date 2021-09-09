@@ -17,6 +17,7 @@ public class BreathQTE : QTE
     private Image fillIMG = null;
 
     bool needReload;
+    bool hasBeenLaunched = false;
     private QTEDisplay displaySetup;
 
     protected override void OnExecute()
@@ -34,6 +35,8 @@ public class BreathQTE : QTE
         displaySetup = currentDisplayQTE.GetComponent<QTEDisplay>();
         QTEManager.instance.AssignSprite(Button, displaySetup);
         displaySetup.transform.position = GameManager.Instance.player.transform.position;
+
+        hasBeenLaunched = true;
     }
 
     public override void QTEUpdate()
@@ -70,6 +73,15 @@ public class BreathQTE : QTE
             Destroy(currentDisplayQTE);
             _isCompleted = true;
             GameManager.Instance.player.Blast();
+        }
+
+        if (rewiredPlayer.GetButtonUp(ButtonName))
+        {
+            if (hasBeenLaunched)
+            {
+                Destroy(currentDisplayQTE);
+                _isCompleted = true;
+            }
         }
     }
 
