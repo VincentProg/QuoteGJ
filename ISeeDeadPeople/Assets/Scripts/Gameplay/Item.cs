@@ -31,24 +31,6 @@ public class Item : MonoBehaviour
         }
     }
 
-    //private void Update()
-    //{
-    //    if(isInteracting)
-    //    switch (type)
-    //    {
-    //        case TYPE.FAUTEUIL:
-
-
-    //            break;
-    //        case TYPE.CHAISE:
-
-    //            break;
-    //        case TYPE.TABLE:
-
-    //            break;
-    //    }
-    //}
-
     public void Interact() {
         isInteracting = true;
         switch (type)
@@ -65,5 +47,19 @@ public class Item : MonoBehaviour
                 break;
         }
 
+    }
+
+
+    public void FailInteraction()
+    {
+        isInteracting = false;
+        // anim
+    }
+
+    public void SucceedInteraction()
+    {
+        isInteracting = false;
+        // anim
+        // HUNTERS
     }
 }
