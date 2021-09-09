@@ -70,11 +70,6 @@ public class CharacterMouvement : MonoBehaviour
             Destroy(blastQTESequence);
         }
 
-        if (Input.GetKeyDown("space"))
-        {
-            Blast();
-        }
-
         if(itemsNear.Count != lastItemsNearCount)
         {
             switch (itemsNear.Count)
@@ -94,7 +89,7 @@ public class CharacterMouvement : MonoBehaviour
         }
         lastItemsNearCount = itemsNear.Count;
 
-        if (canInteract)
+        if (canInteract && !myRoom.isOn)
         {
             itemClose = GetCloserItem();
 
@@ -111,6 +106,10 @@ public class CharacterMouvement : MonoBehaviour
                 itemClose.Interact();
                 itemsNear.Remove(itemClose);
             }
+        } else if (hasBeenDisplayed)
+        {
+            Destroy(displayEmote);
+            hasBeenDisplayed = false;
         }
     }
 
@@ -146,20 +145,18 @@ public class CharacterMouvement : MonoBehaviour
     public void Blast()
     {
        
-        foreach(Candle candle in myRoom.myCandles)
-        {
-            candle.turnOff(candle.transform.position.x - transform.position.x <= 0);
-        }
+         myRoom.TurnOff(transform.position);
+        
 
         foreach(Hunter hunter in GameManager.Instance.hunters)
         {
 
             if(hunter.currentRoom == myRoom)
             {
-                hunter.AddFear(hunter.blast);
+                hunter.GetFear();
                 hunter.ResetState();
                 hunter.ActivateAction(Hunter.ACTION.WATCH_AROUND);
-               
+
             }
 
         }

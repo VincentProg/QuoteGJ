@@ -16,11 +16,11 @@ public class Hunter : MonoBehaviour
     public Room currentRoom;
     public enum ACTION {GO_TO_CANDLE,TURN_ON_CANDLE,WATCH_AROUND, ALERT, FLEE}
     private ACTION currentAction;
-    Candle targetCandle = null;
+    Room targetRoom = null;
 
-    public Vector2 lastAlertPos;
+    public Item lastItemAlert;
 
-    public int fearMax = 100;
+    public int fearMax = 3;
     public int currentFear = 0;
     private Image FearImage;
 
@@ -31,13 +31,15 @@ public class Hunter : MonoBehaviour
 
     [Header("ACTIONS DURATION")] [SerializeField]
     private float turningOnCandle;
-    [SerializeField] private float afterTurningOnCandle, surprisedBeforePatrol, afterPatrol;
+    [SerializeField] private float afterTurningOnCandle, surprisedBeforePatrol, afterPatrol, scaredFrousse2_1, scaredFrousse2_2, scaredFrousse1_1, scaredFrousse1_2, scaredFrousse0_1, scaredFrousse0_2 ;
 
     [Header("Fear points")]
     public int blast;
 
     [Header("Animation")]
     public Animator Anim;
+
+    bool isScared;
 
     // Start is called before the first frame update
     void Awake()
@@ -49,6 +51,7 @@ public class Hunter : MonoBehaviour
 
     private void Start()
     {
+        currentFear = fearMax;
         currentAction = ACTION.GO_TO_CANDLE;
         ActivateAction(currentAction);
         FearImage = transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>();
@@ -78,33 +81,18 @@ public class Hunter : MonoBehaviour
                 switch (currentAction)
                 {
                     case ACTION.GO_TO_CANDLE:
-                        if (targetCandle != null)
+                        if (targetRoom != null)
                         {
-                            if (!targetCandle.isOn)
+                            if (!targetRoom.isOn)
                             {
                                 ActivateAction(ACTION.TURN_ON_CANDLE);
                             }
                             else
                             {
-                                Candle newTarget = null;
-                                for (int i = 0; i < currentRoom.myCandles.Count; i++)
-                                {
-                                    if (!currentRoom.myCandles[i].isOn)
-                                    {
-                                        newTarget = currentRoom.myCandles[i];
-                                        break;
-                                    }
-                                }
-                                if (newTarget != null)
-                                {
-                                    targetCandle = newTarget;
-                                    MoveTo(targetCandle.transform.position);
-                                }
-                                else
-                                {
-                                    targetCandle = null;
-                                    ActivateAction(ACTION.GO_TO_CANDLE);
-                                }
+                              
+                                targetRoom = null;
+                                ActivateAction(ACTION.GO_TO_CANDLE);
+                                
                             }
                         }
 
@@ -120,6 +108,8 @@ public class Hunter : MonoBehaviour
                         ActivateAction(ACTION.GO_TO_CANDLE);
                         break;
                     case ACTION.ALERT:
+                        ActivateAction(ACTION.GO_TO_CANDLE);
+                        print("over");
 
                         break;
                     case ACTION.FLEE:
@@ -127,19 +117,32 @@ public class Hunter : MonoBehaviour
                         break;
                 }
             }
-        }
 
-        if (!IsMoving() && isPatroling )
-        {
-            print(points.Count);
-            if (points.Count>0)
+
+            if (!IsMoving() && isPatroling)
             {
-                MoveTo(points[0]);
-                points.RemoveAt(0);
-            } else
+                print(points.Count);
+                if (points.Count > 0)
+                {
+                    MoveTo(points[0]);
+                    points.RemoveAt(0);
+                }
+                else
+                {
+                    isPatroling = false;
+                    StartCoroutine(WaitTimeAfterPatrol());
+                }
+            }
+
+            if (isScared)
             {
-                isPatroling = false;
-                StartCoroutine(WaitTimeAfterPatrol());
+                print(IsMoving());
+            }
+            if (!IsMoving() && isScared)
+            {
+                print("why");
+                isScared = false;
+                StartCoroutine(Scared(false));
             }
         }
 
@@ -160,26 +163,26 @@ public class Hunter : MonoBehaviour
         {
             case ACTION.GO_TO_CANDLE:
                 currentAction = ACTION.GO_TO_CANDLE;
-                List<Candle> tempCandles = new List<Candle>(GameManager.Instance.allCandles);       
+                List<Room> tempRooms = new List<Room>(GameManager.Instance.rooms);       
 
-                while (targetCandle == null && tempCandles.Count>0)
+                while (targetRoom == null && tempRooms.Count>0)
                 {
-                    int rand = Random.Range(0, tempCandles.Count);
-                    Candle candle = tempCandles[rand];
-                    if(!candle.isOn && candle.room != currentRoom)
+                    int rand = Random.Range(0, tempRooms.Count);
+                    Room room = tempRooms[rand];
+                    if(!room.isOn && room != currentRoom)
                     {
-                        targetCandle = candle;
+                        targetRoom = room;
                     }
                     else
                     {
-                        tempCandles.Remove(candle);;
+                        tempRooms.Remove(room);;
                     }
 
                 }
 
-                if (targetCandle != null)
+                if (targetRoom != null)
                 {
-                    MoveTo(targetCandle.transform.position);
+                    MoveTo(targetRoom.transform.position);
                 } else
                 {
                     MoveToRandomRoom();
@@ -214,8 +217,8 @@ public class Hunter : MonoBehaviour
                 break;
             case ACTION.ALERT:
                 currentAction = ACTION.ALERT;
-                navMeshAgent.destination = lastAlertPos;
-                StartCoroutine(ResumeNavMesh(2));
+                isDoingAction = true;
+                StartCoroutine(Scared(true));
                 break;
             case ACTION.FLEE:
                 currentAction = ACTION.FLEE;
@@ -228,17 +231,17 @@ public class Hunter : MonoBehaviour
     public void ResetState()
     {
         StopAllCoroutines();
-        targetCandle = null;
+        targetRoom = null;
         isDoingAction = false;
         isPatroling = false;
+        isScared = false;
     }
 
-    public void AddFear(int fear)
+    public void GetFear()
     {
-        currentFear += fear;
+        currentFear--;
         FearImage.fillAmount = (float)currentFear / fearMax;
-        print (currentFear);
-        if (currentFear >= fearMax)
+        if (currentFear <= 0)
         {
             Death();
         }
@@ -288,8 +291,8 @@ public class Hunter : MonoBehaviour
     {
         Anim.SetBool("Interact", true);
         yield return new WaitForSeconds(turningOnCandle);
-        targetCandle.turnOn();
-        targetCandle = null;
+        targetRoom.TurnOn();
+        targetRoom = null;
         Anim.SetBool("Interact", false);
         yield return new WaitForSeconds(afterTurningOnCandle);
         isDoingAction = false;
@@ -316,5 +319,53 @@ public class Hunter : MonoBehaviour
         yield return new WaitForSeconds(afterPatrol);
         isDoingAction = false;
    
+    }
+
+    IEnumerator Scared(bool isFirstTime)
+    {
+        float time = 0;
+        if (isFirstTime)
+        {
+
+            switch (currentFear)
+            {
+                case 2:
+                    time = scaredFrousse2_1;
+                    break;
+                case 1:
+                    time = scaredFrousse1_1;
+                    break;
+                case 0:
+                    time = scaredFrousse0_1;
+
+                    break;
+            } // get time
+            EmoteManager.instance.PlayEmoteWithTransform("Confused_Emote", transform);
+            yield return new WaitForSeconds(time);
+            MoveTo(lastItemAlert.transform.GetChild(0).position);
+            isScared = true;
+        } else
+        {
+            switch (currentFear)
+            {
+                case 2:
+                    time = scaredFrousse2_2;
+                    break;
+                case 1:
+                    time = scaredFrousse1_2;
+                    break;
+                case 0:
+                    time = scaredFrousse0_2;
+
+                    break;
+                    
+            } // get time
+            yield return new WaitForSeconds(time);
+            isDoingAction = false;
+            print("end");
+        }
+      
+       
+
     }
 }

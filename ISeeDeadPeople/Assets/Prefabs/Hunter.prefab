@@ -421,7 +421,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 8848298229352511530}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.29
+  m_Radius: 0.5
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 0
@@ -449,13 +449,19 @@ MonoBehaviour:
   id: 0
   movePositionTransform: {fileID: 0}
   currentRoom: {fileID: 0}
-  lastAlertPos: {x: 0, y: 0}
-  fearMax: 100
+  lastItemAlert: {fileID: 0}
+  fearMax: 3
   currentFear: 0
   turningOnCandle: 1
   afterTurningOnCandle: 2
-  surprisedBeforePatrol: 0
-  afterPatrol: 0
+  surprisedBeforePatrol: 2
+  afterPatrol: 2
+  scaredFrousse2_1: 2
+  scaredFrousse2_2: 2
+  scaredFrousse1_1: 2
+  scaredFrousse1_2: 2
+  scaredFrousse0_1: 2
+  scaredFrousse0_2: 2
   blast: 0
   Anim: {fileID: 4283983603005381746}
 --- !u!1001 &4189051076032927206

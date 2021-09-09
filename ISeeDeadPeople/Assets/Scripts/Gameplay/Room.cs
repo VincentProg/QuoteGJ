@@ -9,6 +9,7 @@ public class Room : MonoBehaviour
     public List<GameObject> enemiesCollider = new List<GameObject>();
     public List<GameObject> interactionCollider = new List<GameObject>();
     public List<Candle> myCandles = new List<Candle>();
+    public bool isOn = false;
 
     public bool playerIsInRoom = false;
 
@@ -45,6 +46,24 @@ public class Room : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             playerIsInRoom = false;
+        }
+    }
+
+    public void TurnOn()
+    {
+        isOn = true;
+        foreach(Candle candle in myCandles)
+        {
+            candle.turnOn();
+        }
+    }
+    public void TurnOff(Vector3 v)
+    {
+        isOn = false;
+        print("turn off");
+        foreach (Candle candle in myCandles)
+        {
+            candle.turnOff(candle.transform.position.x - v.x <= 0);
         }
     }
 }

@@ -6,7 +6,7 @@ public class Item : MonoBehaviour
 {
     public enum TYPE { FAUTEUIL, CHAISE, TABLE}
     public TYPE type = TYPE.FAUTEUIL;
-    Room myRoom;
+    Room myRoom = null;
 
     [HideInInspector]
     public Vector3 posEmote;
@@ -60,7 +60,9 @@ public class Item : MonoBehaviour
     {
         if (other.CompareTag("Room"))
         {
+          
             myRoom = other.GetComponent<Room>();
+
         }
         else if (other.CompareTag("Player"))
         {
@@ -114,7 +116,17 @@ public class Item : MonoBehaviour
 
 
         isInteracting = false;
-        // anim
-        // HUNTERS
+
+        foreach (Hunter hunter in GameManager.Instance.hunters)
+        {
+            if(hunter.currentRoom == myRoom)
+            {
+                hunter.GetFear();
+                hunter.lastItemAlert = this;
+                hunter.ResetState();
+                hunter.ActivateAction(Hunter.ACTION.ALERT);
+
+            }
+        }
     }
 }
