@@ -14,6 +14,7 @@ public class QTESequence : MonoBehaviour
     public bool IsRunning { get { return _isRunning; } }
 
     private bool _isStart = true;
+    public bool sequenceFinished = false;
 
     private void Start()
     {
@@ -67,6 +68,11 @@ public class QTESequence : MonoBehaviour
                 _currentQTEIndex++;
             }
         } while ((qte != null) && qteFinished && (_currentQTEIndex < _qtes.Length));
+
+        if(_qtes[_qtes.Length - 1].IsFinished())
+        {
+            sequenceFinished = true;
+        }
     }
 
     public void Play()

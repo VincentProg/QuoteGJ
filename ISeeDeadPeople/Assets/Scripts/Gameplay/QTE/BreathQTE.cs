@@ -33,6 +33,7 @@ public class BreathQTE : QTE
 
         displaySetup = currentDisplayQTE.GetComponent<QTEDisplay>();
         QTEManager.instance.AssignSprite(Button, displaySetup);
+        displaySetup.transform.position = GameManager.Instance.player.transform.position;
     }
 
     public override void QTEUpdate()
