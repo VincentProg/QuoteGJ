@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using Rewired;
+using UnityEngine.UI;
 
 public class CharacterMouvement : MonoBehaviour
 {
@@ -37,14 +38,39 @@ public class CharacterMouvement : MonoBehaviour
     public GameObject blastSequence = null;
     private GameObject blastQTESequence = null;
     private QTESequence blastQTE = null;
+
+    [Header("MANA")]
+    [SerializeField] float manaLoadSpeed;
+    [SerializeField] int manaMax, currentMana, costBlast, costInteract;
+    Animator animTxt;
+
+    float t;
+    float t1;
+    [SerializeField] Text txt_mana, txt_removeMana;
+
+
     void Start()
     {
         rewiredPlayer = ReInput.players.GetPlayer("Player");
+        t1 = t + 1 / manaLoadSpeed;
+        animTxt = txt_mana.transform.parent.GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        t += Time.deltaTime;
+
+        if (t >= t1)
+        {
+            currentMana++;
+            currentMana = Mathf.Clamp(currentMana, 0, manaMax);
+            txt_mana.text = currentMana.ToString();
+            t1 += 1 / manaLoadSpeed;
+        }
+
+
         if (canMove && !InWall)
         {
             float Axex = Input.GetAxis("Horizontal");
@@ -63,8 +89,12 @@ public class CharacterMouvement : MonoBehaviour
            
             if (myRoom.isOn)
             {
-                CreateBlastQTE();
-                blastQTE.Play();
+                if (currentMana >= costBlast)
+                {
+                    CreateBlastQTE();
+                    blastQTE.Play();
+                }
+                else animTxt.SetTrigger("Trigger");
             }
         }
         if (blastQTE != null && blastQTE.sequenceFinished)
@@ -99,35 +129,44 @@ public class CharacterMouvement : MonoBehaviour
 
         if (canInteract)
         {
-            if (!myRoom.isOn)
-            {
-                itemClose = GetCloserItem();
-
-                if (!itemClose.isInteracting && !itemClose.isCooldown)
+           
+                if (!myRoom.isOn)
                 {
-                    if (!hasBeenDisplayedInteract)
+                    itemClose = GetCloserItem();
+
+                    if (!itemClose.isInteracting && !itemClose.isCooldown)
                     {
-                        if (hasBeenDisplayedNoLight)
+                        if (!hasBeenDisplayedInteract)
                         {
-                            Destroy(displayEmoteNoLight);
-                            hasBeenDisplayedNoLight = false;
+                            if (hasBeenDisplayedNoLight)
+                            {
+                                Destroy(displayEmoteNoLight);
+                                hasBeenDisplayedNoLight = false;
+                            }
+
+                            hasBeenDisplayedInteract = true;
+                            displayEmoteInteract = EmoteManager.instance.PlayEmoteGameObject("Interact_Emote");
+                            displayEmoteInteract.transform.position = itemClose.posEmote;
                         }
 
-                        hasBeenDisplayedInteract = true;
-                        displayEmoteInteract = EmoteManager.instance.PlayEmoteGameObject("Interact_Emote");
-                        displayEmoteInteract.transform.position = itemClose.posEmote;
+
+
+                        if (rewiredPlayer.GetButtonDown("SquareBT"))
+                        {
+                            if (currentMana >= costInteract)
+                            {
+                                itemClose.Interact();
+                                Destroy(displayEmoteInteract);
+                                hasBeenDisplayedInteract = false;
+                            currentMana -= costInteract + 1;
+                            txt_removeMana.text = costInteract.ToString();
+                            animTxt.SetTrigger("Remove");
+                        }
+                            else animTxt.SetTrigger("Trigger");
+                        }
                     }
-
-
-
-                    if (rewiredPlayer.GetButtonDown("SquareBT"))
-                    {
-                        itemClose.Interact();
-                        Destroy(displayEmoteInteract);
-                        hasBeenDisplayedInteract = false;
-                    }
+                
                 }
-            }
 
             else if (myRoom.isOn)
             {
@@ -183,6 +222,9 @@ public class CharacterMouvement : MonoBehaviour
 
     public void Blast()
     {
+        currentMana -= costBlast +1;
+        txt_removeMana.text = costBlast.ToString();
+        animTxt.SetTrigger("Remove");
         AudioManager.instance.Play("Breath");
          myRoom.TurnOff(transform.position);
         canMove = true;

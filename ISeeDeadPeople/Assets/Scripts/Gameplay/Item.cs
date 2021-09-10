@@ -208,11 +208,10 @@ public class Item : MonoBehaviour
     }
     IEnumerator EndPause()
     {
-        pause.GetComponent<Animator>().SetBool("Disappear", true);
+        pause.GetComponent<Animator>().SetTrigger("Disappear");
 
-        //pause.GetComponent<Animator>().ResetTrigger("Disappear");
-        yield return new WaitForSeconds(0.6f);
-        pause.GetComponent<Animator>().SetBool("Disappear", false);
+        yield return new WaitForSeconds(1f);
+
 
         pause.SetActive(false);
         print("wtf2");
