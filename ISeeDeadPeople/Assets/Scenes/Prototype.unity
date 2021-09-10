@@ -15943,7 +15943,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7152722327098633299, guid: 6998cd6a23f0cae49b05c9806653b5f4, type: 3}
       propertyPath: manaLoadSpeed
-      value: 3
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7152722327098633299, guid: 6998cd6a23f0cae49b05c9806653b5f4, type: 3}
       propertyPath: txt_removeMana
@@ -60761,9 +60761,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   rooms: []
-  hunters:
-  - {fileID: 0}
-  - {fileID: 0}
+  hunters: []
   allCandles: []
   candlesPrefabs:
   - {fileID: 9001507606725982787, guid: 4c5c5881f6eaaba478cadea47bb285a0, type: 3}

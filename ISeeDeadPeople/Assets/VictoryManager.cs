@@ -15,7 +15,6 @@ public class VictoryManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            print("hello");
         }
 
         else

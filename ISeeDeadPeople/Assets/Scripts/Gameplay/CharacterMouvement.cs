@@ -232,7 +232,6 @@ public class CharacterMouvement : MonoBehaviour
 
         foreach(Hunter hunter in GameManager.Instance.hunters)
         {
-
             if(hunter.currentRoom == myRoom)
             {
                 hunter.GetFear();
