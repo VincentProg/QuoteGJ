@@ -21,6 +21,8 @@ public class TutorialManager : MonoBehaviour
     public SceneChanger sceneChanger;
 
     private Player rewiredPlayer = null;
+    public Item itemNear = null;
+    bool hasInteractedItem = false;
 
     private void Start()
     {
@@ -32,6 +34,19 @@ public class TutorialManager : MonoBehaviour
     public void Update()
     {
         Tutorial();
+    }
+
+    IEnumerator FearHunter(GameObject hunterToScare)
+    {
+        EmoteManager.instance.PlayEmoteWithPos("Surprise_Emote", hunterToScare.transform.position + new Vector3(0, 1.7f, 0));
+
+        yield return new WaitForSeconds(3);
+        AudioManager.instance.Play("Fear");
+        hunterToScare.SetActive(false);
+        hasInteractedItem = false;
+
+        cpt++;
+        UpdateCheckboxes();
     }
 
     void Tutorial()
@@ -62,18 +77,30 @@ public class TutorialManager : MonoBehaviour
 
                 Debug.Log($"Item near : {GameManager.Instance.player.itemsNear.Count}");
 
-                if(GameManager.Instance.player.itemsNear.Count > 0)
+                if (GameManager.Instance.player.itemsNear.Count > 0)
                 {
+                    itemNear = GameManager.Instance.player.itemsNear[0];
+
                     if (rewiredPlayer.GetButtonDown("SquareBT"))
                     {
                         tutoTexts[cpt].SetActive(false);
 
-                        EmoteManager.instance.PlayEmoteWithPos("Surprise_Emote", hunters[0].transform.position + new Vector3(0, 1.7f, 0));
-                        AudioManager.instance.Play("Fear");
-                        hunters[0].SetActive(false);
+                        if (itemNear.isInteracting && !hasInteractedItem)
+                        {
+                            hasInteractedItem = true;
+                        }
 
-                        cpt++;
-                        UpdateCheckboxes();
+                        if (hasInteractedItem)
+                        {
+                                StartCoroutine(FearHunter(hunters[0]));
+                                //EmoteManager.instance.PlayEmoteWithPos("Surprise_Emote", hunters[0].transform.position + new Vector3(0, 1.7f, 0));
+                                //AudioManager.instance.Play("Fear");
+                                //hunters[0].SetActive(false);
+                                //hasInteractedItem = false;
+
+                                //cpt++;
+                                //UpdateCheckboxes();
+                        }
                     }
                 }
             }
@@ -122,16 +149,29 @@ public class TutorialManager : MonoBehaviour
 
                 if(GameManager.Instance.player.itemsNear.Count > 0)
                 {
+                    itemNear = GameManager.Instance.player.itemsNear[0];
+
+
                     if (rewiredPlayer.GetButton("SquareBT"))
                     {
                         tutoTexts[cpt].SetActive(false);
 
-                        AudioManager.instance.Play("Fear");
-                        EmoteManager.instance.PlayEmoteWithPos("Surprise_Emote", hunters[1].transform.position + new Vector3(0,1.7f,0));
-                        hunters[1].SetActive(false);
+                        if (itemNear.isInteracting && !hasInteractedItem)
+                        {
+                            hasInteractedItem = true;
+                        }
 
-                        cpt++;
-                        UpdateCheckboxes();
+                        if (hasInteractedItem)
+                        {
+                            StartCoroutine(FearHunter(hunters[1]));
+                            //EmoteManager.instance.PlayEmoteWithPos("Surprise_Emote", hunters[0].transform.position + new Vector3(0, 1.7f, 0));
+                            //AudioManager.instance.Play("Fear");
+                            //hunters[0].SetActive(false);
+                            //hasInteractedItem = false;
+
+                            //cpt++;
+                            //UpdateCheckboxes();
+                        }
                     }
                 }
             }

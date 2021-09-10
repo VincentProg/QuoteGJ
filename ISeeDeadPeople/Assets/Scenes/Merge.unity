@@ -57750,6 +57750,7 @@ MonoBehaviour:
   - {fileID: 1144478980}
   interactionColliders: []
   sceneChanger: {fileID: 245597230}
+  itemNear: {fileID: 0}
 --- !u!1 &1740362478
 GameObject:
   m_ObjectHideFlags: 0
