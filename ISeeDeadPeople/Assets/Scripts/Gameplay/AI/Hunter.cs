@@ -261,18 +261,21 @@ public class Hunter : MonoBehaviour
         int cpt = 0;
         int nbHunters = GameManager.Instance.hunters.Count;
 
-        for (int i = 0; i < cpt; i++)
-        {
-            if(GameManager.Instance.hunters[cpt] == null)
-            {
-                cpt++;
-            }
-        }
+        //for (int i = 0; i < cpt; i++)
+        //{
+        //    if(GameManager.Instance.hunters[cpt] == null)
+        //    {
+        //        cpt++;
+        //    }
+        //}
 
-        if(cpt == nbHunters - 1)
-        {
-            VictoryManager.instance.EndGame(true);
-        }
+        //if(cpt == nbHunters - 1)
+        //{
+        //    VictoryManager.instance.EndGame(true);
+        //}
+
+        GameManager.Instance.hunters.Remove(this);
+        if(GameManager.Instance.hunters.Count == 0) VictoryManager.instance.EndGame(true);
 
         Destroy(gameObject);
         

@@ -15767,13 +15767,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: Breath
-    clip: {fileID: 8300000, guid: de7e1f872753727499208d950c7c5a10, type: 3}
-    volume: 0.1
+    clip: {fileID: 8300000, guid: 5d9d43e34076d174697a744501906938, type: 3}
+    volume: 0.5
     loop: 0
     source: {fileID: 0}
   - name: MainMusic
     clip: {fileID: 8300000, guid: 4fe5d1101f33d4344b8fd8ca23b71f96, type: 3}
-    volume: 0.2
+    volume: 0.1
     loop: 1
     source: {fileID: 0}
   - name: Bougies
@@ -15782,13 +15782,13 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: WallHack
-    clip: {fileID: 8300000, guid: 209ea76875d2a06449c5a94ad7415f6a, type: 3}
-    volume: 0.1
+    clip: {fileID: 8300000, guid: 8291b06b03032054e9df70007fa92c48, type: 3}
+    volume: 0.05
     loop: 0
     source: {fileID: 0}
   - name: Bougies
     clip: {fileID: 8300000, guid: 265bd5ef924d0ea408c0d9f057df38c7, type: 3}
-    volume: 0.1
+    volume: 1
     loop: 0
     source: {fileID: 0}
   - name: Fear
@@ -15803,6 +15803,16 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Dong
     clip: {fileID: 8300000, guid: 6292c3d258ac4ea4bb5d40178dafef31, type: 3}
+    volume: 0.1
+    loop: 0
+    source: {fileID: 0}
+  - name: DarkSong_Ghost
+    clip: {fileID: 8300000, guid: 9b965851e9fb8c0488205a73c0f90404, type: 3}
+    volume: 0.1
+    loop: 0
+    source: {fileID: 0}
+  - name: LoudImpact
+    clip: {fileID: 8300000, guid: 356167659fc2ad5408b34c32c6b07913, type: 3}
     volume: 0.1
     loop: 0
     source: {fileID: 0}
@@ -26679,6 +26689,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 291415030}
     m_Modifications:
+    - target: {fileID: 4190449147918905984, guid: cc604c49964fe004599a73eb71fc5af0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4283983603005381746, guid: cc604c49964fe004599a73eb71fc5af0, type: 3}
       propertyPath: m_WarningMessage
       value: 

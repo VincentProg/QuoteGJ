@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Item : MonoBehaviour
 {
-    public enum TYPE { FAUTEUIL, CHAISE, TABLE, PENDULE}
+    public enum TYPE { FAUTEUIL, CHAISE, TABLE, PENDULE }
     public TYPE type = TYPE.FAUTEUIL;
     Room myRoom = null;
 
@@ -27,15 +27,15 @@ public class Item : MonoBehaviour
     [SerializeField]
     Image circle1, circl2;
     [SerializeField] GameObject pause;
-    
 
-    
+
+
 
     private void Start()
     {
         pause.SetActive(false);
         anim = GetComponent<Animator>();
-        posEmote = transform.GetChild(0).position + new Vector3(0,1,-1);
+        posEmote = transform.GetChild(0).position + new Vector3(0, 1, -1);
     }
 
     private void Update()
@@ -43,7 +43,7 @@ public class Item : MonoBehaviour
 
         if (isInteracting)
         {
-            if(qteGO != null)
+            if (qteGO != null)
             {
                 if (qteSequence != null)
                 {
@@ -61,7 +61,7 @@ public class Item : MonoBehaviour
                     Destroy(qteSequence);
                 }
             }
-            
+
         }
 
         if (isCooldown)
@@ -69,12 +69,12 @@ public class Item : MonoBehaviour
             t += Time.deltaTime;
             circle1.fillAmount = t / cooldown;
             circl2.fillAmount = t / cooldown;
-            if(t >= cooldown)
+            if (t >= cooldown)
             {
                 isCooldown = false;
                 StartCoroutine(EndPause());
             }
-                
+
         }
 
         //if(internDestroyFeedbackTimer <= 5 && hasSpawnFeedback)
@@ -92,16 +92,16 @@ public class Item : MonoBehaviour
     {
         if (other.CompareTag("Room"))
         {
-          
+
             myRoom = other.GetComponent<Room>();
-          
+
 
         }
         else if (other.CompareTag("Player"))
         {
             posEmote = transform.GetChild(0).position + new Vector3(0, 1, -1);
             other.GetComponent<CharacterMouvement>().itemsNear.Add(this);
-  
+
         }
     }
 
@@ -113,14 +113,15 @@ public class Item : MonoBehaviour
         }
     }
 
-    public void Interact() {
+    public void Interact()
+    {
         isInteracting = true;
-        
-        if(anim != null)
+
+        if (anim != null)
         {
             anim.SetTrigger("Interact");
         }
-        
+
         qteGO = Instantiate(itemQTESequence);
         qteGO.transform.position = transform.GetChild(0).position;
         qteSequence = qteGO.GetComponent<QTESequence>();
@@ -149,28 +150,29 @@ public class Item : MonoBehaviour
 
     public void SucceedInteraction()
     {
+        AudioManager.instance.Play("DarkSong_Ghost");
         anim.SetTrigger("Succeed");
+
         switch (type)
         {
             case TYPE.FAUTEUIL:
-                
-
+                StartCoroutine(WaitForSong(1.4f));
 
                 break;
             case TYPE.CHAISE:
-               
+
 
                 break;
             case TYPE.TABLE:
                 anim.SetBool("isRight", !anim.GetBool("isRight"));
                 posEmote = transform.GetChild(0).position;
 
-                
+
                 break;
 
             case TYPE.PENDULE:
-                    posEmote = transform.GetChild(0).position;
-                    break;
+                posEmote = transform.GetChild(0).position;
+                break;
         }
 
 
@@ -178,7 +180,7 @@ public class Item : MonoBehaviour
         print(myRoom);
         foreach (Hunter hunter in GameManager.Instance.hunters)
         {
-            if(hunter.currentRoom == myRoom)
+            if (hunter.currentRoom == myRoom)
             {
                 hunter.GetFear();
                 hunter.lastItemAlert = this;
@@ -194,14 +196,14 @@ public class Item : MonoBehaviour
     {
         StartCoroutine(StartPause());
         t = 0;
-        
+
     }
     IEnumerator StartPause()
     {
         yield return new WaitForSeconds(1.5f);
         isCooldown = true;
         pause.SetActive(true);
-       
+
     }
     IEnumerator EndPause()
     {
@@ -211,6 +213,31 @@ public class Item : MonoBehaviour
 
 
         pause.SetActive(false);
+    }
+
+    IEnumerator WaitForSong(float f)
+    {
+        yield return new WaitForSeconds(f);
+        switch (type)
+        {
+            case TYPE.FAUTEUIL:
+                AudioManager.instance.Play("LoudImpact");
+
+
+
+                break;
+            case TYPE.CHAISE:
+
+
+                break;
+            case TYPE.TABLE:
+
+
+                break;
+
+            case TYPE.PENDULE:
+                break;
+        }
     }
 
 }
