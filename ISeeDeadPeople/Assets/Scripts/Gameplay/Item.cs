@@ -53,29 +53,12 @@ public class Item : MonoBehaviour
                         Destroy(qteGO);
                         Destroy(qteSequence);
                     }
-
-                    else if (qteSequence.sequenceLost)
-                    {
-                        FailInteraction();
-                        Destroy(qteGO);
-                        Destroy(qteSequence);
-                    }
                 }
-
-            }
-
-            if (GameManager.Instance.player.itemsNear.Count < 0)
-            {
-                Debug.Log("Player left the object");
-                FailInteraction();
-
-                if (qteGO != null)
+                else
                 {
-                    if (qteSequence != null)
-                    {
-                        Destroy(qteGO);
-                        Destroy(qteSequence);
-                    }
+                    FailInteraction();
+                    Destroy(qteGO);
+                    Destroy(qteSequence);
                 }
             }
 
@@ -161,7 +144,6 @@ public class Item : MonoBehaviour
     {
         anim.SetTrigger("Fail");
         isInteracting = false;
-        Debug.Log("Qte failed");
         // anim
         StartCooldown();
     }
@@ -174,7 +156,7 @@ public class Item : MonoBehaviour
         switch (type)
         {
             case TYPE.FAUTEUIL:
-                StartCoroutine(WaitForSong(1.4f));
+                StartCoroutine(WaitForSong(1.2f));
 
                 break;
             case TYPE.CHAISE:
@@ -211,10 +193,7 @@ public class Item : MonoBehaviour
     }
 
     void StartCooldown()
-    { 
-
-        //anim.ResetTrigger("Fail");
-
+    {
         StartCoroutine(StartPause());
         t = 0;
 
