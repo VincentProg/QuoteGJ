@@ -35,7 +35,7 @@ public struct EdgeInfo
 public class FieldofView : MonoBehaviour
 {
     [Header("Defeat Conditions")]
-    public float timeBeforeLose = 2.5f;
+    public float timeBeforeLose = 1.5f;
 
     private float timerLose = 0f;
 
@@ -63,6 +63,7 @@ public class FieldofView : MonoBehaviour
 
     GameObject displayDebug = null;
     bool hasBeenDisplayed = false;
+    bool hasLost = false;
 
 
     private void Start()
@@ -81,6 +82,7 @@ public class FieldofView : MonoBehaviour
     {
             DrawFieldOfView();
             See();
+            CooldownBeforeLose();
     }
 
     void FindVisibleTarget()
@@ -124,10 +126,10 @@ public class FieldofView : MonoBehaviour
             {
                 displayDebug = EmoteManager.instance.PlayEmoteGameObject("ScaredGhost_Emote");
                 displayDebug.transform.parent = visibleTargets[0].transform;
-                displayDebug.transform.position = new Vector3(visibleTargets[0].position.x, visibleTargets[0].position.y + .7f, -2);
+                displayDebug.transform.position = visibleTargets[0].position + new Vector3(0,1,0)/*new Vector3(visibleTargets[0].position.x, visibleTargets[0].position.y + .7f, -2)*/;
                 hasBeenDisplayed = true;
 
-                VictoryManager.instance.EndGame(false);
+                //VictoryManager.instance.EndGame(false);
             }
 
             isSeeing = true;
@@ -158,9 +160,24 @@ public class FieldofView : MonoBehaviour
             }
         }
     }
-    void UnSee()
+    void CooldownBeforeLose()
     {
-        viewVisualisation.SetActive(false);
+        if (isSeeing)
+        {
+            if (timerLose > 0)
+            {
+                timerLose -= Time.deltaTime;
+            }
+
+            else if (timerLose <= 0)
+            {
+                if (!hasLost)
+                {
+                    VictoryManager.instance.EndGame(false);
+                    hasLost = true;
+                }
+            }
+        }
     }
 
     void DrawFieldOfView()
