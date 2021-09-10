@@ -56,8 +56,11 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (Time.timeScale != 1) Time.timeScale = 1;
-            else Time.timeScale = 20;
+            if (Application.isEditor)
+            {
+                if (Time.timeScale != 1) Time.timeScale = 1;
+                else Time.timeScale = 20;
+            }
         }
     }
 
