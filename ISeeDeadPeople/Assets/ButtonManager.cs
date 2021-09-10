@@ -34,11 +34,14 @@ public class ButtonManager : MonoBehaviour
         if(input>0 && Delay<0)
         {
             Delay = DelaySet;
-            NextButton();
-        }else if(input<0 && Delay < 0)
+            PreviousButton();
+
+        }
+        else if(input<0 && Delay < 0)
         {
             Delay = DelaySet;
-            PreviousButton();
+            NextButton();
+            
         }
 
         if(Delay>=0)
