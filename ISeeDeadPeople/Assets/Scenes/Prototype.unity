@@ -15935,7 +15935,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7152722327098633299, guid: 6998cd6a23f0cae49b05c9806653b5f4, type: 3}
       propertyPath: manaLoadSpeed
-      value: 3
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7152722327098633299, guid: 6998cd6a23f0cae49b05c9806653b5f4, type: 3}
       propertyPath: txt_removeMana

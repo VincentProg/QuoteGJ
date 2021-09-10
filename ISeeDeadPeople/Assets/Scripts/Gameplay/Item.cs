@@ -40,9 +40,6 @@ public class Item : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown("s")){
-            SucceedInteraction();
-        }
 
         if (isInteracting)
         {
@@ -97,6 +94,7 @@ public class Item : MonoBehaviour
         {
           
             myRoom = other.GetComponent<Room>();
+          
 
         }
         else if (other.CompareTag("Player"))
@@ -177,7 +175,7 @@ public class Item : MonoBehaviour
 
 
         isInteracting = false;
-
+        print(myRoom);
         foreach (Hunter hunter in GameManager.Instance.hunters)
         {
             if(hunter.currentRoom == myRoom)
@@ -203,7 +201,6 @@ public class Item : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         isCooldown = true;
         pause.SetActive(true);
-        print("wtf");
        
     }
     IEnumerator EndPause()
@@ -214,6 +211,6 @@ public class Item : MonoBehaviour
 
 
         pause.SetActive(false);
-        print("wtf2");
     }
+
 }

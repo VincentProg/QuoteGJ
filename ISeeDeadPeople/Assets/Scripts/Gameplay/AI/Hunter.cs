@@ -62,18 +62,7 @@ public class Hunter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (Input.GetKeyDown("space"))
-        //    MoveTo(movePositionTransform.position);
 
-        //if (Input.GetKeyDown("a"))
-        //{
-        //    lastAlertPos = movePositionTransform.position;
-        //    RealizeAction(ACTION.ALERT);
-        //}
-        //if (Input.GetKeyDown("f"))
-        //{
-        //    AddFear(20);
-        //}
         if (!isDead)
         {
             if (!IsMoving())
@@ -90,7 +79,6 @@ public class Hunter : MonoBehaviour
                         {
                             if (!targetRoom.isOn)
                             {
-                                print("turn on");
                                 ActivateAction(ACTION.TURN_ON_CANDLE);
                             }
                             else
@@ -397,7 +385,6 @@ public class Hunter : MonoBehaviour
             } // get time
             yield return new WaitForSeconds(time);
             isDoingAction = false;
-            print("end");
         }
       
        

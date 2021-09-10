@@ -60,7 +60,6 @@ public class Room : MonoBehaviour
     public void TurnOff(Vector3 v)
     {
         isOn = false;
-        print("turn off");
         foreach (Candle candle in myCandles)
         {
             candle.turnOff(candle.transform.position.x - v.x <= 0);
