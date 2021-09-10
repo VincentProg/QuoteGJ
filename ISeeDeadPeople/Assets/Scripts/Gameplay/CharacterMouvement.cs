@@ -238,7 +238,6 @@ public class CharacterMouvement : MonoBehaviour
         {
             if(hunter.currentRoom == myRoom)
             {
-                hunter.GetFear();
                 hunter.ResetState();
                 hunter.ActivateAction(Hunter.ACTION.WATCH_AROUND);
 

@@ -75,8 +75,18 @@ MonoBehaviour:
     volume: 0.1
     loop: 0
     source: {fileID: 0}
-  - name: FearMax
-    clip: {fileID: 8300000, guid: 40b6394255c8f584590a051e61af1340, type: 3}
+  - name: DarkSong_Ghost
+    clip: {fileID: 8300000, guid: 9b965851e9fb8c0488205a73c0f90404, type: 3}
+    volume: 0.1
+    loop: 0
+    source: {fileID: 0}
+  - name: LoudImpact
+    clip: {fileID: 8300000, guid: 356167659fc2ad5408b34c32c6b07913, type: 3}
+    volume: 0.1
+    loop: 0
+    source: {fileID: 0}
+  - name: Dong
+    clip: {fileID: 8300000, guid: 6292c3d258ac4ea4bb5d40178dafef31, type: 3}
     volume: 0.1
     loop: 0
     source: {fileID: 0}
