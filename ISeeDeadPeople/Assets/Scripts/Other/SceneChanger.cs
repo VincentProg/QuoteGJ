@@ -13,7 +13,10 @@ public class SceneChanger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            ReloadScene();
+        }
     }
 
     public void ChangeScene(string scene)

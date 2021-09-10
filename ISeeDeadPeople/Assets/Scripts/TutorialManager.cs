@@ -24,6 +24,21 @@ public class TutorialManager : MonoBehaviour
     public Item itemNear = null;
     bool hasInteractedItem = false;
 
+    private float timerFear = 4;
+    private float internTimerFear = 0;
+    private GameObject hunterToScare = null;
+    bool needToScare = false;
+
+    //void OnGUI()
+    //{
+    //    GUI.Label(new Rect(10, 10, 250, 20), $"CPT STATE : " + cpt);
+    //    if(itemNear)
+    //    GUI.Label(new Rect(10, 30, 500, 20), $"Number : {GameManager.Instance.player.itemsNear.Count} | Near Object : " + itemNear.transform.name);
+    //    GUI.Label(new Rect(10, 50, 250, 20), $"Hunter 1 : " + hunters[0].transform.name);
+    //    GUI.Label(new Rect(10, 70, 250, 20), $"Fear Timer : " + internTimerFear);
+    //    GUI.Label(new Rect(10, 90, 250, 20), $"Need Scare : " + needToScare);
+    //}
+
     private void Start()
     {
         rewiredPlayer = ReInput.players.GetPlayer("Player");
@@ -34,20 +49,49 @@ public class TutorialManager : MonoBehaviour
     public void Update()
     {
         Tutorial();
+        FearHunter(hunterToScare);
     }
 
-    IEnumerator FearHunter(GameObject hunterToScare)
+    void FearHunter(GameObject hunterToScare)
     {
-        EmoteManager.instance.PlayEmoteWithPos("Surprise_Emote", hunterToScare.transform.position + new Vector3(0, 1.7f, 0));
+        if(needToScare)
+        {
+            Debug.Log("Scaring Hunter");
 
-        yield return new WaitForSeconds(3);
-        AudioManager.instance.Play("Fear");
-        hunterToScare.SetActive(false);
-        hasInteractedItem = false;
+            if(internTimerFear > 0)
+            {
+                internTimerFear -= Time.deltaTime;
+            }
 
-        cpt++;
-        UpdateCheckboxes();
-    }
+            else if(internTimerFear <= 0)
+            {
+                internTimerFear = 0;
+
+                AudioManager.instance.Play("Fear");
+                hunterToScare.SetActive(false);
+                hasInteractedItem = false;
+
+                cpt++;
+                UpdateCheckboxes();
+
+                hunterToScare = null;
+                needToScare = false;
+            }
+        }
+    } 
+
+    //IEnumerator FearHunter()
+    //{
+    //    EmoteManager.instance.PlayEmoteWithPos("Surprise_Emote", hunterToScare.transform.position + new Vector3(0, 1.7f, 0));
+
+    //    yield return new WaitForSeconds(3);
+    //    AudioManager.instance.Play("Fear");
+    //    hunterToScare.SetActive(false);
+    //    hasInteractedItem = false;
+
+    //    cpt++;
+    //    UpdateCheckboxes();
+    //}
 
     void Tutorial()
     {
@@ -81,18 +125,29 @@ public class TutorialManager : MonoBehaviour
                 {
                     itemNear = GameManager.Instance.player.itemsNear[0];
 
-                    if (rewiredPlayer.GetButtonDown("SquareBT"))
+                    if (hasInteractedItem)
                     {
+                        internTimerFear = 2;
+                        needToScare = true;
+                        hasInteractedItem = false;
+                    }
+
+                    if (itemNear.isInteracting && !hasInteractedItem)
+                    {
+                        hasInteractedItem = true;
+                    }
+
+
+                    if (rewiredPlayer.GetButtonDown("SquareBT"))
+                        {
                         tutoTexts[cpt].SetActive(false);
 
-                        if (itemNear.isInteracting && !hasInteractedItem)
-                        {
-                            hasInteractedItem = true;
-                        }
+                        hunterToScare = hunters[0];
 
-                        if (hasInteractedItem)
-                        {
-                                StartCoroutine(FearHunter(hunters[0]));
+                       
+
+                       
+                                //StartCoroutine(FearHunter(hunters[0]));
                                 //EmoteManager.instance.PlayEmoteWithPos("Surprise_Emote", hunters[0].transform.position + new Vector3(0, 1.7f, 0));
                                 //AudioManager.instance.Play("Fear");
                                 //hunters[0].SetActive(false);
@@ -101,7 +156,6 @@ public class TutorialManager : MonoBehaviour
                                 //cpt++;
                                 //UpdateCheckboxes();
                         }
-                    }
                 }
             }
         }
@@ -147,31 +201,42 @@ public class TutorialManager : MonoBehaviour
                 //    interactDisplay.transform.parent = GameManager.Instance.player.transform;
                 //}
 
-                if(GameManager.Instance.player.itemsNear.Count > 0)
+                Debug.Log($"Item near : {GameManager.Instance.player.itemsNear.Count}");
+
+                if (GameManager.Instance.player.itemsNear.Count > 0)
                 {
                     itemNear = GameManager.Instance.player.itemsNear[0];
 
+                    if (hasInteractedItem)
+                    {
+                        internTimerFear = 2;
+                        needToScare = true;
+                        hasInteractedItem = false;
+                    }
 
-                    if (rewiredPlayer.GetButton("SquareBT"))
+                    if (itemNear.isInteracting && !hasInteractedItem)
+                    {
+                        hasInteractedItem = true;
+                    }
+
+
+                    if (rewiredPlayer.GetButtonDown("SquareBT"))
                     {
                         tutoTexts[cpt].SetActive(false);
 
-                        if (itemNear.isInteracting && !hasInteractedItem)
-                        {
-                            hasInteractedItem = true;
-                        }
+                        hunterToScare = hunters[1];
 
-                        if (hasInteractedItem)
-                        {
-                            StartCoroutine(FearHunter(hunters[1]));
-                            //EmoteManager.instance.PlayEmoteWithPos("Surprise_Emote", hunters[0].transform.position + new Vector3(0, 1.7f, 0));
-                            //AudioManager.instance.Play("Fear");
-                            //hunters[0].SetActive(false);
-                            //hasInteractedItem = false;
 
-                            //cpt++;
-                            //UpdateCheckboxes();
-                        }
+
+
+                        //StartCoroutine(FearHunter(hunters[0]));
+                        //EmoteManager.instance.PlayEmoteWithPos("Surprise_Emote", hunters[0].transform.position + new Vector3(0, 1.7f, 0));
+                        //AudioManager.instance.Play("Fear");
+                        //hunters[0].SetActive(false);
+                        //hasInteractedItem = false;
+
+                        //cpt++;
+                        //UpdateCheckboxes();
                     }
                 }
             }
