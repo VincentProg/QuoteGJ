@@ -94,7 +94,11 @@ public class CharacterMouvement : MonoBehaviour
                     CreateBlastQTE();
                     blastQTE.Play();
                 }
-                else animTxt.SetTrigger("Trigger");
+
+                else if (animTxt != null) 
+                {
+                    animTxt.SetTrigger("Trigger"); 
+                }
             }
         }
         if (blastQTE != null && blastQTE.sequenceFinished)

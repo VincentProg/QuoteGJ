@@ -76,8 +76,9 @@ public class TimedQTE : QTE
 
         if (isMissed)
         {
+            GetComponentInParent<QTESequence>().sequenceLost = true;
             Destroy(currentDisplayQTE);
-            Destroy(GetComponentInParent<QTESequence>().gameObject);
+            //Destroy(GetComponentInParent<QTESequence>().gameObject);
         }
     }
 

@@ -79,8 +79,11 @@ public class StayQTE : QTE
 
         if (isLost)
         {
+
+            GetComponentInParent<QTESequence>().sequenceLost = true;
+
             Destroy(currentDisplayQTE);
-            Destroy(GetComponentInParent<QTESequence>().gameObject);
+            //Destroy(GetComponentInParent<QTESequence>().gameObject);
         }
     }
 

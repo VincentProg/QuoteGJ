@@ -69,8 +69,9 @@ public class SmashQTE : QTE
 
         if (isLost)
         {
+            GetComponentInParent<QTESequence>().sequenceLost = true;
             Destroy(currentDisplayQTE);
-            Destroy(GetComponentInParent<QTESequence>().gameObject);
+            //Destroy(GetComponentInParent<QTESequence>().gameObject);
         }
     }
 

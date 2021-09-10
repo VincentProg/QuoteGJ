@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Item : MonoBehaviour
 {
-    public enum TYPE { FAUTEUIL, CHAISE, TABLE, PENDULE}
+    public enum TYPE { FAUTEUIL, CHAISE, TABLE, PENDULE }
     public TYPE type = TYPE.FAUTEUIL;
     Room myRoom = null;
 
@@ -27,15 +27,15 @@ public class Item : MonoBehaviour
     [SerializeField]
     Image circle1, circl2;
     [SerializeField] GameObject pause;
-    
 
-    
+
+
 
     private void Start()
     {
         pause.SetActive(false);
         anim = GetComponent<Animator>();
-        posEmote = transform.GetChild(0).position + new Vector3(0,1,-1);
+        posEmote = transform.GetChild(0).position + new Vector3(0, 1, -1);
     }
 
     private void Update()
@@ -43,7 +43,7 @@ public class Item : MonoBehaviour
 
         if (isInteracting)
         {
-            if(qteGO != null)
+            if (qteGO != null)
             {
                 if (qteSequence != null)
                 {
@@ -53,28 +53,44 @@ public class Item : MonoBehaviour
                         Destroy(qteGO);
                         Destroy(qteSequence);
                     }
-                }
-                else
-                {
-                    FailInteraction();
-                    Destroy(qteGO);
-                    Destroy(qteSequence);
-                }
-            }
-            
-        }
 
-        if (isCooldown)
-        {
-            t += Time.deltaTime;
-            circle1.fillAmount = t / cooldown;
-            circl2.fillAmount = t / cooldown;
-            if(t >= cooldown)
-            {
-                isCooldown = false;
-                StartCoroutine(EndPause());
+                    else if (qteSequence.sequenceLost)
+                    {
+                        FailInteraction();
+                        Destroy(qteGO);
+                        Destroy(qteSequence);
+                    }
+                }
+
             }
-                
+
+            if (GameManager.Instance.player.itemsNear.Count < 0)
+            {
+                Debug.Log("Player left the object");
+                FailInteraction();
+
+                if (qteGO != null)
+                {
+                    if (qteSequence != null)
+                    {
+                        Destroy(qteGO);
+                        Destroy(qteSequence);
+                    }
+                }
+
+                if (isCooldown)
+                {
+                    t += Time.deltaTime;
+                    circle1.fillAmount = t / cooldown;
+                    circl2.fillAmount = t / cooldown;
+                    if (t >= cooldown)
+                    {
+                        isCooldown = false;
+                        StartCoroutine(EndPause());
+                    }
+
+                }
+            }
         }
 
         //if(internDestroyFeedbackTimer <= 5 && hasSpawnFeedback)
@@ -92,16 +108,16 @@ public class Item : MonoBehaviour
     {
         if (other.CompareTag("Room"))
         {
-          
+
             myRoom = other.GetComponent<Room>();
-          
+
 
         }
         else if (other.CompareTag("Player"))
         {
             posEmote = transform.GetChild(0).position + new Vector3(0, 1, -1);
             other.GetComponent<CharacterMouvement>().itemsNear.Add(this);
-  
+
         }
     }
 
@@ -115,12 +131,12 @@ public class Item : MonoBehaviour
 
     public void Interact() {
         isInteracting = true;
-        
-        if(anim != null)
+
+        if (anim != null)
         {
             anim.SetTrigger("Interact");
         }
-        
+
         qteGO = Instantiate(itemQTESequence);
         qteGO.transform.position = transform.GetChild(0).position;
         qteSequence = qteGO.GetComponent<QTESequence>();
@@ -143,6 +159,7 @@ public class Item : MonoBehaviour
     {
         anim.SetTrigger("Fail");
         isInteracting = false;
+        Debug.Log("Qte failed");
         // anim
         StartCooldown();
     }
@@ -153,24 +170,24 @@ public class Item : MonoBehaviour
         switch (type)
         {
             case TYPE.FAUTEUIL:
-                
+
 
 
                 break;
             case TYPE.CHAISE:
-               
+
 
                 break;
             case TYPE.TABLE:
                 anim.SetBool("isRight", !anim.GetBool("isRight"));
                 posEmote = transform.GetChild(0).position;
 
-                
+
                 break;
 
             case TYPE.PENDULE:
-                    posEmote = transform.GetChild(0).position;
-                    break;
+                posEmote = transform.GetChild(0).position;
+                break;
         }
 
 
@@ -178,7 +195,7 @@ public class Item : MonoBehaviour
         print(myRoom);
         foreach (Hunter hunter in GameManager.Instance.hunters)
         {
-            if(hunter.currentRoom == myRoom)
+            if (hunter.currentRoom == myRoom)
             {
                 hunter.GetFear();
                 hunter.lastItemAlert = this;
@@ -191,7 +208,10 @@ public class Item : MonoBehaviour
     }
 
     void StartCooldown()
-    {
+    { 
+
+        //anim.ResetTrigger("Fail");
+
         StartCoroutine(StartPause());
         t = 0;
         

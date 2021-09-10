@@ -15,6 +15,7 @@ public class QTESequence : MonoBehaviour
 
     private bool _isStart = true;
     public bool sequenceFinished = false;
+    public bool sequenceLost = false;
 
     private void Start()
     {
