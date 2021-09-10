@@ -35,7 +35,7 @@ public struct EdgeInfo
 public class FieldofView : MonoBehaviour
 {
     [Header("Defeat Conditions")]
-    public float timeBeforeLose = 1.5f;
+    private float timeBeforeLose = 1.5f;
 
     private float timerLose = 0f;
 
@@ -65,12 +65,15 @@ public class FieldofView : MonoBehaviour
     bool hasBeenDisplayed = false;
     bool hasLost = false;
 
+    Hunter myHunter;
+    bool isInList;
 
     private void Start()
     {
         viewMesh = new Mesh();
         viewMesh.name = "View Mesh";
         viewMeshFilter.mesh = viewMesh;
+        myHunter = transform.parent.parent.GetComponent<Hunter>();
     }
 
     private void FixedUpdate()
@@ -83,6 +86,23 @@ public class FieldofView : MonoBehaviour
             DrawFieldOfView();
             See();
             CooldownBeforeLose();
+
+       if(visibleTargets.Count != 0)
+        {
+            foreach(Hunter hunter in GameManager.Instance.player.huntersSeingMe)
+            {
+                if (hunter == myHunter) return;
+            }
+            GameManager.Instance.player.huntersSeingMe.Add(myHunter);
+            isInList = true;
+        } else
+        {
+            if (isInList)
+            {
+                isInList = false;
+                GameManager.Instance.player.huntersSeingMe.Remove(myHunter);
+            }
+        }
     }
 
     void FindVisibleTarget()
@@ -105,6 +125,8 @@ public class FieldofView : MonoBehaviour
                     if (!visibleTargets.Contains(target))
                     {
                         visibleTargets.Add(target);
+
+                    
                     }
                 }
             }
@@ -112,6 +134,8 @@ public class FieldofView : MonoBehaviour
             else
             {
                 visibleTargets.Remove(target);
+               
+
             }
         }
     }
@@ -120,7 +144,7 @@ public class FieldofView : MonoBehaviour
     {
         if (visibleTargets.Count > 0)
         {
-            Debug.Log($"Hunter : {transform.name} is seeing the ghost");
+            bool isIn = false;
 
             if (!hasBeenDisplayed)
             {
@@ -138,7 +162,7 @@ public class FieldofView : MonoBehaviour
         {
             isSeeing = false;
 
-            if(displayDebug != null)
+            if (displayDebug != null)
             {
                 Destroy(displayDebug);
                 hasBeenDisplayed = false;

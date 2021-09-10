@@ -48,13 +48,17 @@ public class CharacterMouvement : MonoBehaviour
     float t1;
     [SerializeField] Text txt_mana, txt_removeMana;
 
+    public List<Hunter> huntersSeingMe = new List<Hunter>();
+    int lasthuntersSeingMeCount;
+
+    [SerializeField]
+    Animator pain;
 
     void Start()
     {
         rewiredPlayer = ReInput.players.GetPlayer("Player");
         t1 = t + 1 / manaLoadSpeed;
-        animTxt = txt_mana.transform.parent.GetComponent<Animator>();
-    }
+        animTxt = txt_mana.transform.parent.GetComponent<Animator>();    }
 
     // Update is called once per frame
     void Update()
@@ -86,7 +90,7 @@ public class CharacterMouvement : MonoBehaviour
 
         if (rewiredPlayer.GetButtonDown("CircleBT"))
         {
-           
+
             if (myRoom.isOn)
             {
                 if (currentMana >= costBlast)
@@ -95,9 +99,9 @@ public class CharacterMouvement : MonoBehaviour
                     blastQTE.Play();
                 }
 
-                else if (animTxt != null) 
+                else if (animTxt != null)
                 {
-                    animTxt.SetTrigger("Trigger"); 
+                    animTxt.SetTrigger("Trigger");
                 }
             }
         }
@@ -106,7 +110,7 @@ public class CharacterMouvement : MonoBehaviour
             Destroy(blastQTESequence);
         }
 
-        if(itemsNear.Count != lastItemsNearCount)
+        if (itemsNear.Count != lastItemsNearCount)
         {
             switch (itemsNear.Count)
             {
@@ -118,7 +122,7 @@ public class CharacterMouvement : MonoBehaviour
                         hasBeenDisplayedInteract = false;
                     }
 
-                    if(displayEmoteNoLight != null)
+                    if (displayEmoteNoLight != null)
                     {
                         Destroy(displayEmoteNoLight);
                         hasBeenDisplayedNoLight = false;
@@ -133,44 +137,44 @@ public class CharacterMouvement : MonoBehaviour
 
         if (canInteract)
         {
-           
-                if (!myRoom.isOn)
+
+            if (!myRoom.isOn)
+            {
+                itemClose = GetCloserItem();
+
+                if (!itemClose.isInteracting && !itemClose.isCooldown)
                 {
-                    itemClose = GetCloserItem();
-
-                    if (!itemClose.isInteracting && !itemClose.isCooldown)
+                    if (!hasBeenDisplayedInteract)
                     {
-                        if (!hasBeenDisplayedInteract)
+                        if (hasBeenDisplayedNoLight)
                         {
-                            if (hasBeenDisplayedNoLight)
-                            {
-                                Destroy(displayEmoteNoLight);
-                                hasBeenDisplayedNoLight = false;
-                            }
-
-                            hasBeenDisplayedInteract = true;
-                            displayEmoteInteract = EmoteManager.instance.PlayEmoteGameObject("Interact_Emote");
-                            displayEmoteInteract.transform.position = itemClose.posEmote;
+                            Destroy(displayEmoteNoLight);
+                            hasBeenDisplayedNoLight = false;
                         }
 
+                        hasBeenDisplayedInteract = true;
+                        displayEmoteInteract = EmoteManager.instance.PlayEmoteGameObject("Interact_Emote");
+                        displayEmoteInteract.transform.position = itemClose.posEmote;
+                    }
 
 
-                        if (rewiredPlayer.GetButtonDown("SquareBT"))
+
+                    if (rewiredPlayer.GetButtonDown("SquareBT"))
+                    {
+                        if (currentMana >= costInteract)
                         {
-                            if (currentMana >= costInteract)
-                            {
-                                itemClose.Interact();
-                                Destroy(displayEmoteInteract);
-                                hasBeenDisplayedInteract = false;
+                            itemClose.Interact();
+                            Destroy(displayEmoteInteract);
+                            hasBeenDisplayedInteract = false;
                             currentMana -= costInteract + 1;
                             txt_removeMana.text = costInteract.ToString();
                             animTxt.SetTrigger("Remove");
                         }
-                            else animTxt.SetTrigger("Trigger");
-                        }
+                        else animTxt.SetTrigger("Trigger");
                     }
-                
                 }
+
+            }
 
             else if (myRoom.isOn)
             {
@@ -182,18 +186,37 @@ public class CharacterMouvement : MonoBehaviour
                         hasBeenDisplayedInteract = false;
                     }
 
-                    hasBeenDisplayedNoLight = true;
-                    displayEmoteNoLight = EmoteManager.instance.PlayEmoteGameObject("LightOn_Emote");
-                    displayEmoteNoLight.transform.position = itemClose.posEmote;
+                    if (itemClose != null)
+                    {
+                        hasBeenDisplayedNoLight = true;
+                        displayEmoteNoLight = EmoteManager.instance.PlayEmoteGameObject("LightOn_Emote");
+                        displayEmoteNoLight.transform.position = itemClose.posEmote;
+                    }
                 }
             }
-        } 
+        }
         else if (hasBeenDisplayedInteract)
         {
             Destroy(displayEmoteInteract);
             hasBeenDisplayedInteract = false;
         }
+        print(huntersSeingMe.Count);
+        if (lasthuntersSeingMeCount != huntersSeingMe.Count)
+        {
+            if (huntersSeingMe.Count > 0)
+            {
+                GetComponent<ParticleSystem>().Play();
+                pain.SetBool("IsPain", true);
+            }
+            else
+            {
+                pain.SetBool("IsPain", false);
+                GetComponent<ParticleSystem>().Stop();
+            }
+        } lasthuntersSeingMeCount = huntersSeingMe.Count;
     }
+
+    
 
     public void FovApply(FovEffects Stats, bool Condition)
     {
