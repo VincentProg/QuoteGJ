@@ -77,20 +77,21 @@ public class Item : MonoBehaviour
                         Destroy(qteSequence);
                     }
                 }
-
-                if (isCooldown)
-                {
-                    t += Time.deltaTime;
-                    circle1.fillAmount = t / cooldown;
-                    circl2.fillAmount = t / cooldown;
-                    if (t >= cooldown)
-                    {
-                        isCooldown = false;
-                        StartCoroutine(EndPause());
-                    }
-
-                }
             }
+
+        }
+
+        if (isCooldown)
+        {
+            t += Time.deltaTime;
+            circle1.fillAmount = t / cooldown;
+            circl2.fillAmount = t / cooldown;
+            if (t >= cooldown)
+            {
+                isCooldown = false;
+                StartCoroutine(EndPause());
+            }
+
         }
 
         //if(internDestroyFeedbackTimer <= 5 && hasSpawnFeedback)
@@ -129,7 +130,8 @@ public class Item : MonoBehaviour
         }
     }
 
-    public void Interact() {
+    public void Interact()
+    {
         isInteracting = true;
 
         if (anim != null)
@@ -166,12 +168,13 @@ public class Item : MonoBehaviour
 
     public void SucceedInteraction()
     {
+        AudioManager.instance.Play("DarkSong_Ghost");
         anim.SetTrigger("Succeed");
+
         switch (type)
         {
             case TYPE.FAUTEUIL:
-
-
+                StartCoroutine(WaitForSong(1.4f));
 
                 break;
             case TYPE.CHAISE:
@@ -214,14 +217,14 @@ public class Item : MonoBehaviour
 
         StartCoroutine(StartPause());
         t = 0;
-        
+
     }
     IEnumerator StartPause()
     {
         yield return new WaitForSeconds(1.5f);
         isCooldown = true;
         pause.SetActive(true);
-       
+
     }
     IEnumerator EndPause()
     {
@@ -231,6 +234,31 @@ public class Item : MonoBehaviour
 
 
         pause.SetActive(false);
+    }
+
+    IEnumerator WaitForSong(float f)
+    {
+        yield return new WaitForSeconds(f);
+        switch (type)
+        {
+            case TYPE.FAUTEUIL:
+                AudioManager.instance.Play("LoudImpact");
+
+
+
+                break;
+            case TYPE.CHAISE:
+
+
+                break;
+            case TYPE.TABLE:
+
+
+                break;
+
+            case TYPE.PENDULE:
+                break;
+        }
     }
 
 }
