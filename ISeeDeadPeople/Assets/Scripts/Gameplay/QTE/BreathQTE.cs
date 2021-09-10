@@ -29,7 +29,8 @@ public class BreathQTE : QTE
         currentDisplayQTE.transform.parent = GameManager.Instance.player.transform;
         currentDisplayQTE.transform.position = transform.position;
 
-        fillIMG = currentDisplayQTE.GetComponentInChildren<Image>();
+        fillIMG = currentDisplayQTE.transform.GetChild(0).GetChild(0).GetComponent<Image>();
+        //fillIMG = currentDisplayQTE.GetComponentInChildren<Image>();
         fillIMG.fillAmount = 0;
 
         displaySetup = currentDisplayQTE.GetComponent<QTEDisplay>();

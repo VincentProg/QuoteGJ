@@ -269,6 +269,23 @@ public class Hunter : MonoBehaviour
     {
         print("Dead");
         isDead = true;
+
+        int cpt = 0;
+        int nbHunters = GameManager.Instance.hunters.Count;
+
+        for (int i = 0; i < cpt; i++)
+        {
+            if(GameManager.Instance.hunters[cpt] == null)
+            {
+                cpt++;
+            }
+        }
+
+        if(cpt == nbHunters - 1)
+        {
+            VictoryManager.instance.EndGame(true);
+        }
+
         Destroy(gameObject);
         
     }

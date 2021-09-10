@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         foreach(Transform child in transform)
         {
             Room roomChild =  child.GetComponent<Room>();

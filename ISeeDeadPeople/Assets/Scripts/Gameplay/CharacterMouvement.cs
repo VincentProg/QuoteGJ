@@ -185,6 +185,7 @@ public class CharacterMouvement : MonoBehaviour
     {
         AudioManager.instance.Play("Breath");
          myRoom.TurnOff(transform.position);
+        canMove = true;
         
 
         foreach(Hunter hunter in GameManager.Instance.hunters)
@@ -201,7 +202,6 @@ public class CharacterMouvement : MonoBehaviour
         }
 
 
-        canMove = true;
     }
 
     private Item GetCloserItem()

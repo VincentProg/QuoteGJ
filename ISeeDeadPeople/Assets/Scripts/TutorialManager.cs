@@ -69,6 +69,7 @@ public class TutorialManager : MonoBehaviour
                         tutoTexts[cpt].SetActive(false);
 
                         EmoteManager.instance.PlayEmoteWithPos("Surprise_Emote", hunters[0].transform.position + new Vector3(0, 1.7f, 0));
+                        AudioManager.instance.Play("Fear");
                         hunters[0].SetActive(false);
 
                         cpt++;
@@ -125,6 +126,7 @@ public class TutorialManager : MonoBehaviour
                     {
                         tutoTexts[cpt].SetActive(false);
 
+                        AudioManager.instance.Play("Fear");
                         EmoteManager.instance.PlayEmoteWithPos("Surprise_Emote", hunters[1].transform.position + new Vector3(0,1.7f,0));
                         hunters[1].SetActive(false);
 
@@ -145,7 +147,7 @@ public class TutorialManager : MonoBehaviour
 
     IEnumerator LoadLevel()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(6);
         sceneChanger.ChangeScene("Prototype");
     }
 

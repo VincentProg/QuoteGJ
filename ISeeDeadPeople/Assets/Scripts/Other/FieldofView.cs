@@ -126,6 +126,8 @@ public class FieldofView : MonoBehaviour
                 displayDebug.transform.parent = visibleTargets[0].transform;
                 displayDebug.transform.position = new Vector3(visibleTargets[0].position.x, visibleTargets[0].position.y + .7f, -2);
                 hasBeenDisplayed = true;
+
+                VictoryManager.instance.EndGame(false);
             }
 
             isSeeing = true;
