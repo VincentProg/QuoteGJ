@@ -126,7 +126,7 @@ public class FieldofView : MonoBehaviour
             {
                 displayDebug = EmoteManager.instance.PlayEmoteGameObject("ScaredGhost_Emote");
                 displayDebug.transform.parent = visibleTargets[0].transform;
-                displayDebug.transform.position = visibleTargets[0].position + new Vector3(0,1,0)/*new Vector3(visibleTargets[0].position.x, visibleTargets[0].position.y + .7f, -2)*/;
+                displayDebug.transform.position = visibleTargets[0].position + new Vector3(0,2,0)/*new Vector3(visibleTargets[0].position.x, visibleTargets[0].position.y + .7f, -2)*/;
                 hasBeenDisplayed = true;
 
                 //VictoryManager.instance.EndGame(false);

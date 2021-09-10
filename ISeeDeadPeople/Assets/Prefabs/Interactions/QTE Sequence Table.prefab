@@ -47,53 +47,6 @@ MonoBehaviour:
   smashCount: 1
   smashQTEDisplay: {fileID: 7935535876698855842, guid: e6b53f1bc1d428e429ddedf8b3c3adf6, type: 3}
   timeBeforeLose: 1.5
---- !u!1 &2762982844832690944
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2762982844832690947}
-  - component: {fileID: 2762982844832690946}
-  m_Layer: 0
-  m_Name: Smash QTE 1 w/ L2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2762982844832690947
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2762982844832690944}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2762982845023637840}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2762982844832690946
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2762982844832690944}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf2e0b085d593a240bee3723ce78e323, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Button: 6
-  smashCount: 1
-  smashQTEDisplay: {fileID: 7935535876698855842, guid: e6b53f1bc1d428e429ddedf8b3c3adf6, type: 3}
-  timeBeforeLose: 1.5
 --- !u!1 &2762982844917011430
 GameObject:
   m_ObjectHideFlags: 0
@@ -123,7 +76,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2762982845023637840}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3703973984001411969
 MonoBehaviour:
@@ -171,10 +124,10 @@ Transform:
   m_Children:
   - {fileID: 2762982846165996970}
   - {fileID: 2762982844239848795}
-  - {fileID: 2762982844832690947}
-  - {fileID: 2762982845472629065}
   - {fileID: 2762982844917011433}
   - {fileID: 4676856172809228782}
+  - {fileID: 6190957259170968595}
+  - {fileID: 8168470947699070446}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -192,53 +145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playOnStart: 1
   sequenceFinished: 0
---- !u!1 &2762982845472629062
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2762982845472629065}
-  - component: {fileID: 2762982845472629064}
-  m_Layer: 0
-  m_Name: Smash QTE 1 w/ R2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2762982845472629065
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2762982845472629062}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2762982845023637840}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2762982845472629064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2762982845472629062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf2e0b085d593a240bee3723ce78e323, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Button: 7
-  smashCount: 1
-  smashQTEDisplay: {fileID: 7935535876698855842, guid: e6b53f1bc1d428e429ddedf8b3c3adf6, type: 3}
-  timeBeforeLose: 1.5
+  sequenceLost: 0
 --- !u!1 &2762982846165996971
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,7 +222,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2762982845023637840}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4747724208758593292
 MonoBehaviour:
@@ -330,6 +237,100 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Button: 7
+  stayTime: 1
+  stayQTEDisplay: {fileID: 7935535876698855842, guid: 8ef7d4389ac50524fa47e082d50cd86e, type: 3}
+  timeBeforeLose: 4
+--- !u!1 &6203110072086465283
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8168470947699070446}
+  - component: {fileID: 1379050404414671613}
+  m_Layer: 0
+  m_Name: Stay QTE 1 sec w/ R2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8168470947699070446
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6203110072086465283}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2762982845023637840}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1379050404414671613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6203110072086465283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eb2fdf5231c5554f8f5d968149f16b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Button: 7
+  stayTime: 1
+  stayQTEDisplay: {fileID: 7935535876698855842, guid: 8ef7d4389ac50524fa47e082d50cd86e, type: 3}
+  timeBeforeLose: 4
+--- !u!1 &8969964662815632850
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6190957259170968595}
+  - component: {fileID: 6765011136940704666}
+  m_Layer: 0
+  m_Name: Stay QTE 1 sec w/ L2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6190957259170968595
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8969964662815632850}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2762982845023637840}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6765011136940704666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8969964662815632850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eb2fdf5231c5554f8f5d968149f16b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Button: 6
   stayTime: 1
   stayQTEDisplay: {fileID: 7935535876698855842, guid: 8ef7d4389ac50524fa47e082d50cd86e, type: 3}
   timeBeforeLose: 4
