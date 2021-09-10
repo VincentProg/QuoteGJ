@@ -12,6 +12,7 @@ public class OverlapWall : MonoBehaviour
     public int Lock;
     public bool Head;
     public Animator Effect;
+
     
     void Start()
     {

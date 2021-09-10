@@ -39,7 +39,7 @@ Material:
     - OutlineFresnel: 2.5
     - ScrollSpeed: 0.5
     m_Colors:
-    - FresnelColor: {r: 0.7529412, g: 3.3254902, b: 3.9529412, a: 0}
+    - FresnelColor: {r: 0, g: 4.249406, b: 5.2774878, a: 0}
     - HologramTiling: {r: 0, g: 0, b: 0, a: 0}
     - MainColor: {r: 0.5039318, g: 2.33553, b: 1.0272456, a: 0}
   m_BuildTextureStacks: []
